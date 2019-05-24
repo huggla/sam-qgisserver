@@ -24,7 +24,7 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& cd ../libspatialindex "\
 "&& echo preautogen "\
-"&& ./autogen.sh "\
+#"&& ./autogen.sh "\
 "&& echo postautogen "\
 "&& ./configure --prefix=/usr "\
 "&& echo postconfig "\
