@@ -31,7 +31,8 @@ ARG BUILDCMDS=\
           -DWITH_SERVER_PLUGINS=OFF -DWITH_BINDINGS=OFF -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& make install"
+"&& ninja "\
+"&& ninja install"
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
