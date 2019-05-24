@@ -13,3 +13,11 @@ ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                https://github.com/qgis/QGIS.git"
 ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz"
+ARG DESTDIR="build"
+ARG BUILDCMDS=\
+"   mv txt2tags /usr/bin/ "\
+"&& cd netcdf-c-$NETCDF_VERSION "\
+"&& ./configure --prefix=/usr "\
+"&& make "\
+"&& make
+            
