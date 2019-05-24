@@ -28,11 +28,12 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
+"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd ../sip-$SIP_VERSION "\
-"&& python3 configure.py "\
+"&& python3 configure.py --use-qmake "\
+"&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
-"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& sed -i 's/include_next/include/g' /usr/include/fortify/stdlib.h "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
