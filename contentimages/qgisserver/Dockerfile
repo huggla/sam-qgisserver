@@ -10,7 +10,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
                hdf5-dev curl-dev fcgi-dev libspatialite-dev \
-               automake autoconf py3-qt5 python3-dev"
+               automake autoconf py3-qt5 python3-dev py-sip-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                https://github.com/qgis/QGIS.git"
 ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
@@ -29,11 +29,11 @@ ARG BUILDCMDS=\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-"&& cd ../sip-$SIP_VERSION "\
-"&& python3 configure.py --use-qmake "\
-"&& qmake "\
-"&& make "\
-"&& DESTDIR=/ make install "\
+#"&& cd ../sip-$SIP_VERSION "\
+#"&& python3 configure.py --use-qmake "\
+#"&& qmake "\
+#"&& make "\
+#"&& DESTDIR=/ make install "\
 "&& sed -i 's/include_next/include/g' /usr/include/fortify/stdlib.h "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
