@@ -10,7 +10,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
                hdf5-dev curl-dev fcgi-dev libspatialite-dev \
-               automake autoconf py3-qt5"
+               automake autoconf py3-qt5 python3-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                https://github.com/qgis/QGIS.git"
 ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
