@@ -1,7 +1,6 @@
 ARG TAG="20190517"
 ARG NETCDF_VERSION="4.7.0"
-ARG SIP_VERSION="4.19.17"
-ARG QSCINTILLA_VERSION="2.10.8"
+ARG QSCINTILLA_VERSION="2.11.1"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev proj4-dev ninja qca-dev qt5-qtbase-dev \
@@ -9,13 +8,13 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
-               hdf5-dev curl curl-dev fcgi-dev libspatialite-dev \
-               automake autoconf py3-qt5 py-sip-dev"
+               hdf5-dev curl-dev fcgi-dev libspatialite-dev \
+               automake autoconf py3-qt5 python3-dev py-sip-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                https://github.com/qgis/QGIS.git"
 ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-               https://downloads.sourceforge.net/project/pyqt/QScintilla2/QScintilla-$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
+               https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   mv txt2tags /usr/bin/ "\
 "&& cd netcdf-c-$NETCDF_VERSION "\
@@ -23,18 +22,12 @@ ARG BUILDCMDS=\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../libspatialindex "\
-"&& echo preautogen "\
-#"&& ./autogen.sh "\
-"&& echo postautogen "\
+"&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
-"&& echo postconfig "\
 "&& make "\
-"&& echo postmake "\
 "&& DESTDIR=/ make install "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-"&& cat /usr/include/fortify/stdlib.h "\
 "&& sed -i 's/include_next/include/g' /usr/include/fortify/stdlib.h "\
-"&& cat /usr/include/fortify/stdlib.h "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
 "&& make "\
