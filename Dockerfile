@@ -26,6 +26,7 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
+"&& apk info "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
