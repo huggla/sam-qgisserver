@@ -33,8 +33,6 @@ ARG BUILDCMDS=\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py "\
-#"&& python3 configure.py --use-qmake "\
-#"&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
