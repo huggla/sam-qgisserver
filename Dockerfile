@@ -28,9 +28,7 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
-"&& apk info | sort - "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake "\
