@@ -37,8 +37,8 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
-"&& make"
-#"&& DESTDIR=/ make install "\
+"&& make "\
+"&& DESTDIR=/ make install"
 #"&& cd ../Python "\
 #"&& python3 configure.py --pyqt=PyQt5 "\
 #"&& make "\
@@ -53,3 +53,40 @@ ARG BUILDCMDS=\
 #"&& ninja "\
 #"&& ninja install"
 
+#--------Generic template (don't edit)--------
+FROM ${CONTENTIMAGE1:-scratch} as content1
+FROM ${CONTENTIMAGE2:-scratch} as content2
+FROM ${CONTENTIMAGE3:-scratch} as content3
+FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
+FROM ${BUILDIMAGE:-huggla/build} as build
+FROM ${BASEIMAGE:-huggla/base:$TAG} as final
+ARG CONTENTSOURCE1
+ARG CONTENTSOURCE1="${CONTENTSOURCE1:-/}"
+ARG CONTENTDESTINATION1
+ARG CONTENTDESTINATION1="${CONTENTDESTINATION1:-/}"
+ARG CONTENTSOURCE2
+ARG CONTENTSOURCE2="${CONTENTSOURCE2:-/}"
+ARG CONTENTDESTINATION2
+ARG CONTENTDESTINATION2="${CONTENTDESTINATION2:-/}"
+ARG CONTENTSOURCE3
+ARG CONTENTSOURCE3="${CONTENTSOURCE3:-/}"
+ARG CONTENTDESTINATION3
+ARG CONTENTDESTINATION3="${CONTENTDESTINATION3:-/}"
+ARG CLONEGITSDIR
+ARG DOWNLOADSDIR
+ARG MAKEDIRS
+ARG MAKEFILES
+ARG EXECUTABLES
+ARG STARTUPEXECUTABLES
+ARG EXPOSEFUNCTIONS
+ARG GID0WRITABLES
+ARG GID0WRITABLESRECURSIVE
+ARG LINUXUSEROWNED
+ARG LINUXUSEROWNEDRECURSIVE
+COPY --from=build / /
+#---------------------------------------------
+
+#--------Generic template (don't edit)--------
+USER starter
+ONBUILD USER root
+#---------------------------------------------
