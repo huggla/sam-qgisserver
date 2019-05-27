@@ -40,8 +40,7 @@ ARG BUILDCMDS=\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../Python "\
-"&& python3 configure.py --pyqt=PyQt5 --use-qmake "\
-"&& qmake "\
+"&& python3 configure.py --help "\
 "&& python3 configure.py --pyqt=PyQt5 "\
 "&& make "\
 "&& DESTDIR=/ make install "\
