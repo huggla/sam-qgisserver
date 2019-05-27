@@ -19,6 +19,7 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   mv txt2tags /usr/bin/ "\
+"&& chmod +x /usr/bin/txt2tags "\
 "&& cd netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
@@ -40,9 +41,9 @@ ARG BUILDCMDS=\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../Python "\
-"&& python3 configure.py --help "\
 "&& python3 configure.py --pyqt=PyQt5 "\
-"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
+#"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
+"&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../../QGIS "\
