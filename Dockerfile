@@ -38,8 +38,8 @@ ARG BUILDCMDS=\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake "
-"&& make "\
+"&& qmake "\
+"&& make "
 #"&& DESTDIR=/ make install "\
 #"&& cd ../Python "\
 #"&& python3 configure.py --pyqt=PyQt5 "\
