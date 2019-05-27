@@ -32,6 +32,7 @@ ARG BUILDCMDS=\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake "\
+"&& python3 configure.py "\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
