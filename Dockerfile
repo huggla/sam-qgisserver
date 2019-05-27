@@ -77,7 +77,7 @@ ARG GID0WRITABLES
 ARG GID0WRITABLESRECURSIVE
 ARG LINUXUSEROWNED
 ARG LINUXUSEROWNEDRECURSIVE
-COPY --from=build /imagefs /
+COPY --from=build /finalfs /
 #---------------------------------------------
 
 #--------Generic template (don't edit)--------
