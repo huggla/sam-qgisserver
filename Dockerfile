@@ -30,57 +30,20 @@ ARG BUILDCMDS=\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake "\
-"&& make "\
-"&& DESTDIR=/ make install "\
-"&& cd ../Python "\
-"&& python3 configure.py --pyqt=PyQt5 "\
-"&& make "\
-"&& DESTDIR=/ make install "\
-"&& cd ../../QGIS "\
-"&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
-          -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
-          -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
-          -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
-          -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
-          -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& ninja "\
-"&& ninja install"
+"&& qmake "
+#"&& make "\
+#"&& DESTDIR=/ make install "\
+#"&& cd ../Python "\
+#"&& python3 configure.py --pyqt=PyQt5 "\
+#"&& make "\
+#"&& DESTDIR=/ make install "\
+#"&& cd ../../QGIS "\
+#"&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
+#          -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
+#          -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
+#          -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
+#          -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
+#          -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
+#"&& ninja "\
+#"&& ninja install"
 
-#--------Generic template (don't edit)--------
-FROM ${CONTENTIMAGE1:-scratch} as content1
-FROM ${CONTENTIMAGE2:-scratch} as content2
-FROM ${CONTENTIMAGE3:-scratch} as content3
-FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
-FROM ${BUILDIMAGE:-huggla/build} as build
-FROM ${BASEIMAGE:-huggla/base:$TAG} as image
-ARG CONTENTSOURCE1
-ARG CONTENTSOURCE1="${CONTENTSOURCE1:-/}"
-ARG CONTENTDESTINATION1
-ARG CONTENTDESTINATION1="${CONTENTDESTINATION1:-/}"
-ARG CONTENTSOURCE2
-ARG CONTENTSOURCE2="${CONTENTSOURCE2:-/}"
-ARG CONTENTDESTINATION2
-ARG CONTENTDESTINATION2="${CONTENTDESTINATION2:-/}"
-ARG CONTENTSOURCE3
-ARG CONTENTSOURCE3="${CONTENTSOURCE3:-/}"
-ARG CONTENTDESTINATION3
-ARG CONTENTDESTINATION3="${CONTENTDESTINATION3:-/}"
-ARG CLONEGITSDIR
-ARG DOWNLOADSDIR
-ARG MAKEDIRS
-ARG MAKEFILES
-ARG EXECUTABLES
-ARG STARTUPEXECUTABLES
-ARG EXPOSEFUNCTIONS
-ARG GID0WRITABLES
-ARG GID0WRITABLESRECURSIVE
-ARG LINUXUSEROWNED
-ARG LINUXUSEROWNEDRECURSIVE
-COPY --from=build /finalfs /
-#---------------------------------------------
-
-#--------Generic template (don't edit)--------
-USER starter
-ONBUILD USER root
-#---------------------------------------------
