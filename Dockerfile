@@ -42,6 +42,7 @@ ARG BUILDCMDS=\
 "&& cd ../Python "\
 "&& python3 configure.py --help "\
 "&& python3 configure.py --pyqt=PyQt5 "\
+"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../../QGIS "\
