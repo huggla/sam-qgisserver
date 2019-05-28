@@ -48,7 +48,7 @@ ARG BUILDCMDS=\
 "&& cd ../../ "\
 "&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
 "&& cd QGIS "\
-"&& mv /buildfs /finalfs/"
+"&& mv /buildfs /finalfs/ "\
 #"&& >INSTALL "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
