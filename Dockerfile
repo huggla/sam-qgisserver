@@ -17,7 +17,9 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   cd netcdf-c-$NETCDF_VERSION "\
+"   ln -s /usr/bin/python3.7 /usr/bin/python "\
+"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
+"&& cd netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
@@ -26,7 +28,6 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
-"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake "\
@@ -43,7 +44,6 @@ ARG BUILDCMDS=\
 "&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
-"&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
 "&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
 "&& cd QGIS "\
