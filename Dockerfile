@@ -3,7 +3,7 @@ ARG NETCDF_VERSION="4.7.0"
 ARG SIP_VERSION="4.19.17"
 ARG QSCINTILLA_VERSION="2.11.1"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
+ARG RUNDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev proj4-dev ninja qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
@@ -45,17 +45,18 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
-#"&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
+"&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
 "&& cd QGIS "\
+"&& mv /buildfs /finalfs/"
 #"&& >INSTALL "\
-"&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
-          -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
-          -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
-          -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
-          -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
-          -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& ninja "\
-"&& ninja install"
+#"&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
+#          -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
+#          -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
+#          -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
+#          -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
+#          -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
+#"&& ninja "\
+#"&& ninja install"
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
