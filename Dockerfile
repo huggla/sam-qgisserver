@@ -46,7 +46,7 @@ ARG BUILDCMDS=\
 "&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
-"&& ln -s /usr/bin/python3 /usr/bin/python "\
+"&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
