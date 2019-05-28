@@ -39,10 +39,12 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
+"&& cp -a /usr/include/fortify/stdlib.h /usr/include/fortify/stdlib.h.tmp "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
+"&& cp -a /usr/include/fortify/stdlib.h.tmp /usr/include/fortify/stdlib.h "\
 "&& cd ../../ "\
 "&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
 "&& cd QGIS "\
