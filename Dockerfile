@@ -11,14 +11,21 @@ ARG RUNDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
                hdf5-dev curl-dev fcgi-dev libspatialite-dev \
                automake autoconf py3-qt5 python3-dev"
+ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
+               sqlite-dev proj4-dev ninja qca-dev qt5-qtbase-dev \
+               flex-dev opencl-icd-loader-dev opencl-headers \
+               bison postgresql-dev qt5-qtserialport-dev libtool \
+               qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
+               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
+               hdf5-dev curl-dev fcgi-dev libspatialite-dev \
+               automake autoconf py3-qt5 python3-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
-               https://github.com/qgis/QGIS.git"
+               '--branch release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   ln -s /usr/bin/python3.7 /usr/bin/python "\
-"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
+"   ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
