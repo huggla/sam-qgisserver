@@ -11,10 +11,11 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
                hdf5-dev curl-dev fcgi-dev libspatialite-dev \
                automake autoconf py3-qt5 python3-dev"
-ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \\\'--branch release-3_4 --depth 1 https://github.com/qgis/QGIS.git\\\'"
+ARG CLONEGITS="'--branch release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
-               https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
+               https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz \
+               https://github.com/libspatialindex/libspatialindex/archive/master.zip"
 ARG BUILDCMDS=\
 "   ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd netcdf-c-$NETCDF_VERSION "\
