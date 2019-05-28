@@ -40,7 +40,7 @@ ARG BUILDCMDS=\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
 "&& cp -a /usr/include/fortify/stdlib.h /usr/include/fortify/stdlib.h.tmp "\
-"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
+"&& sed -i 's/include_next/include/g' /usr/include/fortify/stdlib.h "\
 "&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
