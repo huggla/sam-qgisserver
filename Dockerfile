@@ -13,14 +13,11 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                automake autoconf py3-qt5 python3-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                https://github.com/qgis/QGIS.git"
-ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
-               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
+ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   mv txt2tags /usr/bin/ "\
-"&& chmod +x /usr/bin/txt2tags "\
-"&& cd netcdf-c-$NETCDF_VERSION "\
+"   cd netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
@@ -51,17 +48,15 @@ ARG BUILDCMDS=\
 "&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
 "&& apk del autoconf automake "\
 "&& cd QGIS "\
-"&& cmake --help-variables --help-properties --help-commands "\
+"&& >INSTALL "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& cp -a /buildfs /build "\
-"&& rm -rf /finalfs/*"
-#"&& ninja "\
-#"&& ninja install"
+"&& ninja "\
+"&& ninja install"
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
@@ -93,7 +88,7 @@ ARG GID0WRITABLES
 ARG GID0WRITABLESRECURSIVE
 ARG LINUXUSEROWNED
 ARG LINUXUSEROWNEDRECURSIVE
-COPY --from=build / /
+COPY --from=build /finalfs /
 #---------------------------------------------
 
 #--------Generic template (don't edit)--------
