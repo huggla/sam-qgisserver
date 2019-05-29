@@ -51,7 +51,6 @@ ARG BUILDCMDS=\
 "&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
 "&& apk del autoconf automake "\
 "&& cd QGIS "\
-"&& cmake --help-variables --help-properties --help-commands "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
