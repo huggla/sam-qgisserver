@@ -13,11 +13,13 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                automake autoconf py3-qt5 python3-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
-ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
+ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
+               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
+"   mv txt2tags /usr/bin/ "\
+"&& chmod +x /usr/bin/txt2tags "\
 "&& cd netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
@@ -27,6 +29,7 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
+"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake "\
@@ -39,17 +42,16 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
-"&& cp -a /usr/include/fortify/stdlib.h /usr/include/fortify/stdlib.h.tmp "\
-"&& sed -i 's/include_next/include/g' /usr/include/fortify/stdlib.h "\
+"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& qmake "\
 "&& make "\
 "&& DESTDIR=/ make install "\
-"&& cp -a /usr/include/fortify/stdlib.h.tmp /usr/include/fortify/stdlib.h "\
+"&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
 "&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
+"&& apk del autoconf automake "\
 "&& cd QGIS "\
-"&& mv /buildfs /finalfs/ "\
-#"&& >INSTALL "\
+"&& cmake --help-variables --help-properties --help-commands "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
