@@ -22,7 +22,7 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
 ARG BUILDCMDS=\
 "   mv txt2tags /usr/bin/ "\
 "&& chmod +x /usr/bin/txt2tags "\
-"&& cd hd5-$HDF5_VERSION "\
+"&& cd hdf5-$HDF5_VERSION "\
 "&& ./configure \
 		--build=$CBUILD \
 		--host=$CHOST \
