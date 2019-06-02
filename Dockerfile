@@ -31,7 +31,7 @@ ARG BUILDCMDS=\
 		--sysconfdir=/etc \
 		--localstatedir=/var \
 		--disable-threadsafe \
-		--enable-cxx \
+#               --enable-cxx \
 		--enable-direct-vfd \
     --enable-parallel "\
 "&& make "\
