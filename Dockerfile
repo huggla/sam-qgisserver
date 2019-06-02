@@ -36,7 +36,7 @@ ARG BUILDCMDS=\
     --enable-parallel "\
 "&& make "\
 "&& make install "\
-"&& cd netcdf-c-$NETCDF_VERSION "\
+"&& cd ../netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
