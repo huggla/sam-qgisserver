@@ -35,7 +35,7 @@ ARG BUILDCMDS=\
 		--enable-direct-vfd \
     --enable-parallel "\
 "&& make "\
-"&& make install "\
+"&& DESTDIR=/ make install "\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
