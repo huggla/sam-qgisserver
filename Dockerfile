@@ -40,7 +40,7 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
-"&& cd ../http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-4.4.0-RC1 "\
+"&& cd ../libspatialite-4.4.0-RC1 "\
 "&& ./configure \
                 --prefix=/usr \
                 --build=$CBUILD \
