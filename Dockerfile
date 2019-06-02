@@ -10,12 +10,13 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
-               hdf5-dev curl-dev fcgi-dev zlib-dev libspatialite-dev \
+               curl-dev fcgi-dev zlib-dev \
                automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
                http://www.hdfgroup.org/ftp/HDF5/current18/src/hdf5-$HDF5_VERSION.tar.gz \
+	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-4.4.0-RC1.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
@@ -39,6 +40,14 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
+"&& cd ../http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-4.4.0-RC1 "\
+"&& ./configure \
+                --prefix=/usr \
+                --build=$CBUILD \
+                --host=$CHOST \
+                --enable-freexl=no "\
+"&& make "\
+"&& make install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
