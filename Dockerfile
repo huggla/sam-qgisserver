@@ -25,14 +25,12 @@ ARG BUILDCMDS=\
 "&& chmod +x /usr/bin/txt2tags "\
 "&& cd hdf5-$HDF5_VERSION "\
 "&& ./configure \
-		--build=$CBUILD \
-		--host=$CHOST \
-		--prefix=/usr \
-		--sysconfdir=/etc \
-		--localstatedir=/var \
-		--disable-threadsafe \
+--prefix=/usr \
+--sysconfdir=/etc \
+--localstatedir=/var \
+--disable-threadsafe \
 #               --enable-cxx \
-		--enable-direct-vfd \
+--enable-direct-vfd \
     --enable-parallel "\
 "&& make "\
 "&& DESTDIR=/ make install "\
@@ -43,8 +41,6 @@ ARG BUILDCMDS=\
 "&& cd ../libspatialite-4.3.0 "\
 "&& ./configure \
                 --prefix=/usr \
-                --build=$CBUILD \
-                --host=$CHOST \
                 --enable-freexl=no "\
 "&& make "\
 "&& make install "\
