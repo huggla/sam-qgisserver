@@ -23,6 +23,9 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
 ARG BUILDCMDS=\
 "   mv txt2tags /usr/bin/ "\
 "&& chmod +x /usr/bin/txt2tags "\
+"&& ls -la /usr/local/include "\
+"&& cp -a /usr/local/include /usr/ "\
+"&& cp -a /usr/include /usr/local/ "\
 "&& cd hdf5-$HDF5_VERSION "\
 "&& ./configure \
 --prefix=/usr \
@@ -40,7 +43,6 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& cd ../libspatialite-4.3.0 "\
 "&& ls -la /usr/include "\
-"&& cp -a /usr/include /usr/local/ "\
 #"&& find / -name proj_api.h -exec cp -a {} ./ \; "\
 "&& ./configure \
                 --prefix=/usr \
