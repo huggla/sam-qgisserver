@@ -5,7 +5,7 @@ ARG SIP_VERSION="4.19.17"
 ARG QSCINTILLA_VERSION="2.11.1"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
-               sqlite-dev sqlite proj4-dev ninja qca-dev qt5-qtbase-dev \
+               sqlite-dev sqlite ninja qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
@@ -24,10 +24,11 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
 ARG BUILDCMDS=\
 "   mv txt2tags /usr/bin/ "\
 "&& chmod +x /usr/bin/txt2tags "\
-"&& ls -la /usr/local/include "\
-"&& cp -a /usr/local/include /usr/ "\
-"&& cp -a /usr/include /usr/local/ "\
-"&& cd hdf5-$HDF5_VERSION "\
+"&& cd proj-6.1.0 "\
+"&& ./configure --prefix=/usr --without-jni "\
+"&& make "\
+"&& DESTDIR=/ make install "\
+"&& cd ../hdf5-$HDF5_VERSION "\
 "&& ./configure \
 --prefix=/usr \
 --sysconfdir=/etc \
@@ -45,9 +46,7 @@ ARG BUILDCMDS=\
 "&& cd ../libspatialite-4.3.0 "\
 "&& ls -la /usr/include "\
 #"&& find / -name proj_api.h -exec cp -a {} ./ \; "\
-"&& ./configure \
-                --prefix=/usr \
-                --enable-freexl=no "\
+"&& ./configure --prefix=/usr --enable-freexl=no "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialindex "\
