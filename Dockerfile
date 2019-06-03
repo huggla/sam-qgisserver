@@ -3,6 +3,7 @@ ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG SIP_VERSION="4.19.17"
 ARG QSCINTILLA_VERSION="2.11.1"
+ARG CFLAGS="-I/usr/include"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca-dev qt5-qtbase-dev \
@@ -24,6 +25,9 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
 ARG BUILDCMDS=\
 "   mv txt2tags /usr/bin/ "\
 "&& chmod +x /usr/bin/txt2tags "\
+"&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
+"&& LDFLAGS=-L/usr/lib "\
+"&& env "\
 "&& cd proj-6.1.0 "\
 "&& ./configure --prefix=/usr --without-jni "\
 "&& make "\
