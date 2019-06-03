@@ -10,7 +10,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
-               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
+               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
                automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
