@@ -19,7 +19,7 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
 	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-	       http://download.osgeo.org/proj/proj-6.1.0.tar.gz \
+	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
@@ -28,7 +28,7 @@ ARG BUILDCMDS=\
 "&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
 "&& LDFLAGS=-L/usr/lib "\
 "&& env "\
-"&& cd proj-6.1.0 "\
+"&& cd proj-5.2.0 "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& libtool --finish /usr/lib "\
@@ -44,11 +44,15 @@ ARG BUILDCMDS=\
 --enable-direct-vfd \
     --enable-parallel "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 "&& ls -la /usr/include "\
 "&& ./configure --help "\
@@ -61,24 +65,32 @@ ARG BUILDCMDS=\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake "\
 "&& python3 configure.py "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& qmake "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
 "&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
@@ -91,7 +103,9 @@ ARG BUILDCMDS=\
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
 "&& ninja "\
-"&& ninja install"
+"&& libtool --finish /usr/lib "\
+"&& ninja install "\
+"&& libtool --finish /usr/lib"
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
