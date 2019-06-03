@@ -19,7 +19,7 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
 	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-	       http://download.osgeo.org/proj/proj-6.1.0.tar.gz \
+	       http://download.osgeo.org/proj/proj-6.0.0.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
@@ -28,7 +28,7 @@ ARG BUILDCMDS=\
 "&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
 "&& LDFLAGS=-L/usr/lib "\
 "&& env "\
-"&& cd proj-6.1.0 "\
+"&& cd proj-6.0.0 "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
