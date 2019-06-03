@@ -29,7 +29,7 @@ ARG BUILDCMDS=\
 "&& LDFLAGS=-L/usr/lib "\
 "&& env "\
 "&& cd proj-6.1.0 "\
-"&& ./configure --prefix=/usr --without-jni "\
+"&& ./configure --prefix=/usr "\
 "&& make "\
 "&& DESTDIR=/ make install "\
 "&& cd ../hdf5-$HDF5_VERSION "\
