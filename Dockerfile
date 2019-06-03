@@ -51,11 +51,12 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 "&& ls -la /usr/include "\
-#"&& find / -name proj_api.h -exec cp -a {} ./ \; "\
 "&& ./configure --help "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& make install "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
