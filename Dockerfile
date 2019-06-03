@@ -31,7 +31,9 @@ ARG BUILDCMDS=\
 "&& cd proj-5.2.0 "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
+"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../hdf5-$HDF5_VERSION "\
 "&& ./configure \
 --prefix=/usr \
