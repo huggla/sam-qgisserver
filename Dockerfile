@@ -40,7 +40,7 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& cd ../libspatialite-4.3.0 "\
 "&& ls -la /usr/include "\
-"&& find / -name proj_api.h "\
+"&& find / -name proj_api.h -exec cp -a {} ./ \; "\
 "&& ./configure \
                 --prefix=/usr \
                 --enable-freexl=no "\
