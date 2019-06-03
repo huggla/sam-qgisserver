@@ -1,5 +1,5 @@
 ARG TAG="20190527"
-ARG HDF5_VERSION="1.8.21"
+ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG SIP_VERSION="4.19.17"
 ARG QSCINTILLA_VERSION="2.11.1"
@@ -15,7 +15,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
-               http://www.hdfgroup.org/ftp/HDF5/current18/src/hdf5-$HDF5_VERSION.tar.gz \
+               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
 	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-4.3.0.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
 	       http://download.osgeo.org/proj/proj-6.1.0.tar.gz \
