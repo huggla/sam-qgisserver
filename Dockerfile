@@ -52,7 +52,8 @@ ARG BUILDCMDS=\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 "&& ls -la /usr/include "\
 #"&& find / -name proj_api.h -exec cp -a {} ./ \; "\
-"&& ./configure --prefix=/usr --enable-freexl=no "\
+"&& ./configure --help "\
+"&& ./configure --prefix=/usr "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialindex "\
