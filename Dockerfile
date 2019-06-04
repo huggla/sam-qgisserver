@@ -12,7 +12,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev libspatialite-dev proj4-dev"
+               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev libspatialite-dev proj4-dev py3-sip py3-sip-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="\
@@ -20,8 +20,8 @@ ARG DOWNLOADS="\
 #               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
 #	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
 #               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
-               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
+#	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
+#               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 #"   mv txt2tags /usr/bin/ "\
@@ -68,14 +68,14 @@ ARG BUILDCMDS=\
 "&& DESTDIR=/ make install "\
 "&& libtool --finish /usr/lib "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-"&& cd ../sip-$SIP_VERSION "\
-"&& python3 configure.py --use-qmake "\
-"&& qmake "\
-"&& python3 configure.py "\
-"&& make "\
-"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#"&& cd ../sip-$SIP_VERSION "\
+#"&& python3 configure.py --use-qmake "\
+#"&& qmake "\
+#"&& python3 configure.py "\
+#"&& make "\
+#"&& libtool --finish /usr/lib "\
+#"&& DESTDIR=/ make install "\
+#"&& libtool --finish /usr/lib "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
 "&& make "\
