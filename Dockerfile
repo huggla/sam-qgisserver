@@ -3,7 +3,7 @@ ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG SIP_VERSION="4.19.17"
 ARG QSCINTILLA_VERSION="2.11.1"
-ARG CFLAGS="-I/usr/include"
+#ARG CFLAGS="-I/proj5.2.0/usr/include"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca-dev qt5-qtbase-dev \
@@ -12,7 +12,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev"
+               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev proj4-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
@@ -23,43 +23,43 @@ ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2ta
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   mv txt2tags /usr/bin/ "\
-"&& chmod +x /usr/bin/txt2tags "\
-"&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
-"&& LDFLAGS=-L/usr/lib "\
-"&& env "\
-"&& cd proj-5.2.0 "\
+#"   mv txt2tags /usr/bin/ "\
+#"&& chmod +x /usr/bin/txt2tags "\
+#"&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
+#"&& LDFLAGS=-L/usr/lib "\
+#"&& env "\
+"cd proj-5.2.0 "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
+"&& DESTDIR=/proj5.2.0 make install "\
 "&& libtool --finish /usr/lib "\
-"&& cd ../hdf5-$HDF5_VERSION "\
-"&& ./configure \
---prefix=/usr \
---sysconfdir=/etc \
---localstatedir=/var \
---disable-threadsafe \
+#"&& cd ../hdf5-$HDF5_VERSION "\
+#"&& ./configure \
+#--prefix=/usr \
+#--sysconfdir=/etc \
+#--localstatedir=/var \
+#--disable-threadsafe \
 #               --enable-cxx \
---enable-direct-vfd \
-    --enable-parallel "\
-"&& make "\
-"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
-"&& cd ../netcdf-c-$NETCDF_VERSION "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
-"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#--enable-direct-vfd \
+#    --enable-parallel "\
+#"&& make "\
+#"&& libtool --finish /usr/lib "\
+#"&& DESTDIR=/ make install "\
+#"&& libtool --finish /usr/lib "\
+#"&& cd ../netcdf-c-$NETCDF_VERSION "\
+#"&& ./configure --prefix=/usr "\
+#"&& make "\
+#"&& libtool --finish /usr/lib "\
+#"&& DESTDIR=/ make install "\
+#"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 "&& ls -la /usr/include "\
 "&& ./configure --help "\
-"&& ./configure --prefix=/usr "\
+"&& ./configure --prefix=/usr --includedir=/proj5.2.0/usr/include"\
 "&& make "\
 "&& libtool --finish /usr/lib "\
-"&& make install "\
+"&& DESTDIR=/ make install "\
 "&& libtool --finish /usr/lib "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
@@ -93,8 +93,8 @@ ARG BUILDCMDS=\
 "&& libtool --finish /usr/lib "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
-"&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
-"&& apk del autoconf automake "\
+#"&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
+#"&& apk del autoconf automake "\
 "&& cd QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
