@@ -12,13 +12,14 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev proj4-dev"
+               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev libspatialite-dev proj4-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
-ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
-               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
-	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
-               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
+ARG DOWNLOADS="\
+#https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
+#               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
+#	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
+#               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
 	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
@@ -28,12 +29,12 @@ ARG BUILDCMDS=\
 #"&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
 #"&& LDFLAGS=-L/usr/lib "\
 #"&& env "\
-"cd proj-5.2.0 "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
-"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/proj5.2.0 make install "\
-"&& libtool --finish /usr/lib "\
+#"cd proj-5.2.0 "\
+#"&& ./configure --prefix=/usr "\
+#"&& make "\
+#"&& libtool --finish /usr/lib "\
+#"&& DESTDIR=/ make install "\
+#"&& libtool --finish /usr/lib "\
 #"&& cd ../hdf5-$HDF5_VERSION "\
 #"&& ./configure \
 #--prefix=/usr \
@@ -53,12 +54,12 @@ ARG BUILDCMDS=\
 #"&& libtool --finish /usr/lib "\
 #"&& DESTDIR=/ make install "\
 #"&& libtool --finish /usr/lib "\
-"&& cd ../libspatialite-5.0.0-beta0 "\
-"&& ./configure --prefix=/usr --includedir=/proj5.2.0/usr/include"\
-"&& make "\
-"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#"&& cd ../libspatialite-5.0.0-beta0 "\
+#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
+#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
+#"&& libtool --finish /usr/lib "\
+#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
+#"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
