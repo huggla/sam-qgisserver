@@ -84,7 +84,7 @@ ARG BUILDCMDS=\
 "&& libtool --finish /usr/lib "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
-"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
+#"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& qmake "\
 "&& make "\
 "&& libtool --finish /usr/lib "\
