@@ -12,7 +12,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev libspatialite-dev proj4-dev py3-sip py3-sip-dev"
+               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev proj4-dev py3-sip py3-sip-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="\
@@ -29,12 +29,12 @@ ARG BUILDCMDS=\
 #"&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
 #"&& LDFLAGS=-L/usr/lib "\
 #"&& env "\
-#"cd proj-5.2.0 "\
-#"&& ./configure --prefix=/usr "\
-#"&& make "\
-#"&& libtool --finish /usr/lib "\
-#"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
+"cd proj-5.2.0 "\
+"&& ./configure --prefix=/usr "\
+"&& make "\
+"&& libtool --finish /usr/lib "\
+"&& DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 #"&& cd ../hdf5-$HDF5_VERSION "\
 #"&& ./configure \
 #--prefix=/usr \
@@ -54,12 +54,12 @@ ARG BUILDCMDS=\
 #"&& libtool --finish /usr/lib "\
 #"&& DESTDIR=/ make install "\
 #"&& libtool --finish /usr/lib "\
-#"&& cd ../libspatialite-5.0.0-beta0 "\
-#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
-#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
-#"&& libtool --finish /usr/lib "\
-#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
+"&& cd ../libspatialite-5.0.0-beta0 "\
+"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
+"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
+"&& libtool --finish /usr/lib "\
+"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
