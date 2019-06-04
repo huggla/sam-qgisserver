@@ -54,8 +54,6 @@ ARG BUILDCMDS=\
 #"&& DESTDIR=/ make install "\
 #"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& ls -la /usr/include "\
-"&& ./configure --help "\
 "&& ./configure --prefix=/usr --includedir=/proj5.2.0/usr/include"\
 "&& make "\
 "&& libtool --finish /usr/lib "\
