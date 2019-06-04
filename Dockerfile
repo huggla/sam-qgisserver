@@ -32,9 +32,9 @@ ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 #"&& cd ../hdf5-$HDF5_VERSION "\
 #"&& ./configure \
 #--prefix=/usr \
@@ -57,16 +57,16 @@ ARG BUILDCMDS=\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 "&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
 "&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 #"&& cd ../sip-$SIP_VERSION "\
 #"&& python3 configure.py --use-qmake "\
@@ -76,20 +76,21 @@ ARG BUILDCMDS=\
 #"&& libtool --finish /usr/lib "\
 #"&& DESTDIR=/ make install "\
 #"&& libtool --finish /usr/lib "\
+"&& ls -la /usr/lib/qt5/mkspecs/common "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
 "&& make "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
 #"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-"&& qmake "\
+#"&& qmake "\
 "&& make "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
-"&& libtool --finish /usr/lib "\
+#"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
 #"&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
