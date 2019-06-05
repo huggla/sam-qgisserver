@@ -24,13 +24,8 @@ ARG DOWNLOADS="\
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-#"   mv txt2tags /usr/bin/ "\
-#"&& chmod +x /usr/bin/txt2tags "\
-#"&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
-#"&& LDFLAGS=-L/usr/lib "\
-#"&& env "\
-"cd proj-5.2.0 "\
-"&& apk list "\
+"   cd proj-5.2.0 "\
+"&& apk list"
 #"&& ./configure --prefix=/usr "\
 #"&& make "\
 #"&& libtool --finish /usr/lib "\
@@ -107,7 +102,6 @@ ARG BUILDCMDS=\
 #"&& libtool --finish /usr/lib "\
 #"&& ninja install "\
 #"&& libtool --finish /usr/lib"
-"
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
