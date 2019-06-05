@@ -24,88 +24,9 @@ ARG DOWNLOADS="\
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-#"   mv txt2tags /usr/bin/ "\
-#"&& chmod +x /usr/bin/txt2tags "\
-#"&& PKG_CONFIG_PATH=/usr/lib/pkgconfig "\
-#"&& LDFLAGS=-L/usr/lib "\
-#"&& env "\
 "cd proj-5.2.0 "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
-#"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-#"&& cd ../hdf5-$HDF5_VERSION "\
-#"&& ./configure \
-#--prefix=/usr \
-#--sysconfdir=/etc \
-#--localstatedir=/var \
-#--disable-threadsafe \
-#               --enable-cxx \
-#--enable-direct-vfd \
-#    --enable-parallel "\
-#"&& make "\
-#"&& libtool --finish /usr/lib "\
-#"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-#"&& cd ../netcdf-c-$NETCDF_VERSION "\
-#"&& ./configure --prefix=/usr "\
-#"&& make "\
-#"&& libtool --finish /usr/lib "\
-#"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-"&& cd ../libspatialite-5.0.0-beta0 "\
-"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
-"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
-#"&& libtool --finish /usr/lib "\
-"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-"&& cd ../libspatialindex "\
-"&& ./autogen.sh "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
-#"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-#"&& cd ../sip-$SIP_VERSION "\
-#"&& python3 configure.py --use-qmake "\
-#"&& qmake "\
-#"&& python3 configure.py "\
-#"&& make "\
-#"&& libtool --finish /usr/lib "\
-#"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-"&& ls -la /usr/lib/qt5/mkspecs/common "\
-"&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake -d "\
-"&& make "\
-#"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-"&& cd ../Python "\
-"&& python3 configure.py --pyqt=PyQt5 "\
-#"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-#"&& qmake "\
-"&& make "\
-#"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
-#"&& libtool --finish /usr/lib "\
-"&& ln -s /usr/bin/python3.7 /usr/bin/python "\
-"&& cd ../../ "\
-#"&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
-#"&& apk del autoconf automake "\
-"&& cd QGIS "\
-"&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
-          -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
-          -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
-          -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
-          -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
-          -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& ninja "\
-"&& libtool --finish /usr/lib "\
-"&& ninja install "\
-"&& libtool --finish /usr/lib"
+"&& apk list"
+
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
