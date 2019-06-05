@@ -25,7 +25,7 @@ ARG DOWNLOADS="\
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
-"&& apk -q list"
+"&& apk -q list -I"
 
 
 #--------Generic template (don't edit)--------
