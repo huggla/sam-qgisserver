@@ -31,7 +31,7 @@ ARG BUILDCMDS=\
 #"&& LDFLAGS=-L/usr/lib "\
 #"&& env "\
 "cd proj-5.2.0 "\
-"apk -q list -I "\
+"&& apk -q list -I "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
