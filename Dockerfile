@@ -75,7 +75,7 @@ ARG BUILDCMDS=\
 #"&& libtool --finish /usr/lib "\
 "&& ls -la /usr/lib/qt5/mkspecs/common "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake -d "\
+"&& qmake "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
 "&& DESTDIR=/ make install "\
