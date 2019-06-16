@@ -24,6 +24,7 @@ ARG DOWNLOADS="\
 	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
+ARG CFLAGS="apa=apa"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& apk -q list -I "\
