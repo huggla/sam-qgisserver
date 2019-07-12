@@ -18,11 +18,11 @@ ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="\
 #https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
-#               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
+               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
 	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
-#               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
+               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
 	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
-#               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
+               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 #ARG CFLAGS="apa=apa"
 ARG BUILDCMDS=\
@@ -37,25 +37,25 @@ ARG BUILDCMDS=\
 #"&& libtool --finish /usr/lib "\
 "&& unset DESTDIR "\
 "&& make install "\
-#"&& libtool --finish /usr/lib "\
-#"&& cd ../hdf5-$HDF5_VERSION "\
-#"&& ./configure \
-#--prefix=/usr \
-#--sysconfdir=/etc \
-#--localstatedir=/var \
-#--disable-threadsafe \
+"&& libtool --finish /usr/lib "\
+"&& cd ../hdf5-$HDF5_VERSION "\
+"&& ./configure \
+--prefix=/usr \
+--sysconfdir=/etc \
+--localstatedir=/var \
+--disable-threadsafe \
 #               --enable-cxx \
-#--enable-direct-vfd \
-#    --enable-parallel "\
-#"&& make "\
+--enable-direct-vfd \
+    --enable-parallel "\
+"&& make "\
 #"&& libtool --finish /usr/lib "\
-#"&& DESTDIR=/ make install "\
+"&& make install "\
+"&& libtool --finish /usr/lib "\
+"&& cd ../netcdf-c-$NETCDF_VERSION "\
+"&& ./configure --prefix=/usr "\
+"&& make "\
 #"&& libtool --finish /usr/lib "\
-#"&& cd ../netcdf-c-$NETCDF_VERSION "\
-#"&& ./configure --prefix=/usr "\
-#"&& make "\
-#"&& libtool --finish /usr/lib "\
-#"&& DESTDIR=/ make install "\
+"&& make install "\
 "&& libtool --finish /usr/lib "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 #"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
@@ -73,20 +73,21 @@ ARG BUILDCMDS=\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
 "&& make install "\
-#"&& libtool --finish /usr/lib "\
+"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-#"&& cd ../sip-$SIP_VERSION "\
-#"&& python3 configure.py --use-qmake "\
-#"&& qmake "\
+"&& cd ../sip-$SIP_VERSION "\
+"&& python3 configure.py --use-qmake "\
+"&& qmake "\
 #"&& python3 configure.py "\
-#"&& make "\
+"&& make "\
 #"&& libtool --finish /usr/lib "\
-#"&& DESTDIR=/ make install "\
+"&& make install "\
 "&& libtool --finish /usr/lib "\
 #"&& ls -la /usr/lib/qt5/mkspecs/common "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 #"&& qmake -query "\
-"&& qmake -d "\
+"&& qmake "\
+"&& cat Makefile "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
 "&& make install "\
