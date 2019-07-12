@@ -63,7 +63,7 @@ ARG BUILDCMDS=\
 #"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
+#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make install "\
 "&& make install "\
 "&& libtool --finish /usr/lib "\
 #"&& IFS=\$IFS_bak "\
