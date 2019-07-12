@@ -74,7 +74,8 @@ ARG BUILDCMDS=\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
 "&& make install "\
-"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
+"&& PATH=$PATH:/usr/lib/qt5/bin "\
+#"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& libtool --finish /usr/lib "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& qmake -query "\
