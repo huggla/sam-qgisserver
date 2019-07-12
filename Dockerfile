@@ -27,13 +27,15 @@ ARG DOWNLOADS="\
 #ARG CFLAGS="apa=apa"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
+"&& echo \"\$DESTDIR\" "\
 "&& IFS_bak=\$IFS "\
-"&& echo \"\$IFS_bak\" > /huh "\
+"&& echo -n \"\$IFS_bak\" "\
+"&& echo stop "\
 "&& apk -q list -I "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
+"&& DESTDIR='' make install "\
 #"&& libtool --finish /usr/lib "\
 #"&& cd ../hdf5-$HDF5_VERSION "\
 #"&& ./configure \
@@ -55,10 +57,13 @@ ARG BUILDCMDS=\
 #"&& DESTDIR=/ make install "\
 "&& libtool --finish /usr/lib "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
-"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
+#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
+"&& ./configure --prefix=/usr "\
+#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" make "\
+"&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
+#"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
+"&& DESTDIR='' make install "\
 "&& libtool --finish /usr/lib "\
 "&& IFS=\$IFS_bak "\
 "&& cd ../libspatialindex "\
@@ -66,7 +71,7 @@ ARG BUILDCMDS=\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
+"&& DESTDIR='' make install "\
 #"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 #"&& cd ../sip-$SIP_VERSION "\
@@ -83,7 +88,7 @@ ARG BUILDCMDS=\
 "&& qmake -d "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
+"&& DESTDIR='' make install "\
 "&& libtool --finish /usr/lib "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
@@ -91,7 +96,7 @@ ARG BUILDCMDS=\
 #"&& qmake "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR=/ make install "\
+"&& DESTDIR='' make install "\
 "&& libtool --finish /usr/lib "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
