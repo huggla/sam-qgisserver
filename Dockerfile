@@ -36,6 +36,7 @@ ARG BUILDCMDS=\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
 "&& unset DESTDIR "\
+"&& unset CFLAGS "\
 "&& make install "\
 "&& libtool --finish /usr/lib "\
 "&& cd ../hdf5-$HDF5_VERSION "\
@@ -77,7 +78,7 @@ ARG BUILDCMDS=\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
-"&& qmake "\
+"&& qmake -d "\
 #"&& python3 configure.py "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
