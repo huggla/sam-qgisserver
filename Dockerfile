@@ -3,7 +3,7 @@ ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG SIP_VERSION="4.19.17"
 ARG QSCINTILLA_VERSION="2.11.1"
-#ARG CFLAGS="-I/proj5.2.0/usr/include"
+ARG CFLAGS="-I/proj5.2.0/usr/include"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca-dev qt5-qtbase-dev \
@@ -24,7 +24,7 @@ ARG DOWNLOADS="\
 	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
-ARG CFLAGS="apa=apa"
+#ARG CFLAGS="apa=apa"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& apk -q list -I "\
