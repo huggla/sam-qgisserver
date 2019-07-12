@@ -27,15 +27,16 @@ ARG DOWNLOADS="\
 #ARG CFLAGS="apa=apa"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
-"&& echo \"\$DESTDIR\" "\
-"&& IFS_bak=\$IFS "\
-"&& echo -n \"\$IFS_bak\" "\
-"&& echo stop "\
-"&& apk -q list -I "\
+#"&& echo \"\$DESTDIR\" "\
+#"&& IFS_bak=\$IFS "\
+#"&& echo -n \"\$IFS_bak\" "\
+#"&& echo stop "\
+#"&& apk -q list -I "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR='' make install "\
+"&& unset DESTDIR "\
+"&& make install "\
 #"&& libtool --finish /usr/lib "\
 #"&& cd ../hdf5-$HDF5_VERSION "\
 #"&& ./configure \
@@ -63,15 +64,15 @@ ARG BUILDCMDS=\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
 #"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" DESTDIR=/ make install "\
-"&& DESTDIR='' make install "\
+"&& make install "\
 "&& libtool --finish /usr/lib "\
-"&& IFS=\$IFS_bak "\
+#"&& IFS=\$IFS_bak "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR='' make install "\
+"&& make install "\
 #"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 #"&& cd ../sip-$SIP_VERSION "\
@@ -82,13 +83,13 @@ ARG BUILDCMDS=\
 #"&& libtool --finish /usr/lib "\
 #"&& DESTDIR=/ make install "\
 "&& libtool --finish /usr/lib "\
-"&& ls -la /usr/lib/qt5/mkspecs/common "\
+#"&& ls -la /usr/lib/qt5/mkspecs/common "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake -query "\
+#"&& qmake -query "\
 "&& qmake -d "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR='' make install "\
+"&& make install "\
 "&& libtool --finish /usr/lib "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
@@ -96,7 +97,7 @@ ARG BUILDCMDS=\
 #"&& qmake "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& DESTDIR='' make install "\
+"&& make install "\
 "&& libtool --finish /usr/lib "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
@@ -110,8 +111,8 @@ ARG BUILDCMDS=\
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
 "&& ninja "\
-"&& libtool --finish /usr/lib "\
-"&& ninja install "\
+#"&& libtool --finish /usr/lib "\
+"&& DESTDIR=$DESTDIR ninja install "\
 "&& libtool --finish /usr/lib"
 
 #--------Generic template (don't edit)--------
