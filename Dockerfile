@@ -74,10 +74,12 @@ ARG BUILDCMDS=\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
 "&& make install "\
-"&& libtool --finish /usr/lib "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
+"&& libtool --finish /usr/lib "\
 "&& cd ../sip-$SIP_VERSION "\
+"&& qmake -query "\
 "&& python3 configure.py --use-qmake "\
+"&& qmake -query "\
 "&& qmake -d "\
 #"&& python3 configure.py "\
 "&& make "\
