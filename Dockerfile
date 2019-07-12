@@ -12,7 +12,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev proj4-dev py3-sip py3-sip-dev \
+               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev proj4-dev \
 	       acct cmake cryptsetup-libs device-mapper-libs syslinux mtools lddtree openrc ncurses-terminfo openssh alpine-conf busybox-suid busybox-initscripts alpine-keys alpine-base libcap libcom qt5-qtbase-x11 openssl libcom_err libattr chrony chrony-openrc e2fsprogs e2fsprogs-libs"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
