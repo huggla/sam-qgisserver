@@ -25,16 +25,18 @@ ARG DOWNLOADS="\
                https://github.com/libspatialindex/libspatialindex/archive/master.zip \
                https://github.com/qgis/QGIS/archive/release-3_4.zip \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
+ARG AR_FLAGS="cr"
+ARG QTDIR="/usr/lib/qt5"
+ARG QMAKESPEC="$QTDIR/mkspecs/linux-g++"
+ARG VPATH="$QTDIR/mkspecs/common"
+ARG PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=
 "ls -la "\
 "&& cd proj-5.2.0 "\
-"&& AR_FLAGS='cr' "\
-"&& VPATH='/usr/lib/qt5/mkspecs/common/' "\
-"&& set "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
 "&& unset DESTDIR "\
 "&& unset CFLAGS "\
+"&& ./configure --prefix=/usr "\
+"&& make "\
 "&& make install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 "&& ./configure --prefix=/usr "\
@@ -45,10 +47,8 @@ ARG BUILDCMDS=
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& make install "\
-"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
-"&& cat Makefile "\
 "&& make "\
 "&& make install "\
 "&& cd ../Python "\
