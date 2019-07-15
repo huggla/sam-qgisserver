@@ -27,6 +27,7 @@ ARG DOWNLOADS="\
 #ARG CFLAGS="apa=apa"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
+"AR_FLAGS=\"cr\" "\
 "&& set "\
 #"&& echo \"\$DESTDIR\" "\
 #"&& IFS_bak=\$IFS "\
