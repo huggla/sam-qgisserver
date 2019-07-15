@@ -78,20 +78,20 @@ ARG BUILDCMDS=\
 "&& PATH=$PATH:/usr/lib/qt5/bin "\
 #"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& libtool --finish /usr/lib "\
-"&& cd ../sip-$SIP_VERSION "\
-"&& qmake -query "\
-"&& python3 configure.py --use-qmake "\
-"&& qmake -query "\
-"&& qmake -d "\
+#"&& cd ../sip-$SIP_VERSION "\
+#"&& qmake -query "\
+#"&& python3 configure.py --use-qmake "\
+#"&& qmake -query "\
+#"&& qmake -d "\
 #"&& python3 configure.py "\
-"&& make "\
+#"&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& make install "\
-"&& libtool --finish /usr/lib "\
+#"&& make install "\
+#"&& libtool --finish /usr/lib "\
 #"&& ls -la /usr/lib/qt5/mkspecs/common "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 #"&& qmake -query "\
-"&& qmake "\
+"&& qmake -d -d"\
 "&& cat Makefile "\
 "&& make "\
 #"&& libtool --finish /usr/lib "\
