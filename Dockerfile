@@ -25,9 +25,10 @@ ARG DOWNLOADS="\
                https://github.com/libspatialindex/libspatialindex/archive/master.zip \
                https://github.com/qgis/QGIS/archive/release-3_4.zip \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
-ARG BUILDCMDS=\
-"cd proj-5.2.0 "\
-"AR_FLAGS=\"cr\" "\
+ARG BUILDCMDS=
+"ls -la "\
+"&& cd proj-5.2.0 "\
+"&& AR_FLAGS='cr' "\
 "&& set "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
