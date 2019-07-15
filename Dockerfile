@@ -18,17 +18,16 @@ ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="\
 #https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
-               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
+#               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
 	       http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
-               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
+#               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
 	       http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
-               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
+#               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 #ARG CFLAGS="apa=apa"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& set "\
-"&& exit 1 "\
 #"&& echo \"\$DESTDIR\" "\
 #"&& IFS_bak=\$IFS "\
 #"&& echo -n \"\$IFS_bak\" "\
@@ -41,25 +40,25 @@ ARG BUILDCMDS=\
 "&& unset CFLAGS "\
 "&& make install "\
 "&& libtool --finish /usr/lib "\
-"&& cd ../hdf5-$HDF5_VERSION "\
-"&& ./configure \
---prefix=/usr \
---sysconfdir=/etc \
---localstatedir=/var \
---disable-threadsafe \
+#"&& cd ../hdf5-$HDF5_VERSION "\
+#"&& ./configure \
+#--prefix=/usr \
+#--sysconfdir=/etc \
+#--localstatedir=/var \
+#--disable-threadsafe \
 #               --enable-cxx \
---enable-direct-vfd \
-    --enable-parallel "\
-"&& make "\
+#--enable-direct-vfd \
+#    --enable-parallel "\
+#"&& make "\
 #"&& libtool --finish /usr/lib "\
-"&& make install "\
-"&& libtool --finish /usr/lib "\
-"&& cd ../netcdf-c-$NETCDF_VERSION "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
+#"&& make install "\
 #"&& libtool --finish /usr/lib "\
-"&& make install "\
-"&& libtool --finish /usr/lib "\
+#"&& cd ../netcdf-c-$NETCDF_VERSION "\
+#"&& ./configure --prefix=/usr "\
+#"&& make "\
+#"&& libtool --finish /usr/lib "\
+#"&& make install "\
+#"&& libtool --finish /usr/lib "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 #"&& CFLAGS=\"$CFLAGS -I/proj5.2.0/usr/include\" ./configure --prefix=/usr "\
 "&& ./configure --prefix=/usr "\
