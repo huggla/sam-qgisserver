@@ -30,11 +30,10 @@ ARG QTDIR="/usr/lib/qt5"
 ARG QMAKESPEC="$QTDIR/mkspecs/linux-g++"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG PATH="/usr/lib/qt5/bin"
-ARG BUILDCMDS=
+ARG BUILDCMDS=\
 "ls -la "\
 "&& cd proj-5.2.0 "\
 "&& unset DESTDIR "\
-"&& unset CFLAGS "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& make install "\
@@ -42,6 +41,7 @@ ARG BUILDCMDS=
 "&& ./configure --prefix=/usr "\
 "&& make "\
 "&& make install "\
+"&& pwd "\
 "&& cd ../libspatialindex-master "\
 "&& ./autogen.sh "\
 "&& ./configure --prefix=/usr "\
