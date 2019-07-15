@@ -29,6 +29,7 @@ ARG BUILDCMDS=
 "ls -la "\
 "&& cd proj-5.2.0 "\
 "&& AR_FLAGS='cr' "\
+"&& VPATH='/usr/lib/qt5/mkspecs/common/' "\
 "&& set "\
 "&& ./configure --prefix=/usr "\
 "&& make "\
