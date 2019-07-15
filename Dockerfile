@@ -13,8 +13,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
                automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev proj4-dev \
                acct cmake cryptsetup-libs device-mapper-libs syslinux mtools lddtree openrc ncurses-terminfo openssh alpine-conf busybox-suid busybox-initscripts alpine-keys alpine-base libcap libcom qt5-qtbase-x11 openssl libcom_err libattr chrony chrony-openrc e2fsprogs e2fsprogs-libs"
-#ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
-#               '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
+ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
+               '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="\
 #https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
 #               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
@@ -22,29 +22,25 @@ ARG DOWNLOADS="\
 #               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                 http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
-               https://github.com/libspatialindex/libspatialindex/archive/master.zip \
-               https://github.com/qgis/QGIS/archive/release-3_4.zip \
-               https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
+                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG AR_FLAGS="cr"
 ARG QTDIR="/usr/lib/qt5"
-ARG QMAKESPEC="$QTDIR/mkspecs/linux-g++"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG PATH="/usr/lib/qt5/bin"
+ARG PREFIX="--prefix=/usr"
 ARG BUILDCMDS=\
-"ls -la "\
-"&& cd proj-5.2.0 "\
+"cd proj-5.2.0 "\
 "&& unset DESTDIR "\
-"&& ./configure --prefix=/usr "\
+"&& ./configure $PREFIX "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& ./configure --prefix=/usr "\
+"&& ./configure $PREFIX "\
 "&& make "\
 "&& make install "\
-"&& pwd "\
-"&& cd ../libspatialindex-master "\
+"&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& ./configure --prefix=/usr "\
+"&& ./configure $PREFIX "\
 "&& make "\
 "&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
