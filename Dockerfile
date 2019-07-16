@@ -32,16 +32,16 @@ ARG PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& unset DESTDIR "\
-"&& $BUILDCONFIGURE "\
+"&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& $BUILDCONFIGURE "\
+"&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& $BUILDCONFIGURE "\
+"&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
