@@ -24,28 +24,29 @@ ARG DOWNLOADS="\
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG ARFLAGS="cr"
-ARG AR_FLAGS="$ARFLAGS"
+ARG BUILDPREFIX="--prefix=/usr"
+ARG BUILDCONFIGURE="ARFLAGS=\"$ARFLAGS\" AR_FLAGS=\"$ARFLAGS\" ./configure $BUILDPREFIX"
 ARG QTDIR="/usr/lib/qt5"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG PATH="/usr/lib/qt5/bin"
-ARG PREFIX="--prefix=/usr"
+
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& unset DESTDIR "\
-"&& ./configure $PREFIX "\
+"&& $BUILDCONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& ./configure $PREFIX "\
+"&& $BUILDCONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& ./configure $PREFIX "\
+"&& $BUILDCONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& echo $PATH "\
+"&& echo \$PATH "\
 "&& qmake "\
 "&& make "\
 "&& make install "\
