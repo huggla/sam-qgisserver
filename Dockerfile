@@ -34,16 +34,16 @@ ARG BUILDCMDS=\
 "&& unset DESTDIR "\
 "&& ARFLAGS=\"$ARFLAGS\" "\
 "&& AR_FLAGS=\"$ARFLAGS\" "\
-"&& \$CONFIGURE "\
+"&& $CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& \$CONFIGURE "\
+"&& $CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& \$CONFIGURE "\
+"&& $CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
