@@ -24,7 +24,7 @@ ARG DOWNLOADS="\
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG ARFLAGS="cr"
-ARG CONFIGURE="ARFLAGS=\"$ARFLAGS\" AR_FLAGS=\"$ARFLAGS\" ./configure \$CONFIGUREPREFIX"
+ARG CONFIGURE="./configure \$CONFIGUREPREFIX"
 ARG QTDIR="/usr/lib/qt5"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG PATH="/usr/lib/qt5/bin"
@@ -32,6 +32,8 @@ ARG PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& unset DESTDIR "\
+"&& ARFLAGS=\"$ARFLAGS\" "\
+"&& AR_FLAGS=\"$ARFLAGS\" "\
 "&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
