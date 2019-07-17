@@ -25,7 +25,7 @@ ARG DOWNLOADS="\
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG QTDIR="/usr/lib/qt5"
 ARG VPATH="$QTDIR/mkspecs/common"
-ARG PATH="/usr/lib/qt5/bin"
+ARG ADDTO_PATH="/usr/lib/qt5/bin"
 
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
