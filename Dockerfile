@@ -29,6 +29,7 @@ ARG PATH="/usr/lib/qt5/bin"
 
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
+"&& set "\
 "&& unset DESTDIR "\
 "&& echo \"\$PATH\" "\
 "&& echo $PATH "\
