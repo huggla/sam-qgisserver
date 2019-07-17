@@ -24,7 +24,6 @@ ARG DOWNLOADS="\
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG ARFLAGS="cr"
-ARG CONFIGURE="./configure \$CONFIGUREPREFIX"
 ARG QTDIR="/usr/lib/qt5"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG PATH="/usr/lib/qt5/bin"
@@ -34,16 +33,16 @@ ARG BUILDCMDS=\
 "&& unset DESTDIR "\
 "&& ARFLAGS=\"$ARFLAGS\" "\
 "&& AR_FLAGS=\"$ARFLAGS\" "\
-"&& $CONFIGURE "\
+"&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& $CONFIGURE "\
+"&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& $CONFIGURE "\
+"&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
