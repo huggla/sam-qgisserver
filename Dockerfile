@@ -23,7 +23,6 @@ ARG DOWNLOADS="\
                 http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
 #               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
-ARG ARFLAGS="cr"
 ARG QTDIR="/usr/lib/qt5"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG PATH="/usr/lib/qt5/bin"
@@ -31,8 +30,15 @@ ARG PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& unset DESTDIR "\
-"&& ARFLAGS=\"$ARFLAGS\" "\
-"&& AR_FLAGS=\"$ARFLAGS\" "\
+"&& echo \"\$PATH\" "\
+"&& echo $PATH "\
+"&& echo \"$PATH\" "\
+"&& echo '$PATH' "\
+"&& echo '\$PATH' "\
+'&& echo $PATH '\
+'&& echo \$PATH '\
+"&& echo \$PATH "\
+"&& echo \$VPATH "\
 "&& \$CONFIGURE "\
 "&& make "\
 "&& make install "\
@@ -46,7 +52,6 @@ ARG BUILDCMDS=\
 "&& make "\
 "&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& echo \$PATH "\
 "&& qmake "\
 "&& make "\
 "&& make install "\
