@@ -26,10 +26,12 @@ ARG DOWNLOADS="\
 ARG QTDIR="/usr/lib/qt5"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
+ARG PATH="/usr/lib/qt5/bin"
 
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& set "\
+"&& exit 1 "\
 "&& unset DESTDIR "\
 "&& echo \"\$PATH\" "\
 "&& echo $PATH "\
