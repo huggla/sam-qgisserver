@@ -27,8 +27,9 @@ ARG VPATH="/usr/lib/qt5/mkspecs/common"
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
-"&& cat /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
-"&& echo 'VPATH+=/usr/lib/qt5/mkspecs/common' >> /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
+"&& echo 'VPATH+=/usr/lib/qt5/mkspecs/common' > /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
+"&& cat /usr/lib/qt5/mkspecs/linux-g++/qmake.conf >> /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
+"&& mv -f /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
 "&& unset DESTDIR "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
