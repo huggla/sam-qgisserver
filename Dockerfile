@@ -30,38 +30,28 @@ ARG PATH="/usr/lib/qt5/bin"
 
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
-"&& set "\
-"&& exit 1 "\
 "&& unset DESTDIR "\
-"&& echo \"\$PATH\" "\
-"&& echo $PATH "\
-"&& echo \"$PATH\" "\
-"&& echo '$PATH' "\
-"&& echo '\$PATH' "\
-'&& echo $PATH '\
-'&& echo \$PATH '\
-"&& echo \$PATH "\
-"&& echo \$VPATH "\
+"&& set "\
 "&& \$CONFIGURE "\
-"&& make "\
-"&& make install "\
+"&& make -s "\
+"&& make -s install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
 "&& \$CONFIGURE "\
-"&& make "\
-"&& make install "\
+"&& make -s "\
+"&& make -s install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
 "&& \$CONFIGURE "\
-"&& make "\
-"&& make install "\
+"&& make -s "\
+"&& make -s install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake "\
-"&& make "\
-"&& make install "\
+"&& make -s "\
+"&& make -s install "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
-"&& make "\
-"&& make install "\
+"&& make -s "\
+"&& make -s install "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
 "&& cd ../../ "\
 "&& cd QGIS "\
