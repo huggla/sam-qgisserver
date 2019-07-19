@@ -45,7 +45,8 @@ ARG BUILDCMDS=\
 "&& make -s install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& VPATH='/usr/lib/qt5/mkspecs/common' "\
-"&& qmake "\
+"&& qmake -set VPATH /usr/lib/qt5/mkspecs/common "\
+"&& qmake -d "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../Python "\
