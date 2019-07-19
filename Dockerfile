@@ -26,22 +26,19 @@ ARG DOWNLOADS="\
 ARG QTDIR="/usr/lib/qt5"
 ARG VPATH="$QTDIR/mkspecs/common"
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
-ARG PATH="/usr/lib/qt5/bin"
-
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& unset DESTDIR "\
-"&& set "\
-"&& \$CONFIGURE "\
+"&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../libspatialite-5.0.0-beta0 "\
-"&& \$CONFIGURE "\
+"&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& \$CONFIGURE "\
+"&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
