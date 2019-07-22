@@ -28,9 +28,10 @@ ARG ADDTO_PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& apk fix "\
-"&& echo 'VPATH+=/usr/lib/qt5/mkspecs/common' > /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
-"&& cat /usr/lib/qt5/mkspecs/linux-g++/qmake.conf >> /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
-"&& mv -f /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
+#"&& echo 'VPATH+=/usr/lib/qt5/mkspecs/common' > /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
+"&& sed -i 's|(../common|(/usr/lib/qt5/mkspecs/common|g' /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
+#"&& cat /usr/lib/qt5/mkspecs/linux-g++/qmake.conf >> /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
+#"&& mv -f /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
 "&& unset DESTDIR "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
@@ -47,7 +48,7 @@ ARG BUILDCMDS=\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& VPATH='/usr/lib/qt5/mkspecs/common' "\
 "&& qmake -set VPATH /usr/lib/qt5/mkspecs/common "\
-"&& qmake -d "\
+"&& qmake -d -d "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../Python "\
