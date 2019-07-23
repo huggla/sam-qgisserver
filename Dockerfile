@@ -21,9 +21,8 @@ ARG DOWNLOADS="\
                 http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
 #               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                 http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
-#               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
+                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
-ARG VPATH="/usr/lib/qt5/mkspecs/common"
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
 ARG LIBRARY_PATH=""
 ARG BUILDCMDS=\
@@ -48,11 +47,17 @@ ARG BUILDCMDS=\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
 "&& make -s install "\
+"&& cd ../sip-$SIP_VERSION "\
+"&& python3 configure.py --use-qmake "\
+"&& qmake "\
+#"&& python3 configure.py "\
+"&& make "\
+"&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 #"&& VPATH='/usr/lib/qt5/mkspecs/common' "\
 #"&& qmake -set VPATH /usr/lib/qt5/mkspecs/common "\
-"&& qmake -set ORIGIN /usr/lib/qt5/mkspecs/common "\
-"&& qmake -d -d "\
+#"&& qmake -set ORIGIN /usr/lib/qt5/mkspecs/common "\
+"&& qmake "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../Python "\
