@@ -25,7 +25,9 @@ ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HD
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=\
 "cd proj-$PROJ_VERSION "\
-"&& apk -s fix "\
+"&& echo \$LIBRARY_PATH "\
+"&& echo \$LD_LIBRARY_PATH "\
+"&& LIBRARY_PATH='' "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& unset DESTDIR "\
 "&& \$COMMON_CONFIGURECMD "\
