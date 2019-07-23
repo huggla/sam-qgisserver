@@ -7,12 +7,12 @@ ARG LIBSPATIALITE_VERSION="5.0.0-beta0"
 ARG QSCINTILLA_VERSION="2.11.1"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
-               sqlite-dev proj-dev ninja qca-dev qt5-qtbase-dev \
+               sqlite-dev sqlite proj-dev ninja qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
-               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
-               hdf5-dev curl curl-dev fcgi-dev libspatialite-dev \
+               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
+               curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
                automake autoconf"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
