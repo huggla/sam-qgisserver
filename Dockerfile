@@ -1,7 +1,9 @@
 ARG TAG="20190716"
+ARG PROJ_VERSION="5.2.0"
 ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG SIP_VERSION="4.19.17"
+ARG LIBSPATIALITE_VERSION="5.0.0-beta0"
 ARG QSCINTILLA_VERSION="2.11.1"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
@@ -14,24 +16,30 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev boost-dev boost-build gfortran gtest-dev freexl-dev hdf5-dev proj-dev"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
-ARG DOWNLOADS="\
-#https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
-#               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
-                http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0-beta0.tar.gz \
-#               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-                http://download.osgeo.org/proj/proj-5.2.0.tar.gz \
-                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
-                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
+ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
+               http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-$LIBSPATIALITE_VERSION.tar.gz \
+               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
+               http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
+               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
+               https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
 ARG BUILDCMDS=\
-"cd proj-5.2.0 "\
+"cd proj-$PROJ_VERSION "\
 "&& apk -s fix "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 "&& unset DESTDIR "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
 "&& make -s install "\
-"&& cd ../libspatialite-5.0.0-beta0 "\
+"&& cd ../hdf5-$HDF5_VERSION "\
+"&& \$COMMON_CONFIGURECMD --enable-parallel "\
+"&& make -s "\
+"&& make -s install "\
+"&& cd ../netcdf-c-$NETCDF_VERSION "\
+"&& \$COMMON_CONFIGURECMD "\
+"&& make -s "\
+"&& make -s install "\
+"&& cd ../libspatialite-$LIBSPATIALITE_VERSION "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
 "&& make -s install "\
