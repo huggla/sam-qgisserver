@@ -53,11 +53,11 @@ ARG BUILDCMDS=\
 "&& make -s install "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
-"&& qmake-qt5 "\
+"&& /usr/lib/qt5/bin/qmake "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake-qt5 "\
+"&& /usr/lib/qt5/bin/qmake "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../Python "\
