@@ -25,9 +25,12 @@ ARG DOWNLOADS="\
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG VPATH="/usr/lib/qt5/mkspecs/common"
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
+ARG LIBRARY_PATH=""
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
 "&& apk fix "\
+"&& echo $LIBRARY_PATH "\
+"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
 #"&& echo 'VPATH+=/usr/lib/qt5/mkspecs/common' > /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
 "&& sed -i 's|(../common|(/usr/lib/qt5/mkspecs/common|g' /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
 #"&& cat /usr/lib/qt5/mkspecs/linux-g++/qmake.conf >> /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
@@ -46,8 +49,9 @@ ARG BUILDCMDS=\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& VPATH='/usr/lib/qt5/mkspecs/common' "\
-"&& qmake -set VPATH /usr/lib/qt5/mkspecs/common "\
+#"&& VPATH='/usr/lib/qt5/mkspecs/common' "\
+#"&& qmake -set VPATH /usr/lib/qt5/mkspecs/common "\
+"&& qmake -set ORIGIN /usr/lib/qt5/mkspecs/common "\
 "&& qmake -d -d "\
 "&& make -s "\
 "&& make -s install "\
