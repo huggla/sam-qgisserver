@@ -24,16 +24,10 @@ ARG DOWNLOADS="\
                 https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                 https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG ADDTO_PATH="/usr/lib/qt5/bin"
-ARG LIBRARY_PATH=""
 ARG BUILDCMDS=\
 "cd proj-5.2.0 "\
-"&& apk fix "\
-"&& echo $LIBRARY_PATH "\
+"&& apk -s fix "\
 "&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-#"&& echo 'VPATH+=/usr/lib/qt5/mkspecs/common' > /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
-"&& sed -i 's|(../common|(/usr/lib/qt5/mkspecs/common|g' /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
-#"&& cat /usr/lib/qt5/mkspecs/linux-g++/qmake.conf >> /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp "\
-#"&& mv -f /usr/lib/qt5/mkspecs/linux-g++/qmake.conf.tmp /usr/lib/qt5/mkspecs/linux-g++/qmake.conf "\
 "&& unset DESTDIR "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
@@ -50,13 +44,9 @@ ARG BUILDCMDS=\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake "\
-#"&& python3 configure.py "\
 "&& make "\
 "&& make install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-#"&& VPATH='/usr/lib/qt5/mkspecs/common' "\
-#"&& qmake -set VPATH /usr/lib/qt5/mkspecs/common "\
-#"&& qmake -set ORIGIN /usr/lib/qt5/mkspecs/common "\
 "&& qmake "\
 "&& make -s "\
 "&& make -s install "\
