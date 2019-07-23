@@ -27,8 +27,9 @@ ARG LIBRARY_PATH=""
 ARG LD_LIBRARY_PATH=""
 ARG BUILDCMDS=\
 "cd proj-$PROJ_VERSION "\
-"&& mv /usr/lib/qt5/bin /usr/lib/qt5/mkspec/ "\
+"&& mv /usr/lib/qt5/bin /usr/lib/qt5/mkspec/bin "\
 "&& ln -s /usr/lib/qt5/mkspec/bin/qmake /usr/bin/ "\
+"&& ls -la /usr/bin "\
 "&& unset DESTDIR "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
