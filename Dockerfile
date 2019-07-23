@@ -27,9 +27,9 @@ ARG LIBRARY_PATH=""
 ARG LD_LIBRARY_PATH=""
 ARG BUILDCMDS=\
 "cd proj-$PROJ_VERSION "\
-"&& mv /usr/lib/qt5/bin /usr/lib/qt5/mkspecs/ "\
-"&& ln -s /usr/lib/qt5/mkspecs/bin/qmake /usr/bin/ "\
-"&& ls -la /usr/bin "\
+#"&& mv /usr/lib/qt5/bin /usr/lib/qt5/mkspecs/ "\
+#"&& ln -s /usr/lib/qt5/mkspecs/bin/qmake /usr/bin/ "\
+#"&& ls -la /usr/bin "\
 "&& unset DESTDIR "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
@@ -53,11 +53,11 @@ ARG BUILDCMDS=\
 "&& make -s install "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
-"&& qmake "\
+"&& qmake-qt5 "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake "\
+"&& qmake-qt5 "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../Python "\
