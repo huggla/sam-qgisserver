@@ -43,7 +43,10 @@ ARG BUILDCMDS=\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
 "&& make -s install "\
-"&& cd ../libspatialindex "\
+"&& cd .. "\
+"&& rm -rf libspatialindex "\
+"&& git clone https://github.com/libspatialindex/libspatialindex.git "\
+"&& cd libspatialindex "\
 "&& ./autogen.sh "\
 "&& \$COMMON_CONFIGURECMD "\
 "&& make -s "\
