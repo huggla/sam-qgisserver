@@ -22,9 +22,6 @@ ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HD
                http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
-ARG ADDTO_PATH="/usr/lib/qt5/bin"
-ARG LIBRARY_PATH=""
-ARG LD_LIBRARY_PATH=""
 ARG BUILDCMDS=\
 "cd proj-$PROJ_VERSION "\
 #"&& mv /usr/lib/qt5/bin /usr/lib/qt5/mkspecs/ "\
@@ -53,11 +50,11 @@ ARG BUILDCMDS=\
 "&& make -s install "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py --use-qmake "\
-"&& /usr/lib/qt5/bin/qmake "\
+"&& qmake-qt5 "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& /usr/lib/qt5/bin/qmake "\
+"&& qmake-qt5 "\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../Python "\
