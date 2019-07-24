@@ -59,6 +59,7 @@ ARG BUILDCMDS=\
 "&& make -s install "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
+"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& make -s "\
 "&& make -s install "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
