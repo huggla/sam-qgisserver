@@ -5,7 +5,7 @@ ARG SIP_VERSION="4.19.17"
 ARG QSCINTILLA_VERSION="2.11.1"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
-               sqlite-dev sqlite ninja qca-dev qt5-qtbase-dev \
+               sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
