@@ -49,6 +49,9 @@ ARG BUILDCMDS=\
 "&& make -s "\
 "&& make -s install "\
 "&& cd ../sip-$SIP_VERSION "\
+"&& python3 configure.py "\
+"&& make -s "\
+"&& make -s install "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake-qt5 "\
 "&& make -s "\
