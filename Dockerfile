@@ -11,7 +11,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf freexl-dev proj proj-dev python3-dev libspatialite-dev ipsec-tools ipsec-tools-dev"
+               automake autoconf freexl-dev proj proj-dev python3-dev libspatialite-dev ipsec-tools ipsec-tools-dev libressl libressl-dev asio asio-dev py3-oauth2client py3-service_identity py3-cherrypy xmlsec-dev py3-urllib3 openssl openssl-dev py3-cryptography boost-dev py3-pycryptodome"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
