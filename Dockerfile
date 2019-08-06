@@ -1,4 +1,4 @@
-ARG TAG="20190716"
+ARG TAG="20190806"
 ARG PROJ_VERSION="5.2.0"
 ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
@@ -23,51 +23,34 @@ ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HD
                https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"cd proj-$PROJ_VERSION "\
-"&& unset DESTDIR "\
-"&& \$COMMON_CONFIGURECMD "\
-"&& make -s "\
-"&& make -s install "\
+"unset DESTDIR "\
+"&& cd proj-$PROJ_VERSION "\
+"&& \$COMMON_INSTALLSRC "\
 "&& cd ../hdf5-$HDF5_VERSION "\
 "&& \$COMMON_CONFIGURECMD --enable-parallel "\
-"&& make -s "\
-"&& make -s install "\
+"&& \$COMMON_MAKECMDS "\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-"&& \$COMMON_CONFIGURECMD "\
-"&& make -s "\
-"&& make -s install "\
+"&& \$COMMON_INSTALLSRC "\
 "&& cd ../libspatialite-$LIBSPATIALITE_VERSION "\
-"&& \$COMMON_CONFIGURECMD "\
-"&& make -s "\
-"&& make -s install "\
-"&& cd .. "\
-"&& rm -rf libspatialindex "\
-"&& git clone https://github.com/libspatialindex/libspatialindex.git "\
-"&& cd libspatialindex "\
+"&& \$COMMON_INSTALLSRC "\
+"&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& \$COMMON_CONFIGURECMD "\
-"&& make -s "\
-"&& make -s install "\
+"&& \$COMMON_INSTALLSRC "\
 "&& cd ../sip-$SIP_VERSION "\
 "&& python3 configure.py "\
-"&& make -s "\
-"&& make -s install "\
+"&& \$COMMON_MAKECMDS "\
 "&& python3 configure.py --use-qmake "\
 "&& qmake-qt5 "\
-"&& make -s "\
-"&& make -s install "\
+"&& \$COMMON_MAKECMDS "\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake-qt5 "\
-"&& make -s "\
-"&& make -s install "\
+"&& \$COMMON_MAKECMDS "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-"&& make -s "\
-"&& make -s install "\
+"&& \$COMMON_MAKECMDS "\
 "&& ln -s /usr/bin/python3.7 /usr/bin/python "\
-"&& cd ../../ "\
-"&& cd QGIS "\
+"&& cd ../../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
