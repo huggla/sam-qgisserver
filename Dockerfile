@@ -17,22 +17,23 @@ ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HD
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"unset DESTDIR "\
+'qgis_DESTDIR="$DESTDIR" '\
+"&& unset DESTDIR "\
 "&& cd hdf5-$HDF5_VERSION "\
-"&& \$COMMON_CONFIGURECMD --enable-parallel "\
-"&& \$COMMON_MAKECMDS "\
+'&& $COMMON_CONFIGURECMD --enable-parallel '\
+'&& $COMMON_MAKECMDS '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-"&& \$COMMON_INSTALLSRC "\
+'&& $COMMON_INSTALLSRC '\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& \$COMMON_INSTALLSRC "\
+'&& $COMMON_INSTALLSRC '\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake-qt5 "\
-"&& \$COMMON_MAKECMDS "\
+'&& $COMMON_MAKECMDS '\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 "\
 "&& qmake-qt5 "\
-"&& \$COMMON_MAKECMDS "\
+'&& $COMMON_MAKECMDS '\
 "&& cd ../../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
@@ -41,7 +42,7 @@ ARG BUILDCMDS=\
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
 "&& ninja "\
-"&& DESTDIR=$DESTDIR ninja install "
+'&& DESTDIR="$qgis_DESTDIR" ninja install'
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
