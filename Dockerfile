@@ -10,7 +10,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf freexl-dev proj proj-dev python3-dev libspatialite-dev ipsec-tools ipsec-tools-dev libressl libressl-dev asio asio-dev py3-oauth2client py3-service_identity py3-cherrypy xmlsec-dev py3-urllib3 openssl openssl-dev py3-cryptography boost-dev py3-pycryptodome py3-sip-pyqt5 py3-sip py-sip-dev"
+               automake autoconf freexl-dev proj proj-dev python3-dev libspatialite-dev ipsec-tools ipsec-tools-dev libressl libressl-dev asio asio-dev py3-oauth2client py3-service_identity py3-cherrypy xmlsec-dev py3-urllib3 openssl openssl-dev py3-cryptography boost-dev py3-pycryptodome py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
@@ -30,11 +30,9 @@ ARG BUILDCMDS=\
 "&& qmake-qt5 "\
 "&& \$COMMON_MAKECMDS "\
 "&& cd ../Python "\
-"&& python3 configure.py --pyqt=PyQt5 "\
-"&& cp -a /usr/include/fortify/stdlib.h /tmp/ "\
-"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
+"&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 "\
+"&& qmake-qt5 "\
 "&& \$COMMON_MAKECMDS "\
-"&& mv -f /tmp/stdlib.h /usr/include/fortify/ "\
 "&& cd ../../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
