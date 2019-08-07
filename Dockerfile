@@ -33,7 +33,9 @@ ARG BUILDCMDS=\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 "\
 "&& qmake-qt5 "\
+"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 '&& $COMMON_MAKECMDS '\
+"&& apk fix fortify-headers "\
 "&& cd ../../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
