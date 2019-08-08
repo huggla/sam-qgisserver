@@ -1,4 +1,5 @@
 ARG TAG="20190806"
+ARG PROJ_VERSION="5.2.0"
 ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.1"
@@ -16,12 +17,15 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
-ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
+ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
+               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 'qgis_DESTDIR="$DESTDIR" '\
 "&& unset DESTDIR "\
+"&& cd proj-$PROJ_VERSION "\
+'&& $COMMON_INSTALLSRC '\
 "&& cd hdf5-$HDF5_VERSION "\
 '&& $COMMON_CONFIGURECMD --enable-parallel '\
 '&& $COMMON_MAKECMDS '\
