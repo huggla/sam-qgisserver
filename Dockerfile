@@ -26,7 +26,7 @@ ARG BUILDCMDS=\
 "&& unset DESTDIR "\
 "&& cd proj-$PROJ_VERSION "\
 '&& $COMMON_INSTALLSRC '\
-"&& cd hdf5-$HDF5_VERSION "\
+"&& cd ../hdf5-$HDF5_VERSION "\
 '&& $COMMON_CONFIGURECMD --enable-parallel '\
 '&& $COMMON_MAKECMDS '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
