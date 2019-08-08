@@ -25,6 +25,7 @@ ARG BUILDCMDS=\
 'qgis_DESTDIR="$DESTDIR" '\
 "&& unset DESTDIR "\
 "&& cd proj-$PROJ_VERSION "\
+'&& echo "$CFLAGS $CPATH $LIBRARY_PATH $LD_LIBRARY_PATH" '\
 '&& $COMMON_INSTALLSRC '\
 "&& cd ../hdf5-$HDF5_VERSION "\
 '&& $COMMON_CONFIGURECMD --enable-parallel '\
