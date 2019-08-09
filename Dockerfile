@@ -25,6 +25,10 @@ ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
 ARG BUILDCMDS=\
 'qgis_DESTDIR="$DESTDIR" '\
 "&& unset DESTDIR "\
+"&& unset CPATH "\
+"&& unset LIBRARY_PATH "\
+"&& unset LD_LIBRARY_PATH "\
+"&& unset CFLAGS "\
 "&& cd hdf5-1.10.5 "\
 '&& ./configure --prefix=/usr --enable-static=no --enable-parallel --enable-direct-vfd=yes '\
 '&& make '\
