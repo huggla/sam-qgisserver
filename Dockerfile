@@ -1,10 +1,9 @@
 ARG TAG="20190806"
-ARG BASEIMAGE="scratch"
 ARG PROJ_VERSION="5.2.0"
 ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
-ARG ADDREPOS="http://mirror.yandex.ru/mirrors/alpine/edge/testing"
+ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
@@ -25,49 +24,36 @@ ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
 ARG BUILDCMDS=\
 'qgis_DESTDIR="$DESTDIR" '\
 "&& unset DESTDIR "\
-"&& unset CPATH "\
-"&& unset LIBRARY_PATH "\
-"&& unset LD_LIBRARY_PATH "\
-"&& unset CFLAGS "\
-"&& cd hdf5-1.10.5 "\
-'&& ./configure --prefix=/usr --enable-static=no --enable-parallel --enable-direct-vfd=yes '\
-'&& make '\
-"&& make install "\
-"&& cd ../proj-5.2.0 "\
+"&& cd proj-$PROJ_VERSION "\
 '&& echo "$CFLAGS $CPATH $LIBRARY_PATH $LD_LIBRARY_PATH" '\
-'&& ./configure --prefix=/usr --enable-static=no '\
-"&& make "\
-"&& make install "\
-"&& cd ../netcdf-c-4.7.0 "\
-'&& ./configure --prefix=/usr --enable-static=no --enable-fsync --enable-dynamic-loading --disable-utilities --disable-testsets '\
-"&& make "\
-"&& make install "\
+'&& $COMMON_INSTALLSRC '\
+"&& cd ../hdf5-$HDF5_VERSION "\
+'&& $COMMON_CONFIGURECMD --enable-parallel '\
+'&& $COMMON_MAKECMDS '\
+"&& cd ../netcdf-c-$NETCDF_VERSION "\
+'&& $COMMON_INSTALLSRC '\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-'&& ./configure --prefix=/usr '\
-"&& make "\
-"&& make install "\
-"&& cd ../QScintilla_gpl-${QSCINTILLA_VERSION}/Qt4Qt5 "\
+'&& $COMMON_INSTALLSRC '\
+"&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake-qt5 "\
-'&& make '\
-"&& make install "\
+'&& $COMMON_MAKECMDS '\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 "\
 "&& qmake-qt5 "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-'&& make '\
+'&& $COMMON_MAKECMDS '\
 "&& apk fix fortify-headers "\
-"&& make install "\
 "&& cd ../../QGIS "\
-"&& set "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
+"&& set "\
 "&& ninja "\
-'&& ninja install'
+'&& DESTDIR="$qgis_DESTDIR" ninja install'
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
