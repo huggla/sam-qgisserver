@@ -14,7 +14,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                automake autoconf freexl-dev python3-dev \
                libspatialite-dev libressl libressl-dev \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
-               qt5-qtxmlpatterns-dev py3-opencl fortify-headers"
+               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
