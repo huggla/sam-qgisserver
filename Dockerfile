@@ -3,7 +3,7 @@ ARG BASEIMAGE="scratch"
 ARG PROJ_VERSION="5.2.0"
 ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
-ARG QSCINTILLA_VERSION="2.11.1"
+ARG QSCINTILLA_VERSION="2.11.2"
 ARG ADDREPOS="http://mirror.yandex.ru/mirrors/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
@@ -43,7 +43,7 @@ ARG BUILDCMDS=\
 '&& ./configure --prefix=/usr '\
 "&& make "\
 "&& make install "\
-"&& cd ../QScintilla_gpl-2.11.1/Qt4Qt5 "\
+"&& cd ../QScintilla_gpl-${QSCINTILLA_VERSION}/Qt4Qt5 "\
 "&& qmake-qt5 "\
 '&& make '\
 "&& make install "\
