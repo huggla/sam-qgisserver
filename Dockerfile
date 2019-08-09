@@ -34,30 +34,36 @@ ARG BUILDCMDS=\
 '&& ./configure --prefix=/usr --enable-static=no '\
 "&& make "\
 "&& make install "\
-"&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& $COMMON_INSTALLSRC '\
+"&& cd ../netcdf-c-4.7.0 "\
+'&& ./configure --prefix=/usr --enable-static=no --enable-fsync --enable-dynamic-loading --disable-utilities --disable-testsets '\
+"&& make "\
+"&& make install "\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-'&& $COMMON_INSTALLSRC '\
-"&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
+'&& ./configure --prefix=/usr '\
+"&& make "\
+"&& make install "\
+"&& cd ../QScintilla_gpl-2.11.1/Qt4Qt5 "\
 "&& qmake-qt5 "\
-'&& $COMMON_MAKECMDS '\
+'&& make '\
+"&& make install "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 "\
 "&& qmake-qt5 "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-'&& $COMMON_MAKECMDS '\
+'&& make '\
 "&& apk fix fortify-headers "\
+"&& make install "\
 "&& cd ../../QGIS "\
+"&& set "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& set "\
 "&& ninja "\
-'&& DESTDIR="$qgis_DESTDIR" ninja install'
+'&& ninja install'
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
