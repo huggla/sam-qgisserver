@@ -3,7 +3,7 @@ ARG PROJ_VERSION="5.2.0"
 ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.1"
-ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+ARG ADDREPOS="http://mirror.yandex.ru/mirrors/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
