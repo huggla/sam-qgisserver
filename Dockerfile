@@ -25,12 +25,15 @@ ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
 ARG BUILDCMDS=\
 'qgis_DESTDIR="$DESTDIR" '\
 "&& unset DESTDIR "\
-"&& cd proj-$PROJ_VERSION "\
+"&& cd hdf5-1.10.5 "\
+'&& ./configure --prefix=/usr --enable-static=no --enable-parallel --enable-direct-vfd=yes '\
+'&& make '\
+"&& make install "\
+"&& cd ../proj-5.2.0 "\
 '&& echo "$CFLAGS $CPATH $LIBRARY_PATH $LD_LIBRARY_PATH" '\
-'&& $COMMON_INSTALLSRC '\
-"&& cd ../hdf5-$HDF5_VERSION "\
-'&& $COMMON_CONFIGURECMD --enable-parallel '\
-'&& $COMMON_MAKECMDS '\
+'&& ./configure --prefix=/usr --enable-static=no '\
+"&& make "\
+"&& make install "\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
 '&& $COMMON_INSTALLSRC '\
 "&& cd ../libspatialindex "\
