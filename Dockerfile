@@ -23,17 +23,7 @@ ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 'qgis_DESTDIR="$DESTDIR" '\
-"&& echo $DESTDIR "\
-'&& echo "$DESTDIR" '\
-"&& echo $qgis_DESTDIR "\
-'&& echo "$qgis_DESTDIR" '\
 "&& unset DESTDIR "\
-"&& echo $DESTDIR "\
-'&& echo "$DESTDIR" '\
-"&& echo $qgis_DESTDIR "\
-'&& echo "$qgis_DESTDIR" '\
-"&& fail "\
-"&& exit 1 "\
 "&& cd proj-$PROJ_VERSION "\
 '&& echo "$CFLAGS $CPATH $LIBRARY_PATH $LD_LIBRARY_PATH" '\
 '&& $COMMON_INSTALLSRC '\
