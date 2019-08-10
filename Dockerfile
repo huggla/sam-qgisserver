@@ -22,7 +22,7 @@ ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-'qgis_DESTDIR="$DESTDIR" '\
+'qgis_DESTDIR=\"$DESTDIR\" '\
 "&& unset DESTDIR "\
 "&& cd proj-$PROJ_VERSION "\
 '&& echo "$CFLAGS $CPATH $LIBRARY_PATH $LD_LIBRARY_PATH" '\
