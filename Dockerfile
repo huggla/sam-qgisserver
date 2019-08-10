@@ -32,6 +32,7 @@ ARG BUILDCMDS=\
 '&& echo "$DESTDIR" '\
 "&& echo $qgis_DESTDIR "\
 '&& echo "$qgis_DESTDIR" '\
+"&& fail "\
 "&& exit 1 "\
 "&& cd proj-$PROJ_VERSION "\
 '&& echo "$CFLAGS $CPATH $LIBRARY_PATH $LD_LIBRARY_PATH" '\
