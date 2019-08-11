@@ -53,7 +53,7 @@ ARG BUILDCMDS=\
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
 "&& set "\
 "&& ninja "\
-'&& DESTDIR="$qgis_DESTDIR" ninja install'
+'&& DESTDIR=\"$qgis_DESTDIR\" ninja install'
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
