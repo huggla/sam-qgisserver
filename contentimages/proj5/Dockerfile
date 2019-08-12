@@ -7,7 +7,8 @@ ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd proj-$PROJ_VERSION "\
-'&& $COMMON_INSTALLSRC '
+'&& $COMMON_CONFIGURECMD --enable-static=no '\
+'&& $COMMON_MAKECMDS '\
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
