@@ -1,0 +1,8 @@
+ARG TAG="20190806"
+ARG HDF5_MAJOR_VERSION="1.10"
+ARG HDF5_MINOR_VERSION="5"
+ARG HDF5_VERSION="$HDF5_MAJOR_VERSION.$HDF5_MINOR_VERSION"
+ARG BASEIMAGE="huggla/busybox:$TAG"
+ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+ARG BUILDDEPS="build-base"
+ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
