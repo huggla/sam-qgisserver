@@ -4,6 +4,7 @@ ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
