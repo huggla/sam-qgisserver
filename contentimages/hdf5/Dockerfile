@@ -8,7 +8,7 @@ ARG BUILDDEPS="build-base"
 ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
-"   cd ../hdf5-$HDF5_VERSION "\
+"   cd /hdf5-$HDF5_VERSION "\
 '&& $COMMON_CONFIGURECMD --enable-static=no --enable-parallel --enable-direct-vfd=yes '\
 '&& $COMMON_MAKECMDS'
 
