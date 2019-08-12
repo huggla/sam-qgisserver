@@ -1,0 +1,50 @@
+ARG TAG="20190806"
+ARG NETCDF_VERSION="4.7.0"
+ARG HDF5_VERSION="1.10.5"
+ARG BASEIMAGE="huggla/hdf5:1.10.5"
+ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+ARG BUILDDEPS="build-base"
+ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz"
+ARG DESTDIR="/app"
+ARG BUILDCMDS=\
+"   cd /netcdf-c-$NETCDF_VERSION "\
+'&& $COMMON_CONFIGURECMD --enable-static=no --enable-fsync --enable-dynamic-loading --disable-utilities --disable-testsets '\
+'&& $COMMON_MAKECMDS'
+
+#--------Generic template (don't edit)--------
+FROM ${CONTENTIMAGE1:-scratch} as content1
+FROM ${CONTENTIMAGE2:-scratch} as content2
+FROM ${CONTENTIMAGE3:-scratch} as content3
+FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
+FROM ${BUILDIMAGE:-huggla/build} as build
+FROM ${BASEIMAGE:-huggla/base:$TAG} as final
+ARG CONTENTSOURCE1
+ARG CONTENTSOURCE1="${CONTENTSOURCE1:-/}"
+ARG CONTENTDESTINATION1
+ARG CONTENTDESTINATION1="${CONTENTDESTINATION1:-/}"
+ARG CONTENTSOURCE2
+ARG CONTENTSOURCE2="${CONTENTSOURCE2:-/}"
+ARG CONTENTDESTINATION2
+ARG CONTENTDESTINATION2="${CONTENTDESTINATION2:-/}"
+ARG CONTENTSOURCE3
+ARG CONTENTSOURCE3="${CONTENTSOURCE3:-/}"
+ARG CONTENTDESTINATION3
+ARG CONTENTDESTINATION3="${CONTENTDESTINATION3:-/}"
+ARG CLONEGITSDIR
+ARG DOWNLOADSDIR
+ARG MAKEDIRS
+ARG MAKEFILES
+ARG EXECUTABLES
+ARG STARTUPEXECUTABLES
+ARG EXPOSEFUNCTIONS
+ARG GID0WRITABLES
+ARG GID0WRITABLESRECURSIVE
+ARG LINUXUSEROWNED
+ARG LINUXUSEROWNEDRECURSIVE
+COPY --from=build /finalfs /
+#---------------------------------------------
+
+#--------Generic template (don't edit)--------
+USER starter
+ONBUILD USER root
+#---------------------------------------------
