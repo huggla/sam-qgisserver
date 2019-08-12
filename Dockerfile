@@ -23,14 +23,8 @@ ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 'qgis_DESTDIR="$DESTDIR" '\
-'&& echo $qgis_DESTDIR '\
-'&& echo "$qgis_DESTDIR" '\
-'&& echo \"$qgis_DESTDIR\" '\
-"&& echo '\$qgis_DESTDIR' "\
-'&& echo "\$qgis_DESTDIR" '\
 "&& unset DESTDIR "\
 "&& cd proj-$PROJ_VERSION "\
-'&& echo "$CFLAGS $CPATH $LIBRARY_PATH $LD_LIBRARY_PATH" '\
 '&& $COMMON_INSTALLSRC '\
 "&& cd ../hdf5-$HDF5_VERSION "\
 '&& $COMMON_CONFIGURECMD --enable-parallel '\
@@ -44,8 +38,7 @@ ARG BUILDCMDS=\
 "&& qmake-qt5 "\
 '&& $COMMON_MAKECMDS '\
 "&& cd ../Python "\
-"&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 "\
-"&& qmake-qt5 "\
+"&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings"\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 '&& $COMMON_MAKECMDS '\
 "&& apk fix fortify-headers "\
@@ -56,7 +49,6 @@ ARG BUILDCMDS=\
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& set "\
 "&& ninja "\
 '&& DESTDIR="\$qgis_DESTDIR" ninja install'
 
