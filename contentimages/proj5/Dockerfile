@@ -8,7 +8,7 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd proj-$PROJ_VERSION "\
 '&& $COMMON_CONFIGURECMD --enable-static=no '\
-'&& $COMMON_MAKECMDS '\
+'&& $COMMON_MAKECMDS'
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
