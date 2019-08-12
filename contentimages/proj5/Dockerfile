@@ -1,4 +1,6 @@
+ARG TAG="20190806"
 ARG PROJ_VERSION="5.2.0"
+ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base"
 ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz"
