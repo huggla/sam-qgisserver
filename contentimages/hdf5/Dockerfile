@@ -1,5 +1,4 @@
 # ==================== Init stage ====================
-
 # Build ARGs
 ARG TAG="20190806"
 ARG HDF5_MAJOR_VERSION="1.10"
@@ -25,7 +24,6 @@ FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 
 # =================== Build stage ====================
-
 # Generic template (don't edit)
 FROM ${BUILDIMAGE:-huggla/build} as build
 FROM ${BASEIMAGE:-huggla/base:$TAG} as final
@@ -37,7 +35,6 @@ FROM ${BASEIMAGE:-huggla/base:$TAG} as final
 COPY --from=build /finalfs /
 
 # =================== Final stage ====================
-
 # Generic template (don't edit)
 USER starter
 ONBUILD USER root
