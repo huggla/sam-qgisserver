@@ -3,6 +3,8 @@ ARG PROJ_VERSION="5.2.0"
 ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
+ARG CONTENTIMAGE1="huggla/proj5:$PROJ_VERSION"
+ARG CONTENTSOURCE1="/app*"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
@@ -18,13 +20,12 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
-ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz \
-               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
+ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   cd proj-$PROJ_VERSION "\
-'&& $COMMON_INSTALLSRC '\
+'   projfiles="$(ls /huggla-proj5*)" '\
+'&& while IFS= read -r file; do cp -a "/$file" "/finalfs/$file"; done < "$projfiles" '\
 '&& qgis_DESTDIR="$DESTDIR" '\
 "&& unset DESTDIR "\
 "&& make -s install "\
