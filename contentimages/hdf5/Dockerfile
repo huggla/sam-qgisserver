@@ -1,5 +1,7 @@
-# ==================== Init stage ====================
-# Build ARGs
+# =========================================================================
+# Init
+# =========================================================================
+# ARGs (passed to Build)
 ARG TAG="20190806"
 ARG HDF5_MAJOR_VERSION="1.10"
 ARG HDF5_MINOR_VERSION="5"
@@ -17,24 +19,23 @@ ARG BUILDCMDS=\
 '&& $COMMON_CONFIGURECMD --enable-static=no --enable-parallel --enable-direct-vfd=yes '\
 '&& $COMMON_MAKECMDS'
 
-# Generic template (don't edit)
+# ! Generic template (don't edit) !
 FROM ${CONTENTIMAGE1:-scratch} as content1
 FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 
-# =================== Build stage ====================
-# Generic template (don't edit)
+# =========================================================================
+# Build
+# =========================================================================
+# ! Generic template (don't edit) !
 FROM ${BUILDIMAGE:-huggla/build} as build
 FROM ${BASEIMAGE:-huggla/base:$TAG} as final
-
-# Build ARGs to pass to final stage
-
-
-# Generic template (don't edit)
 COPY --from=build /finalfs /
 
-# =================== Final stage ====================
-# Generic template (don't edit)
+# =========================================================================
+# Final
+# =========================================================================
+# ! Generic template (don't edit) !
 USER starter
 ONBUILD USER root
