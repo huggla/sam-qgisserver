@@ -5,6 +5,7 @@ ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
 ARG CONTENTIMAGE1="huggla/proj5:$PROJ_VERSION"
 ARG CONTENTSOURCE1="/app*"
+ARG CONTENTDESTINATION1="/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
