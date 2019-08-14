@@ -1,79 +1,63 @@
-ARG TAG="20190527"
-ARG HDF5_VERSION="1.8.21"
+ARG TAG="20190806"
+ARG PROJ_VERSION="5.2.0"
+ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
-ARG SIP_VERSION="4.19.17"
-ARG QSCINTILLA_VERSION="2.11.1"
+ARG QSCINTILLA_VERSION="2.11.2"
+ARG CONTENTIMAGE1="huggla/proj5:$PROJ_VERSION"
+ARG CONTENTSOURCE1="/app*"
+ARG CONTENTDESTINATION1="/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
-               sqlite-dev proj4-dev ninja qca-dev qt5-qtbase-dev \
+               sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
-               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev \
-               hdf5-dev curl-dev fcgi-dev libspatialite-dev zlib-dev \
-               automake autoconf py3-qt5 python3-dev qt5-qtxmlpatterns-dev"
+               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
+               curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
+               automake autoconf freexl-dev python3-dev \
+               libspatialite-dev libressl libressl-dev \
+               py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
+               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
-ARG DOWNLOADS="https://raw.githubusercontent.com/txt2tags/txt2tags/master/txt2tags \
-               http://www.hdfgroup.org/ftp/HDF5/current18/src/hdf5-$HDF5_VERSION.tar.gz \
+ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
                https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-               https://www.riverbankcomputing.com/static/Downloads/sip/$SIP_VERSION/sip-$SIP_VERSION.tar.gz \
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   mv txt2tags /usr/bin/ "\
-"&& chmod +x /usr/bin/txt2tags "\
-"&& cd hd5-$HDF5_VERSION "\
-"&& ./configure \
-		--build=$CBUILD \
-		--host=$CHOST \
-		--prefix=/usr \
-		--sysconfdir=/etc \
-		--localstatedir=/var \
-		--disable-threadsafe \
-		--enable-cxx \
-		--enable-direct-vfd \
-    --enable-parallel "\
-"&& make "\
-"&& make install "\
-"&& cd netcdf-c-$NETCDF_VERSION "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
-"&& DESTDIR=/ make install "\
+'   projfiles="$(ls /huggla-proj5*)" '\
+'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+'&& qgis_DESTDIR="$DESTDIR" '\
+"&& unset DESTDIR "\
+"&& make -s install "\
+"&& cd ../hdf5-$HDF5_VERSION "\
+'&& $COMMON_CONFIGURECMD --enable-parallel '\
+'&& $COMMON_MAKECMDS '\
+"&& cd ../netcdf-c-$NETCDF_VERSION "\
+'&& $COMMON_INSTALLSRC '\
 "&& cd ../libspatialindex "\
 "&& ./autogen.sh "\
-"&& ./configure --prefix=/usr "\
-"&& make "\
-"&& DESTDIR=/ make install "\
-"&& ln -s /usr/lib/qt5/bin/qmake /usr/bin/ "\
-"&& cd ../sip-$SIP_VERSION "\
-"&& python3 configure.py --use-qmake "\
-"&& qmake "\
-"&& python3 configure.py "\
-"&& make "\
-"&& DESTDIR=/ make install "\
+'&& $COMMON_INSTALLSRC '\
 "&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake "\
-"&& make "\
-"&& DESTDIR=/ make install "\
+"&& qmake-qt5 "\
+'&& $COMMON_MAKECMDS '\
 "&& cd ../Python "\
-"&& python3 configure.py --pyqt=PyQt5 "\
+"&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings"\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-"&& qmake "\
-"&& make "\
-"&& DESTDIR=/ make install "\
-"&& ln -s /usr/bin/python3.7 /usr/bin/python "\
-"&& cd ../../ "\
-"&& rm -rf netcdf-c-$NETCDF_VERSION libspatialindex sip-$SIP_VERSION QScintilla_gpl-$QSCINTILLA_VERSION "\
-"&& apk del autoconf automake "\
-"&& cd QGIS "\
+'&& $COMMON_MAKECMDS '\
+"&& apk fix fortify-headers "\
+"&& cd ../../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
+"&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& ninja "\
-"&& ninja install"
+'&& DESTDIR="\$qgis_DESTDIR" ninja install '\
+'&& rm "\${qgis_DESTDIR}usr/share/qgis/python/plugins/processing/algs/grass7/description/*.txt" '\
+'&& rm -r "\${qgis_DESTDIR}usr/include"'
 
 #--------Generic template (don't edit)--------
 FROM ${CONTENTIMAGE1:-scratch} as content1
