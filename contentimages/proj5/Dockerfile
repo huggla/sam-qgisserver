@@ -21,7 +21,8 @@ ARG BUILDCMDS=\
 '&& mv "$DESTDIR/usr/share/proj" "$DESTDIR-datumgrid/usr/share/" '\
 '&& mv "$DESTDIR/usr/share/man" "$DESTDIR-doc/usr/share/" '\
 '&& mv "$DESTDIR/usr/bin" "$DESTDIR-util/usr/" '\
-'&& mv "$DESTDIR/usr/lib/libproj.a" "$DESTDIR-static/usr/lib/"'
+'&& mv "$DESTDIR/usr/lib/libproj.a" "$DESTDIR-static/usr/lib/" '\
+'&& rm -r "$DESTDIR/usr/share"'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
