@@ -15,14 +15,13 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd proj-$PROJ_VERSION "\
 '&& $COMMON_INSTALLSRC '\
-'&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-datumgrid/usr/share" "$DESTDIR-doc/usr/share" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
+'&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-datumgrid/usr/share" "$DESTDIR-doc/usr" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
 '&& mv "$DESTDIR/usr/lib/pkgconfig" "$DESTDIR-dev/usr/lib/" '\
 '&& mv "$DESTDIR/usr/include" "$DESTDIR-dev/usr/" '\
 '&& mv "$DESTDIR/usr/share/proj" "$DESTDIR-datumgrid/usr/share/" '\
-'&& mv "$DESTDIR/usr/share/man" "$DESTDIR-doc/usr/share/" '\
+'&& mv "$DESTDIR/usr/share" "$DESTDIR-doc/usr/" '\
 '&& mv "$DESTDIR/usr/bin" "$DESTDIR-util/usr/" '\
-'&& mv "$DESTDIR/usr/lib/libproj.a" "$DESTDIR-static/usr/lib/" '\
-'&& rm -r "$DESTDIR/usr/share"'
+'&& mv "$DESTDIR/usr/lib/libproj.a" "$DESTDIR-static/usr/lib/"'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
