@@ -14,7 +14,7 @@ ARG BUILDDEPS="build-base"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
-"   cd /netcdf-c-$NETCDF_VERSION "\
+"   cd netcdf-c-$NETCDF_VERSION "\
 "&& rm -rf /app/* "\
 '&& $COMMON_CONFIGURECMD --enable-fsync --enable-dynamic-loading --disable-utilities --disable-testsets '\
 '&& $COMMON_MAKECMDS'
