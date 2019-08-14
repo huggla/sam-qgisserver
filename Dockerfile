@@ -25,7 +25,7 @@ ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HD
                https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
 ARG BUILDCMDS=\
 '   projfiles="$(ls /huggla-proj5*)" '\
-'&& while read -r file; do cp -a "/$file" "/finalfs/$file"; done < "$projfiles" '\
+'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
 '&& qgis_DESTDIR="$DESTDIR" '\
 "&& unset DESTDIR "\
 "&& make -s install "\
