@@ -17,12 +17,11 @@ ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_V
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
+'&& $COMMON_CONFIGURECMD --enable-shared=no --enable-parallel --enable-direct-vfd=yes '\
 '&& $COMMON_MAKECMDS '\
-'&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-static/usr/lib" "$DESTDIR-examples/usr/share" '\
+'&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-examples/usr/share" '\
 '&& mv "$DESTDIR/usr/share/hdf5_examples" "$DESTDIR-examples/usr/share/" '\
-'&& mv "$DESTDIR/usr/share" "$DESTDIR/usr/include" "$DESTDIR-dev/usr/" '\
-'&& mv $DESTDIR/usr/lib/*.a "$DESTDIR-static/usr/lib"'
+'&& mv "$DESTDIR/usr/share" "$DESTDIR/usr/include" "$DESTDIR-dev/usr/"'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
