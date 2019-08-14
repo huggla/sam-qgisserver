@@ -17,9 +17,9 @@ ARG BUILDCMDS=\
 "   cd netcdf-c-$NETCDF_VERSION "\
 "&& rm -rf /app/* "\
 '&& H5DIR="/usr" '\
-'&& CPPFLAGS="-I${H5DIR}/include" '\
+'&& CPPFLAGS="-I\$H5DIR/include" '\
 '&& CC="mpicc" '\
-'&& LDFLAGS="-L${H5DIR}/lib" '\
+'&& LDFLAGS="-L\$H5DIR/lib" '\
 '&& LIBS="-ldl" '\
 '&& $COMMON_CONFIGURECMD --enable-fsync --enable-shared=no --enable-dynamic-loading --disable-utilities --disable-testsets '\
 '&& $COMMON_MAKECMDS'
