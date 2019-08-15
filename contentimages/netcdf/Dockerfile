@@ -30,7 +30,7 @@ ARG BUILDCMDS=\
 '&& make -s '\
 '&& DESTDIR="/" make -s install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD '\
+'&& $COMMON_CONFIGURECMD --disable-shared --enable-fsync --enable-dynamic-loading --disable-utilities --disable-testsets '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
