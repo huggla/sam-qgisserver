@@ -1,11 +1,19 @@
 ARG TAG="20190806"
 ARG PROJ_VERSION="5.2.0"
-ARG HDF5_VERSION="1.10.5"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
 ARG CONTENTIMAGE1="huggla/proj5:$PROJ_VERSION"
 ARG CONTENTSOURCE1="/app*"
 ARG CONTENTDESTINATION1="/"
+ARG CONTENTIMAGE2="huggla/netcdf"
+ARG CONTENTSOURCE2="/app*"
+ARG CONTENTDESTINATION2="/"
+ARG CONTENTIMAGE3="huggla/libspatialindex"
+ARG CONTENTSOURCE3="/app*"
+ARG CONTENTDESTINATION3="/"
+ARG CONTENTIMAGE4="huggla/qscintilla"
+ARG CONTENTSOURCE4="/app*"
+ARG CONTENTDESTINATION4="/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
@@ -19,34 +27,17 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                libspatialite-dev libressl libressl-dev \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build"
-ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git \
-               '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
-ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz \
-               https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-               https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
+ARG CLONEGITS="'-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG BUILDCMDS=\
 '   projfiles="$(ls /huggla-proj5*)" '\
 '&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-'&& qgis_DESTDIR="$DESTDIR" '\
-"&& unset DESTDIR "\
-"&& make -s install "\
-"&& cd ../hdf5-$HDF5_VERSION "\
-'&& $COMMON_CONFIGURECMD --enable-parallel '\
-'&& $COMMON_MAKECMDS '\
-"&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& $COMMON_INSTALLSRC '\
-"&& cd ../libspatialindex "\
-"&& ./autogen.sh "\
-'&& $COMMON_INSTALLSRC '\
-"&& cd ../QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& qmake-qt5 "\
-'&& $COMMON_MAKECMDS '\
-"&& cd ../Python "\
-"&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings"\
-"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-'&& $COMMON_MAKECMDS '\
-"&& apk fix fortify-headers "\
-"&& cd ../../QGIS "\
+'&& projfiles="$(ls /huggla-netcdf*)" '\
+'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+'&& projfiles="$(ls /huggla-libspatialindex*)" '\
+'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+'&& projfiles="$(ls /huggla-qscintilla*)" '\
+'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+"&& cd QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
@@ -63,6 +54,7 @@ ARG BUILDCMDS=\
 FROM ${CONTENTIMAGE1:-scratch} as content1
 FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
+FROM ${CONTENTIMAGE4:-scratch} as content3
 FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 FROM ${BUILDIMAGE:-huggla/build} as build
 FROM ${BASEIMAGE:-huggla/base:$TAG} as final
