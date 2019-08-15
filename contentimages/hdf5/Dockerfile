@@ -12,7 +12,17 @@ ARG HUBVERSION="$HDF5_VERSION"
 ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 #ARG RUNDEPS="zlib openmpi"
-ARG BUILDDEPS="build-base zlib-dev openmpi-dev mt-st"
+ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
+               sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
+               flex-dev opencl-icd-loader-dev opencl-headers \
+               bison postgresql-dev qt5-qtserialport-dev libtool \
+               qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
+               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
+               curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
+               automake autoconf freexl-dev python3-dev \
+               libspatialite-dev libressl libressl-dev \
+               py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
+               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build"
 ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
