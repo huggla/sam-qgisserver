@@ -12,12 +12,12 @@ ARG HUBVERSION="$HDF5_VERSION"
 ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 #ARG RUNDEPS="zlib openmpi"
-ARG BUILDDEPS="build-base zlib-dev openmpi-dev mt-st"
+ARG BUILDDEPS="build-base zlib-dev openmpi-dev"
 ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& $COMMON_CONFIGURECMD --enable-shared=no --enable-parallel --enable-direct-vfd=yes '\
+'&& $COMMON_CONFIGURECMD --enable-parallel '\
 '&& $COMMON_MAKECMDS '\
 '&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-examples/usr/share" '\
 '&& mv "$DESTDIR/usr/share/hdf5_examples" "$DESTDIR-examples/usr/share/" '\
