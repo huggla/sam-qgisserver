@@ -26,6 +26,7 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd netcdf-c-$NETCDF_VERSION "\
 "&& rm -rf /app/* "\
+"&& libtool --finish /usr/lib "\
 '&& $COMMON_CONFIGURECMD '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
