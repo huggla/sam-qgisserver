@@ -10,18 +10,23 @@ ARG HUBREPO="netcdf"
 ARG HUBVERSION="$NETCDF_VERSION"
 ARG BASEIMAGE="huggla/hdf5:${HDF5_VERSION}"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG BUILDDEPS="build-base mt-st curl curl-dev m4 zlib-dev openmpi-dev"
+ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
+               sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
+               flex-dev opencl-icd-loader-dev opencl-headers \
+               bison postgresql-dev qt5-qtserialport-dev libtool \
+               qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
+               qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
+               curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
+               automake autoconf freexl-dev python3-dev \
+               libspatialite-dev libressl libressl-dev \
+               py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
+               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd netcdf-c-$NETCDF_VERSION "\
 "&& rm -rf /app/* "\
-'&& H5DIR="/usr" '\
-'&& CPPFLAGS="-I\$H5DIR/include" '\
-'&& CC="mpicc" '\
-'&& LDFLAGS="-L\$H5DIR/lib" '\
-'&& LIBS="-ldl" '\
-'&& $COMMON_CONFIGURECMD --enable-fsync --enable-shared=no --enable-dynamic-loading --disable-utilities --disable-testsets '\
+'&& $COMMON_CONFIGURECMD '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
