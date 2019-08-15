@@ -9,6 +9,9 @@ ARG HUBPROFILE="huggla"
 ARG HUBREPO="netcdf"
 ARG HUBVERSION="$NETCDF_VERSION"
 ARG BASEIMAGE="huggla/hdf5:${HDF5_VERSION}"
+ARG CONTENTIMAGE1="huggla/proj5:$PROJ_VERSION"
+ARG CONTENTSOURCE1="/app*"
+ARG CONTENTDESTINATION1="/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
