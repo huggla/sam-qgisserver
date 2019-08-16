@@ -4,6 +4,7 @@
 # ARGs (passed to Build) <BEGIN>
 ARG TAG="20190806"
 ARG NETCDF_VERSION="4.7.0"
+ARG PNETCDF_VERSION="1.11.2"
 ARG HDF5_MAJOR_VERSION="1.10"
 ARG HDF5_MINOR_VERSION="5"
 ARG HDF5_VERSION="$HDF5_MAJOR_VERSION.$HDF5_MINOR_VERSION"
@@ -12,17 +13,22 @@ ARG HUBREPO="netcdf"
 ARG HUBVERSION="$NETCDF_VERSION"
 ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG BUILDDEPS="build-base musl-dev zlib-dev openmpi-dev curl-dev m4"
+ARG BUILDDEPS="build-base musl-dev zlib-dev openmpi-dev curl-dev m4 libtool linux-headers"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
+               https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz \
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& $COMMON_CONFIGURECMD --enable-parallel '\
+'&& $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
 '&& make -s '\
-'&& DESTDIR="/" make -s install '\
+'&& DESTDIR="" make -s install '\
+"&& cd ../pnetcdf-$PNETCDF_VERSION "\
+'&& $COMMON_CONFIGURECMD --disable-cxx --disable-fortran --exec-prefix=/usr/bin --enable-subfiling --enable-burst-buffering --enable-null-byte-header-padding '\
+'&& make -s '\
+'&& DESTDIR="" make -s install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --disable-shared --enable-fsync --enable-dynamic-loading --disable-utilities --disable-testsets --enable-parallel-tests '\
+'&& $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-fsync --enable-dynamic-loading --disable-utilities --disable-examples --disable-testsets --enable-parallel-tests '\
 '&& $COMMON_MAKECMDS '\
 '&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-doc/usr" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
 '&& mv "$DESTDIR/usr/lib/pkgconfig" "$DESTDIR-dev/usr/lib/" '\
