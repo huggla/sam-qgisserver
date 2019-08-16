@@ -26,6 +26,7 @@ ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake-qt5 "\
 "&& ls -la "\
+'&& echo "$DESTDIR" '\
 "&& make "\
 "&& make install "\
 "&& cd ../Python "\
