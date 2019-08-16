@@ -21,10 +21,10 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
-"&& cp -a ../netcdf-c-$NETCDF_VERSION/include/*.h src/include/ "\
-'&& $COMMON_CONFIGURECMD --disable-cxx --disable-fortran --exec-prefix=/usr/bin --enable-subfiling --enable-burst-buffering --enable-null-byte-header-padding '\
-'&& make -s '\
-'&& DESTDIR="" make -s install '\
+'&& $COMMON_CONFIGURECMD --disable-cxx --disable-fortran '\
+'&& make '\
+'&& DESTDIR="" make install '\
+'&& exit '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
 '&& $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-fsync --enable-dynamic-loading --disable-utilities --disable-examples --disable-testsets --enable-parallel-tests '\
 '&& $COMMON_MAKECMDS '\
