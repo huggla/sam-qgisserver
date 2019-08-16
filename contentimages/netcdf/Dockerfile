@@ -20,10 +20,8 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
-'&& make -s '\
-'&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
+"&& cp -a ../netcdf-c-$NETCDF_VERSION/include/nc3dispatch.h src/include/ "\
 '&& $COMMON_CONFIGURECMD --disable-cxx --disable-fortran --exec-prefix=/usr/bin --enable-subfiling --enable-burst-buffering --enable-null-byte-header-padding '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
