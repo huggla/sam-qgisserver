@@ -22,7 +22,7 @@ ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
 "&& cd ../PnetCDF "\
 "&& autoreconf -i "\
-'&& ./configure --prefix=/usr --disable-cxx --disable-fortran '\
+'&& ./configure '\
 '&& make '\
 '&& DESTDIR="" make install '\
 '&& exit '\
