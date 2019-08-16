@@ -25,17 +25,22 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake-qt5 "\
-'&& $COMMON_MAKECMDS '\
+"&& ls -la "\
+"&& make "\
+"&& make install "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
-'&& $COMMON_MAKECMDS'
+"&& ls -la "\
+"&& make "\
+"&& make install"
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
 FROM ${CONTENTIMAGE1:-scratch} as content1
 FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
+FROM ${CONTENTIMAGE4:-scratch} as content4
 FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 # Generic template (don't edit) </END>
 
