@@ -23,7 +23,13 @@ ARG BUILDCMDS=\
 '&& DESTDIR="/" make -s install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
 '&& $COMMON_CONFIGURECMD --disable-shared --enable-fsync --enable-dynamic-loading --disable-utilities --disable-testsets --enable-parallel-tests '\
-'&& $COMMON_MAKECMDS'
+'&& $COMMON_MAKECMDS '\
+'&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-doc/usr" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
+'&& mv "$DESTDIR/usr/lib/pkgconfig" "$DESTDIR-dev/usr/lib/" '\
+'&& mv "$DESTDIR/usr/include" "$DESTDIR-dev/usr/" '\
+'&& mv "$DESTDIR/usr/share" "$DESTDIR-doc/usr/" '\
+'&& mv "$DESTDIR/usr/bin" "$DESTDIR-util/usr/" '\
+'&& mv "$DESTDIR/usr/lib/libnetcdf.a" "$DESTDIR-static/usr/lib/"'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
