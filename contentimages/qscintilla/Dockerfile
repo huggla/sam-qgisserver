@@ -24,13 +24,13 @@ ARG DOWNLOADS="https://www.riverbankcomputing.com/static/Downloads/QScintilla/$Q
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-'&& DESTDIR="/app" '\
-'&& echo "DESTDIR = /app" >> qscintilla.pro '\
+'&& DESTDIR="/finalfs/app" '\
+'&& echo "DESTDIR = /finalfs/app" >> qscintilla.pro '\
 "&& qmake-qt5 "\
 "&& make "\
 "&& make install "\
 "&& cd ../Python "\
-'&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings --destdir=/app '\
+'&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings --destdir=/finalfs/app '\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& make "\
 "&& make install"
