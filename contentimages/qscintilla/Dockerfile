@@ -24,7 +24,7 @@ ARG DOWNLOADS="https://www.riverbankcomputing.com/static/Downloads/QScintilla/$Q
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& sed -i '/TRANSLATIONS/,\\\\\$d' qscintilla.pro "\
+"&& sed -i '/TRANSLATIONS/,\\\\\\$d' qscintilla.pro "\
 '&& qmake-qt5 -set DESTDIR $DESTDIR '\
 "&& qmake-qt5 "\
 "&& make "\
