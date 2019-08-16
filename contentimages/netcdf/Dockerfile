@@ -21,7 +21,7 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
-"&& cp -a ../netcdf-c-$NETCDF_VERSION/include/nc3dispatch.h src/include/ "\
+"&& cp -a ../netcdf-c-$NETCDF_VERSION/include/*.h src/include/ "\
 '&& $COMMON_CONFIGURECMD --disable-cxx --disable-fortran --exec-prefix=/usr/bin --enable-subfiling --enable-burst-buffering --enable-null-byte-header-padding '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
