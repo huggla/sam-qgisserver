@@ -26,6 +26,7 @@ ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 '&& sedstr="/TRANSLATIONS/,\$d" '\
 "&& sed -i '\$sedstr' qscintilla.pro "\
+'&& echo "DESTDIR = $DESTDIR" >> qscintilla.pro '\
 '&& qmake-qt5 -set DESTDIR $DESTDIR '\
 "&& qmake-qt5 "\
 "&& make "\
