@@ -30,7 +30,7 @@ ARG BUILDCMDS=\
 "&& cp -a ../ \$DESTDIR/QScintilla_gpl-$QSCINTILLA_VERSION "\
 '&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR add --initdb make qt5-qtbase-dev fortify-headers '\
 "&& chroot \$DESTDIR make install -C /QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR --purge del make qt5-qtbase-dev '\
+'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR --purge del make qt5-qtbase-dev fortify-headers '\
 "&& rm -rf \$DESTDIR/QScintilla_gpl-$QSCINTILLA_VERSION "\
 "&& exit "\
 "&& make install "\
