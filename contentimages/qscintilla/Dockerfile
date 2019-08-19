@@ -34,8 +34,8 @@ ARG BUILDCMDS=\
 "&& make install "\
 "&& cp -a \$BUILDDIR \$DESTDIR/ "\
 '&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR add --initdb make qt5-qtbase-dev fortify-headers busybox '\
-"&& chroot \$DESTDIR /bin/sh -c \"cd \$BUILDDIR/QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 && make install\" "\
-"&& chroot \$DESTDIR /bin/sh -c \"cd \$BUILDDIR/QScintilla_gpl-$QSCINTILLA_VERSION/Python && make install\" "\
+'&& chroot $DESTDIR /bin/sh -c "cd $BUILDDIR/QScintilla_gpl-'$QSCINTILLA_VERSION'/Qt4Qt5 && make install" '\
+'&& chroot $DESTDIR /bin/sh -c "cd $BUILDDIR/QScintilla_gpl-'$QSCINTILLA_VERSION'/Python && make install" '\
 '&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR --purge del make qt5-qtbase-dev fortify-headers busybox '\
 "&& rm -rf \$DESTDIR\$BUILDDIR"
 # ARGs (passed to Build) </END>
