@@ -27,6 +27,7 @@ ARG BUILDCMDS=\
 '&& DESTDIR="/finalfs/app" '\
 "&& qmake-qt5 "\
 "&& make "\
+"&& make install "\
 "&& cd ../Python "\
 "&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings "\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
