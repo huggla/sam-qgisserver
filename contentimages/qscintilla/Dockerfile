@@ -28,6 +28,10 @@ ARG BUILDCMDS=\
 '&& echo "DESTDIR = /finalfs/app" >> qscintilla.pro '\
 "&& qmake-qt5 "\
 "&& make "\
+"&& cp -a ../ /finalfs/ "\
+"&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --root /finalfs add make qt5-qtbase-dev "\
+"&& chroot /finalfs make install -C /QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
+"&& exit "\
 "&& make install "\
 "&& cd ../Python "\
 '&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings --destdir=/finalfs/app '\
