@@ -24,7 +24,6 @@ ARG DOWNLOADS="https://www.riverbankcomputing.com/static/Downloads/QScintilla/$Q
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-'&& DESTDIR="/finalfs/app" '\
 "&& qmake-qt5 "\
 "&& make "\
 "&& make install "\
@@ -33,12 +32,12 @@ ARG BUILDCMDS=\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& make "\
 "&& make install "\
-"&& cp -a ../ \$DESTDIR/QScintilla_gpl-$QSCINTILLA_VERSION "\
-'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR add --initdb make qt5-qtbase-dev fortify-headers '\
-"&& chroot \$DESTDIR make install -C /QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
-"&& chroot \$DESTDIR make install -C /QScintilla_gpl-$QSCINTILLA_VERSION/Python "\
-'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR --purge del make qt5-qtbase-dev fortify-headers '\
-"&& rm -rf \$DESTDIR/QScintilla_gpl-$QSCINTILLA_VERSION"
+"&& cp -a \$BUILDDIR \$DESTDIR/ "\
+'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR add --initdb make qt5-qtbase-dev fortify-headers busybox '\
+"&& chroot \$DESTDIR /bin/sh -c \"cd \$BUILDDIR/QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 && make install\" "\
+"&& chroot \$DESTDIR /bin/sh -c \"cd \$BUILDDIR/QScintilla_gpl-$QSCINTILLA_VERSION/Python && make install\" "\
+'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR --purge del make qt5-qtbase-dev fortify-headers busybox '\
+"&& rm -rf \$DESTDIR\$BUILDDIR"
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
