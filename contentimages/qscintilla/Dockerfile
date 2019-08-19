@@ -25,11 +25,10 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 '&& DESTDIR="/finalfs/app" '\
-"&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& qmake-qt5 "\
 "&& make "\
 "&& cp -a ../ \$DESTDIR/QScintilla_gpl-$QSCINTILLA_VERSION "\
-'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR add --initdb make qt5-qtbase-dev '\
+'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR add --initdb make qt5-qtbase-dev fortify-headers '\
 "&& chroot \$DESTDIR make install -C /QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 '&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --no-scripts --root $DESTDIR --purge del make qt5-qtbase-dev '\
 "&& rm -rf \$DESTDIR/QScintilla_gpl-$QSCINTILLA_VERSION "\
@@ -37,7 +36,7 @@ ARG BUILDCMDS=\
 "&& make install "\
 "&& cd ../Python "\
 '&& python3 configure.py --pyqt=PyQt5 --qmake=/usr/bin/qmake-qt5 --no-docstrings --destdir=/finalfs/app '\
-
+"&& chroot \$DESTDIR sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& make "\
 "&& make install"
 # ARGs (passed to Build) </END>
