@@ -39,6 +39,7 @@ ARG BUILDCMDS=\
 FROM ${CONTENTIMAGE1:-scratch} as content1
 FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
+FROM ${CONTENTIMAGE4:-scratch} as content4
 FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 # Generic template (don't edit) </END>
 
