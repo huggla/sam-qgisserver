@@ -32,11 +32,12 @@ ARG BUILDCMDS=\
 "&& sed -i 's/include_next/include/' /usr/include/fortify/stdlib.h "\
 "&& make "\
 "&& make install "\
+"&& cd / "\
 "&& cp -a \$BUILDDIR \$DESTDIR/ "\
-'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --root $DESTDIR add --initdb make qt5-qtbase-dev fortify-headers busybox '\
+'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --root $DESTDIR add --initdb '$BUILDDEPS\
 '&& chroot $DESTDIR /bin/sh -c \"cd $BUILDDIR/QScintilla_gpl-'$QSCINTILLA_VERSION'/Qt4Qt5 && make install\" '\
 '&& chroot $DESTDIR /bin/sh -c \"cd $BUILDDIR/QScintilla_gpl-'$QSCINTILLA_VERSION'/Python && make install\" '\
-'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --initramfs-diskless-boot --clean-protected --root $DESTDIR --purge del make qt5-qtbase-dev fortify-headers busybox '\
+'&& apk --repositories-file /etc/apk/repositories --keys-dir /etc/apk/keys --no-cache --root $DESTDIR --purge del '$BUILDDEPS\
 "&& rm -rf \$DESTDIR\$BUILDDIR"
 # ARGs (passed to Build) </END>
 
