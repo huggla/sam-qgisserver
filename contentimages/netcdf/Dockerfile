@@ -24,8 +24,7 @@ ARG BUILDCMDS=\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
-"&& autoreconf -i "\
-'&& CPPFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" $COMMON_CONFIGURECMD '\
+'&& CC=mpicc $COMMON_CONFIGURECMD '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
