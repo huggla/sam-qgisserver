@@ -25,11 +25,11 @@ ARG BUILDCMDS=\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
 "&& autoreconf -i "\
-'&& $COMMON_CONFIGURECMD --disable-fortran --enable-subfiling --enable-burst-buffering --enable-null-byte-header-padding '\
+'&& $COMMON_CONFIGURECMD --disable-fortran '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-fsync --enable-dynamic-loading --disable-utilities --disable-examples --disable-testsets --enable-parallel-tests '\
+'&& $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-parallel-tests '\
 '&& $COMMON_MAKECMDS '\
 '&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-doc/usr" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
 '&& mv "$DESTDIR/usr/lib/pkgconfig" "$DESTDIR-dev/usr/lib/" '\
