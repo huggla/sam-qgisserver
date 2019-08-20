@@ -25,7 +25,7 @@ ARG BUILDCMDS=\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
 "&& autoreconf -i "\
-'&& $COMMON_CONFIGURECMD --disable-fortran --exec-prefix=/usr/bin --enable-subfiling --enable-burst-buffering --enable-null-byte-header-padding '\
+'&& $COMMON_CONFIGURECMD --disable-fortran --enable-subfiling --enable-burst-buffering --enable-null-byte-header-padding '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
