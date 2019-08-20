@@ -2,7 +2,7 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190806"
+ARG TAG="20190820"
 ARG QSCINTILLA_VERSION="2.11.2"
 ARG HUBPROFILE="huggla"
 ARG HUBREPO="qscintilla"
