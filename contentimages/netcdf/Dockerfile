@@ -25,11 +25,11 @@ ARG BUILDCMDS=\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
 "&& autoreconf -i "\
-'&& $COMMON_CONFIGURECMD --disable-fortran '\
+'&& CPPFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" $COMMON_CONFIGURECMD '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-parallel-tests '\
+'&& $COMMON_CONFIGURECMD --enable-pnetcdf --enable-parallel-tests '\
 '&& $COMMON_MAKECMDS '\
 '&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-doc/usr" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
 '&& mv "$DESTDIR/usr/lib/pkgconfig" "$DESTDIR-dev/usr/lib/" '\
