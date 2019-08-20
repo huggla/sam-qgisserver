@@ -2,7 +2,7 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190806"
+ARG TAG="20190820"
 ARG NETCDF_VERSION="4.7.0"
 ARG PNETCDF_VERSION="1.11.2"
 ARG HDF5_MAJOR_VERSION="1.10"
@@ -13,7 +13,7 @@ ARG HUBREPO="netcdf"
 ARG HUBVERSION="$NETCDF_VERSION"
 ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG BUILDDEPS="build-base musl-dev zlib-dev openmpi-dev curl-dev m4 libtool linux-headers linux-virt-dev autoconf automake git"
+ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4"
 ARG CLONEGITS="https://github.com/Parallel-NetCDF/PnetCDF.git"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
