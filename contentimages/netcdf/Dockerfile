@@ -20,7 +20,7 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-"&& cd ../PnetCDF "\
+"&& cd ../pnetcdf-$PNETCDF_VERSION "\
 "&& autoreconf -i "\
 '&& ./configure '\
 '&& make '\
