@@ -21,6 +21,7 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
+"&& ls -la /bin/sh "\
 "&& autoreconf -i "\
 '&& ./configure '\
 '&& make '\
