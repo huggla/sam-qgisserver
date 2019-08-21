@@ -30,18 +30,23 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                automake autoconf freexl-dev python3-dev \
                libspatialite-dev libressl libressl-dev \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
-               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build"
-ARG CLONEGITS="'-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
+               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
+ARG CLONEGITS="git://git.lighttpd.net/multiwatch.git \
+               '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG BUILDCMDS=\
-'   projfiles="$(ls /huggla-proj5*)" '\
-'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-'&& projfiles="$(ls /huggla-netcdf*)" '\
-'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-'&& projfiles="$(ls /huggla-libspatialindex*)" '\
-'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-'&& projfiles="$(ls /huggla-qscintilla*)" '\
-'&& for file in $(zcat "$projfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-"&& cd QGIS "\
+'   cd multiwatch '\
+'&& cmake . '\
+'&& $COMMON_MAKECMDS '\
+'&& exit '\
+'&& progfiles="$(ls /huggla-proj5*)" '\
+'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+'&& progfiles="$(ls /huggla-netcdf*)" '\
+'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+'&& progfiles="$(ls /huggla-libspatialindex*)" '\
+'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+'&& progfiles="$(ls /huggla-qscintilla*)" '\
+'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+"&& cd ../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
