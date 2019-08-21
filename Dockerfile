@@ -72,7 +72,7 @@ FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 # Build
 # =========================================================================
 # Generic template (don't edit) <BEGIN>
-FROM ${BUILDIMAGE:-huggla/build} as build
+FROM ${BUILDIMAGE:-huggla/build:$TAG} as build
 FROM ${BASEIMAGE:-huggla/base:$TAG} as final
 COPY --from=build /finalfs /
 # Generic template (don't edit) </END>
