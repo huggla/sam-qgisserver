@@ -55,9 +55,9 @@ ARG BUILDCMDS=\
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
 "&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& ninja "\
-'&& DESTDIR="\$qgis_DESTDIR" ninja install '\
-'&& rm "\${qgis_DESTDIR}usr/share/qgis/python/plugins/processing/algs/grass7/description/*.txt" '\
-'&& rm -r "\${qgis_DESTDIR}usr/include"'
+'&& ninja install'
+#'&& rm "\${qgis_DESTDIR}usr/share/qgis/python/plugins/processing/algs/grass7/description/*.txt" '\
+#'&& rm -r "\${qgis_DESTDIR}usr/include"'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
