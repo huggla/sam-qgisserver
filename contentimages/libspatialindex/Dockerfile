@@ -7,7 +7,6 @@ ARG HUBPROFILE="huggla"
 ARG HUBREPO="libspatialindex"
 ARG HUBVERSION="$TAG"
 ARG BASEIMAGE="huggla/busybox:$TAG"
-ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
