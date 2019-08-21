@@ -24,7 +24,7 @@ ARG BUILDCMDS=\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld --enable-netcdf4 '\
+'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld --enable-netcdf4 --with-netcdf4=/netcdf-c-$NETCDF_VERSION '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
