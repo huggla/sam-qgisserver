@@ -20,7 +20,7 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& CC=$MPICC $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
+'&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
@@ -29,7 +29,7 @@ ARG BUILDCMDS=\
 '&& make ptest '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --enable-pnetcdf --enable-parallel-tests '\
+'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-parallel-tests '\
 '; cat config.log '\
 '&& exit '\
 '&& $COMMON_MAKECMDS '\
