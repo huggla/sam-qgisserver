@@ -29,8 +29,6 @@ ARG BUILDCMDS=\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
 '&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-parallel-tests '\
-'; cat config.log '\
-'&& exit '\
 '&& $COMMON_MAKECMDS '\
 '&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-doc/usr" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
 '&& mv "$DESTDIR/usr/lib/pkgconfig" "$DESTDIR-dev/usr/lib/" '\
