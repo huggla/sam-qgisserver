@@ -20,8 +20,7 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& CC="mpicc" '\
-'&& CFLAGS="mpicc $CFLAGS" '\
+'&& CC="/usr/local/mpi/bin/mpicc" '\
 '&& $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
