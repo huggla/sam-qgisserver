@@ -26,7 +26,6 @@ ARG BUILDCMDS=\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
 '&& $COMMON_CONFIGURECMD '\
 '&& make '\
-'&& make ptest '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
 '&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-parallel-tests '\
