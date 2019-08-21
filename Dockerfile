@@ -31,7 +31,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                libspatialite-dev libressl libressl-dev \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
-ARG CLONEGITS="git://git.lighttpd.net/multiwatch.git \
+ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG BUILDCMDS=\
 '   cd multiwatch '\
