@@ -21,6 +21,7 @@ ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
 '&& CC="mpicc" '\
+'&& CFLAGS="mpicc $CFLAGS" '\
 '&& $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
