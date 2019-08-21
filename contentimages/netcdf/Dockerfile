@@ -20,22 +20,16 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel --enable-direct-vfd=yes '\
+'&& CC=mpicc $COMMON_CONFIGURECMD --disable-fortran --disable-cxx --disable-java --disable-shared --enable-static-exec --enable-parallel --enable-direct-vfd --disable-dconv-exception --disable-dconv-accuracy --with-gnu-ld --without-szlib '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD '\
+'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld --enable-netcdf4 '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf --enable-parallel-tests '\
-'&& $COMMON_MAKECMDS '\
-'&& mkdir -p "$DESTDIR-dev/usr/lib" "$DESTDIR-doc/usr" "$DESTDIR-util/usr" "$DESTDIR-static/usr/lib" '\
-'&& mv "$DESTDIR/usr/lib/pkgconfig" "$DESTDIR-dev/usr/lib/" '\
-'&& mv "$DESTDIR/usr/include" "$DESTDIR-dev/usr/" '\
-'&& mv "$DESTDIR/usr/share" "$DESTDIR-doc/usr/" '\
-'&& mv "$DESTDIR/usr/bin" "$DESTDIR-util/usr/" '\
-'&& mv "$DESTDIR/usr/lib/libnetcdf.a" "$DESTDIR-static/usr/lib/"'
+'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --disable-shared --enable-pnetcdf --enable-parallel-tests --disable-utilities --disable-testsets --enable-erange-fill --with-gnu-ld '\
+'&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
