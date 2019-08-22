@@ -2,7 +2,8 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190820"
+ARG TAG="20190822"
+ARG IMAGETYPE="content"
 ARG QSCINTILLA_VERSION="2.11.2"
 ARG HUBPROFILE="huggla"
 ARG HUBREPO="qscintilla"
@@ -11,7 +12,6 @@ ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="build-base libtool qt5-qtbase-dev py3-sip-pyqt5 py3-sip py3-qtpy py-sip-dev python3-dev fortify-headers"
 ARG DOWNLOADS="https://www.riverbankcomputing.com/static/Downloads/QScintilla/$QSCINTILLA_VERSION/QScintilla_gpl-$QSCINTILLA_VERSION.tar.gz"
-ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd QScintilla_gpl-$QSCINTILLA_VERSION/Qt4Qt5 "\
 "&& qmake-qt5 "\
