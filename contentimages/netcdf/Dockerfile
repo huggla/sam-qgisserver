@@ -19,12 +19,18 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
-"   cd hdf5-$HDF5_VERSION "\
+"set "\
+"&& cd hdf5-$HDF5_VERSION "\
 '&& CC=mpicc $COMMON_CONFIGURECMD --disable-fortran --disable-cxx --disable-java --disable-shared --enable-static-exec --enable-parallel --enable-direct-vfd --disable-dconv-exception --disable-dconv-accuracy --with-gnu-ld --without-szlib '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
+"&& set "\
+"&& cd ../pnetcdf-$PNETCDF_VERSION "\
+'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld '\
+'&& make '\
+'&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --disable-shared --enable-parallel-tests --disable-utilities --disable-testsets --enable-erange-fill --with-gnu-ld '\
+'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --disable-shared --enable-pnetcdf --enable-parallel-tests --disable-utilities --disable-testsets --enable-erange-fill --with-gnu-ld '\
 '&& make '\
 '&& DESTDIR="" make install '\
 '&& make clean '\
