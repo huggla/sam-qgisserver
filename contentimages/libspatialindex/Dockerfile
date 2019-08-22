@@ -2,13 +2,13 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190820"
+ARG TAG="20190822"
+ARG IMAGETYPE="content"
 ARG HUBPROFILE="huggla"
 ARG HUBREPO="libspatialindex"
 ARG HUBVERSION="$TAG"
 ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG CLONEGITS="https://github.com/libspatialindex/libspatialindex.git"
-ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "   cd libspatialindex "\
 "&& ./autogen.sh "\
