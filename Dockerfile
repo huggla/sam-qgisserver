@@ -37,14 +37,14 @@ ARG BUILDCMDS=\
 '   cd multiwatch '\
 '&& cmake . '\
 '&& $COMMON_MAKECMDS '\
-'&& progfiles="$(ls /huggla-proj5*)" '\
-'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-'&& progfiles="$(ls /huggla-netcdf*)" '\
-'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-'&& progfiles="$(ls /huggla-libspatialindex*)" '\
-'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
-'&& progfiles="$(ls /huggla-qscintilla*)" '\
-'&& for file in $(zcat "$progfiles"); do cp -a "/$file" "/finalfs/$file"; done '\
+'&& progfiles="$(zcat $(ls /huggla-proj5*))" '\
+'&& for file in $progfiles; do cp -a "/$file" "/finalfs/$file"; done '\
+'&& progfiles="$(zcat $(ls /huggla-netcdf*))" '\
+'&& for file in $progfiles; do cp -a "/$file" "/finalfs/$file"; done '\
+'&& progfiles="$(zcat $(ls /huggla-libspatialindex*))" '\
+'&& for file in $progfiles; do cp -a "/$file" "/finalfs/$file"; done '\
+'&& progfiles="$(zcat $(ls /huggla-qscintilla*))" '\
+'&& for file in $progfiles; do cp -a "/$file" "/finalfs/$file"; done '\
 "&& cd ../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
