@@ -19,8 +19,13 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG DESTDIR="/app"
 ARG BUILDCMDS=\
-"   cd pnetcdf-$PNETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld --enable-netcdf4 --with-netcdf4=/finalfs/builddir/netcdf-c-$NETCDF_VERSION/include '\
+"   cd netcdf-c-$NETCDF_VERSION "\
+'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --disable-shared --enable-parallel-tests --disable-utilities --disable-testsets --enable-erange-fill --with-gnu-ld '\
+'&& make '\
+'&& DESTDIR="" make install '\
+'&& make clean '\
+"&& cd ../pnetcdf-$PNETCDF_VERSION "\
+'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld --enable-netcdf4 '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
