@@ -2,7 +2,8 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190820"
+ARG TAG="20190822"
+ARG IMAGETYPE="content"
 ARG NETCDF_VERSION="4.7.0"
 ARG PNETCDF_VERSION="1.11.2"
 ARG HDF5_MAJOR_VERSION="1.10"
@@ -17,7 +18,6 @@ ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz \
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
-ARG DESTDIR="/app"
 ARG BUILDCMDS=\
 "set "\
 "&& cd hdf5-$HDF5_VERSION "\
@@ -27,15 +27,6 @@ ARG BUILDCMDS=\
 "&& set "\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
 '&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld '\
-'&& make '\
-'&& DESTDIR="" make install '\
-"&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --disable-shared --enable-pnetcdf --enable-parallel-tests --disable-utilities --disable-testsets --enable-erange-fill --with-gnu-ld '\
-'&& make '\
-'&& DESTDIR="" make install '\
-'&& make clean '\
-"&& cd ../pnetcdf-$PNETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld --enable-netcdf4 '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
