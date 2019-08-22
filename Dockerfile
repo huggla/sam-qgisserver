@@ -34,8 +34,9 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
 ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG BUILDCMDS=\
-'   cp -a $(zcat *-app.gz | xargs) /finalfs/ '\
-'&& cd multiwatch '\
+'   cd / '\
+'&& cp -a $(zcat *-app.gz | xargs) /finalfs/ '\
+'&& cd $BUILDDIR/multiwatch '\
 '&& cmake . '\
 '&& $COMMON_MAKECMDS '\
 "&& cd ../QGIS "\
@@ -48,8 +49,6 @@ ARG BUILDCMDS=\
 "&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& ninja "\
 '&& ninja install'
-#'&& rm "\${qgis_DESTDIR}usr/share/qgis/python/plugins/processing/algs/grass7/description/*.txt" '\
-#'&& rm -r "\${qgis_DESTDIR}usr/include"'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
