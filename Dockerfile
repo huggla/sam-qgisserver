@@ -2,21 +2,17 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190820"
+ARG TAG="20190822"
 ARG PROJ_VERSION="5.2.0"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
 ARG CONTENTIMAGE1="huggla/proj5:$PROJ_VERSION"
-ARG CONTENTSOURCE1="/app*"
 ARG CONTENTDESTINATION1="/"
 ARG CONTENTIMAGE2="huggla/netcdf:$NETCDF_VERSION"
-ARG CONTENTSOURCE2="/app*"
 ARG CONTENTDESTINATION2="/"
 ARG CONTENTIMAGE3="huggla/libspatialindex:$TAG"
-ARG CONTENTSOURCE3="/app*"
 ARG CONTENTDESTINATION3="/"
 ARG CONTENTIMAGE4="huggla/qscintilla:$QSCINTILLA_VERSION"
-ARG CONTENTSOURCE4="/app*"
 ARG CONTENTDESTINATION4="/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain"
