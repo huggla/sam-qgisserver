@@ -28,7 +28,7 @@ ARG BUILDCMDS=\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --enable-pnetcdf --enable-parallel-tests --disable-utilities --disable-testsets --enable-erange-fill --with-gnu-ld '\
+'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --enable-pnetcdf '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
