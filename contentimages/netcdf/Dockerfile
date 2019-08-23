@@ -17,7 +17,6 @@ ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz"
-ARG ADDTO_PATH="/usr"
 ARG BUILDCMDS=\
 "   cd pnetcdf-$PNETCDF_VERSION "\
 '&& $COMMON_CONFIGURECMD '\
