@@ -20,7 +20,7 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel --enable-unsupported --enable-cxx'\
+'&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
