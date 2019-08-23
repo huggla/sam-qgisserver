@@ -35,7 +35,7 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG BUILDCMDS=\
 '   cd / '\
-'&& cp -a "$(zcat *-app.gz | xargs)" /finalfs/ '\
+'&& cp -a \$(zcat *-app.gz | xargs) /finalfs/ '\
 '&& cd $BUILDDIR/multiwatch '\
 '&& cmake . '\
 '&& $COMMON_MAKECMDS '\
