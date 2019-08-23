@@ -36,6 +36,8 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
 ARG BUILDCMDS=\
 '   cd / '\
 '&& ls -la '\
+'&& zcat *-app.gz '\
+'&& zcat *-app.gz | xargs '\
 '&& cp -a $(zcat *-app.gz | xargs) /finalfs/ '\
 '&& cd $BUILDDIR/multiwatch '\
 '&& cmake . '\
