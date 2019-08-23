@@ -12,7 +12,8 @@ ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG DOWNLOADS="http://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   cd proj-$PROJ_VERSION "\
-'&& $COMMON_INSTALLSRC '\
+'&& $COMMON_CONFIGURECMD --disable-shared --with-gnu-ld '\
+'&& $COMMON_MAKECMDS '\
 '&& mkdir -p "$DESTDIR-datumgrid/usr/share" "$DESTDIR-util/usr" '\
 '&& mv "$DESTDIR/usr/share/proj" "$DESTDIR-datumgrid/usr/share/" '\
 '&& mv "$DESTDIR/usr/bin" "$DESTDIR-util/usr/"'
