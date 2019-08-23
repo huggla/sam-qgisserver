@@ -35,10 +35,10 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG BUILDCMDS=\
 '   cd / '\
-'&& appscontent="\$(zcat *-app.gz)" '\
+'&& appscontent="$(zcat *-app.gz)" '\
 '&& for file in $appscontent; '\
 '   do '\
-'      if [ ! -e "$file" ] || ( [ -f "$file" ] && [ ! -l "$file" ] ); '\
+'      if [ ! -e "$file" ] || [ -f "$file" ] && [ ! -l "$file" ]; '\
 '      then '\
 '         cp -a "$file" /finalfs/; '\
 '      fi; '\
