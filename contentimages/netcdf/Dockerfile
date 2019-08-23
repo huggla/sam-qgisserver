@@ -20,15 +20,15 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& CC=mpicc $COMMON_CONFIGURECMD --disable-fortran --disable-cxx --disable-java --disable-shared --enable-static-exec --enable-parallel --enable-direct-vfd --disable-dconv-exception --disable-dconv-accuracy --with-gnu-ld --without-szlib '\
+'&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
 "&& cd ../pnetcdf-$PNETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD --disable-shared --disable-cxx --disable-fortran --with-gnu-ld '\
+'&& $COMMON_CONFIGURECMD '\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-doxygen --enable-pnetcdf '\
+'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD --disable-shared --enable-pnetcdf '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
