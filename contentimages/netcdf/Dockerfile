@@ -19,7 +19,7 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
                https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz"
 ARG ADDTO_PATH="/usr"
 ARG BUILDCMDS=\
-"   cd ../pnetcdf-$PNETCDF_VERSION "\
+"   cd pnetcdf-$PNETCDF_VERSION "\
 '&& $COMMON_CONFIGURECMD '\
 '&& make '\
 '&& DESTDIR="" make install '\
