@@ -14,11 +14,13 @@ ARG HUBREPO="netcdf"
 ARG HUBVERSION="$NETCDF_VERSION"
 ARG BASEIMAGE="huggla/hdf5:$HDF5_VERSION"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4"
+ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4 dpkg"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   cd pnetcdf-$PNETCDF_VERSION "\
+'&& dpkg -L libhdf-dev | grep so '\
+'&& dpkg -L hdf | grep so '\
 '&& $COMMON_CONFIGURECMD '\
 '&& make '\
 '&& DESTDIR="" make install '\
