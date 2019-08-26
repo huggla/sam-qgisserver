@@ -20,9 +20,7 @@ ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
 '&& CC=mpicc ./configure --prefix=/usr/local/hdf5 --disable-fortran --disable-cxx --disable-java --disable-shared --enable-static-exec --enable-parallel --enable-direct-vfd --disable-dconv-exception --disable-dconv-accuracy --with-gnu-ld --without-szlib '\
 '&& $COMMON_MAKECMDS '\
-'&& mkdir -p "$DESTDIR-examples/usr/share" '\
-'&& dpkg -L libhdf-dev | grep so '\
-'&& dpkg -L hdf | grep so '
+'&& mkdir -p "$DESTDIR-examples/usr/share" '
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
