@@ -23,12 +23,8 @@ ARG BUILDCMDS=\
 '&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel '\
 '&& make -s '\
 '&& DESTDIR="" make -s install '\
-"&& cd ../pnetcdf-$PNETCDF_VERSION "\
-'&& $COMMON_CONFIGURECMD '\
-'&& make '\
-'&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD '\
+'&& CC=mpicc $COMMON_CONFIGURECMD '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
