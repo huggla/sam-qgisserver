@@ -19,7 +19,7 @@ ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz"
 ARG BUILDCMDS=\
-'LDFLAGS="-L/usr/lib -I/usr/include" '\
+'LDFLAGS=\"-L/usr/lib -I/usr/include\" '\
 "&& cd netcdf-c-$NETCDF_VERSION "\
 '&& CC=mpicc $COMMON_CONFIGURECMD '\
 '&& make && make install'
