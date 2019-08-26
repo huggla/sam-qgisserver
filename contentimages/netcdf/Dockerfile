@@ -21,7 +21,7 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
 ARG BUILDCMDS=\
 'LIBS="-l/usr/lib" '\
 "&& cd netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc LIBS=$COMMON_CONFIGURECMD '\
+'&& CC=mpicc $COMMON_CONFIGURECMD '\
 '&& make && make install'
 # ARGs (passed to Build) </END>
 
