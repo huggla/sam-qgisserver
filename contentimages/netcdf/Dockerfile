@@ -19,8 +19,8 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
                https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   cd pnetcdf-$PNETCDF_VERSION "\
-'&& dpkg -L libhdf-dev | grep so '\
-'&& dpkg -L hdf | grep so '\
+'&& set '\
+'&& dpkg -L hdf '\
 '&& $COMMON_CONFIGURECMD '\
 '&& make '\
 '&& DESTDIR="" make install '\
