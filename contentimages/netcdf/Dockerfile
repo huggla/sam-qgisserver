@@ -12,17 +12,24 @@ ARG HDF5_VERSION="$HDF5_MAJOR_VERSION.$HDF5_MINOR_VERSION"
 ARG HUBPROFILE="huggla"
 ARG HUBREPO="netcdf"
 ARG HUBVERSION="$NETCDF_VERSION"
-ARG ADDTO_PATH="/usr"
-ARG BASEIMAGE="huggla/hdf5"
+ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-               https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz"
+               https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz \
+               https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG BUILDCMDS=\
-'LDFLAGS=\"-L/usr/lib -I/usr/include\" '\
-"&& cd netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc $COMMON_CONFIGURECMD '\
-'&& make && make install'
+"   cd hdf5-$HDF5_VERSION "\
+'&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel '\
+'&& make -s '\
+'&& DESTDIR="" make -s install '\
+"&& cd ../pnetcdf-$PNETCDF_VERSION "\
+'&& $COMMON_CONFIGURECMD '\
+'&& make '\
+'&& DESTDIR="" make install '\
+"&& cd ../netcdf-c-$NETCDF_VERSION "\
+'&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD '\
+'&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
