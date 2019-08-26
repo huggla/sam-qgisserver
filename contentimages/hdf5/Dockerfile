@@ -12,7 +12,7 @@ ARG HUBREPO="hdf5"
 ARG HUBVERSION="$HDF5_VERSION"
 ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG BUILDDEPS="zlib-dev openmpi-dev"
+ARG BUILDDEPS="zlib-dev openmpi-dev dpkg"
 ARG ADDTO_PATH="/usr/local/hdf5"
 ARG ADDTO_CPATH="$ADDTO_PATH"
 ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
@@ -20,6 +20,8 @@ ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
 '&& CC=mpicc ./configure --prefix=/usr/local/hdf5 --disable-fortran --disable-cxx --disable-java --disable-shared --enable-static-exec --enable-parallel --enable-direct-vfd --disable-dconv-exception --disable-dconv-accuracy --with-gnu-ld --without-szlib '\
 '&& $COMMON_MAKECMDS '\
+'&& dpkg -L libhdf-dev | grep so '\
+'&& dpkg -L hdf | grep so '\
 '&& mkdir -p "$DESTDIR-examples/usr/share" '
 # ARGs (passed to Build) </END>
 
