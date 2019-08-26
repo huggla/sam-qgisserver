@@ -19,15 +19,10 @@ ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4 dpkg"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
                https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz"
 ARG BUILDCMDS=\
-"   cd pnetcdf-$PNETCDF_VERSION "\
-'&& LIBS="-l/usr/local/hdf5/lib" '\
-'&& CPPFLAGS="-I/usr/local/hdf5/include" '\
-'&& $COMMON_CONFIGURECMD '\
-'&& make '\
-'&& DESTDIR="" make install '\
-"&& cd ../netcdf-c-$NETCDF_VERSION "\
+'LIBS="-l/usr/local/hdf5/lib" '\
+"&& cd netcdf-c-$NETCDF_VERSION "\
 '&& CC=mpicc LIBS=-ldl $COMMON_CONFIGURECMD '\
-'&& $COMMON_MAKECMDS'
+'&& make && make install'
 # ARGs (passed to Build) </END>
 
 # Generic template (don't edit) <BEGIN>
