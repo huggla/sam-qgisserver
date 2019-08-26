@@ -20,9 +20,7 @@ ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCD
 ARG BUILDCMDS=\
 "   cd pnetcdf-$PNETCDF_VERSION "\
 '&& set '\
-'&& dpkg -L hdf '\
 '&& LIBS="-l/usr/local/hda5/lib" '\
-'&& dpkg -L hdf '\
 '&& $COMMON_CONFIGURECMD '\
 '&& make '\
 '&& DESTDIR="" make install '\
