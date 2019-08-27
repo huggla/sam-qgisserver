@@ -28,7 +28,7 @@ ARG BUILDCMDS=\
 '&& make '\
 '&& DESTDIR="" make install '\
 "&& cd ../netcdf-c-$NETCDF_VERSION "\
-'&& CC=mpicc $COMMON_CONFIGURECMD --enable-pnetcdf --disable-shared '\
+'&& CC=mpicc $COMMON_CONFIGURECMD --disable-shared '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
