@@ -16,7 +16,7 @@ ARG BUILDDEPS="zlib-dev openmpi-dev"
 ARG DOWNLOADS="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "   cd hdf5-$HDF5_VERSION "\
-'&& CC=mpicc $COMMON_CONFIGURECMD --disable-fortran --disable-cxx --disable-java --disable-shared --enable-static-exec --enable-parallel --enable-direct-vfd --disable-dconv-exception --disable-dconv-accuracy --with-gnu-ld --without-szlib '\
+'&& CC=mpicc $COMMON_CONFIGURECMD --enable-parallel '\
 '&& $COMMON_MAKECMDS '\
 '&& mkdir -p "$DESTDIR-examples/usr/share" '\
 '&& mv "$DESTDIR/usr/share/hdf5_examples" "$DESTDIR-examples/usr/share/"'
