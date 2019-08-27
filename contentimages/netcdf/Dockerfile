@@ -5,22 +5,20 @@
 ARG TAG="20190822"
 ARG IMAGETYPE="content"
 ARG NETCDF_VERSION="4.7.0"
-ARG PNETCDF_VERSION="1.11.2"
 ARG HDF5_MAJOR_VERSION="1.10"
 ARG HDF5_MINOR_VERSION="5"
 ARG HDF5_VERSION="$HDF5_MAJOR_VERSION.$HDF5_MINOR_VERSION"
 ARG HUBPROFILE="huggla"
 ARG HUBREPO="netcdf"
 ARG HUBVERSION="$NETCDF_VERSION"
-ARG BASEIMAGE="huggla/hdf5:1.10.5"
+ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG BUILDDEPS="zlib-dev openmpi-dev curl-dev m4"
 ARG DOWNLOADS="https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-$NETCDF_VERSION.tar.gz \
-               https://parallel-netcdf.github.io/Release/pnetcdf-$PNETCDF_VERSION.tar.gz \
                https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF5_MAJOR_VERSION/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
 ARG BUILDCMDS=\
 "cd netcdf-c-$NETCDF_VERSION "\
-'&& PATH=$PATH:/usr CC=mpicc CPPFLAGS=-I/usr/include LDFLAGS=-L/usr/lib $COMMON_CONFIGURECMD '\
+'&& CC=mpicc $COMMON_CONFIGURECMD --disable-doxygen --disable-utilities --disable-testsets '\
 '&& $COMMON_MAKECMDS'
 # ARGs (passed to Build) </END>
 
