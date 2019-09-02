@@ -38,7 +38,7 @@ ARG EXECUTABLES="/usr/bin/spawn-fcgi /usr/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
 '&& appgzfiles=*-app.gz '\
-'&& staticgzfiles=*-static '\
+'&& staticgzfiles=*-static.gz '\
 '&& zcat $appgzfiles $staticgzfiles | sort -u - '\
 '&& exit '\
 '&& appscontent="$(zcat *-app.gz *-static.gz | sort -u -)" '\
