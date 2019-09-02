@@ -34,6 +34,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
+ARG EXECUTABLES="/usr/bin/spawn-fcgi /usr/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
 "&& ls *-app.gz *-static.gz "\
@@ -82,6 +83,11 @@ COPY --from=build /finalfs /
 # =========================================================================
 # Final
 # =========================================================================
+
+ENV VAR_LINUX_USER="qgisserver" \
+    VAR_FCGICHILDREN="1" \
+    VAR_FINAL_COMMAND="spawn-fcgi -f \$VAR_FCGICHILDREN /usr/bin/qgis_mapserv.fcgi -s /run/qgisserver/fastcgi.sock -M 770 -n -- multiwatch"
+
 # Generic template (don't edit) <BEGIN>
 USER starter
 ONBUILD USER root
