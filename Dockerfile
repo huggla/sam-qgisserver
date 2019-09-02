@@ -37,8 +37,8 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
 ARG BUILDCMDS=\
 '   cd / '\
 '&& ls '\
-'&& ls *-app.gz *-static.gz '\
-'&& zcat *-app.gz *-static.gz | sort -u - '\
+"&& ls *-app.gz *-static.gz "\
+"&& zcat *-app.gz *-static.gz | sort -u - "\
 '&& exit '\
 '&& appscontent="$(zcat *-app.gz *-static.gz | sort -u -)" '\
 '&& for file in $appscontent; '\
