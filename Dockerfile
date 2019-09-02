@@ -36,6 +36,10 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
 ARG BUILDCMDS=\
 '   cd / '\
+'&& ls '\
+'&& ls *-app.gz *-static.gz '\
+'&& zcat *-app.gz *-static.gz | sort -u - '\
+'&& exit '\
 '&& appscontent="$(zcat *-app.gz *-static.gz | sort -u -)" '\
 '&& for file in $appscontent; '\
 '   do '\
