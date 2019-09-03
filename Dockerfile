@@ -37,10 +37,9 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
 ARG STARTUPEXECUTABLES="/usr/bin/spawn-fcgi /usr/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
-'&& set +f '\
-'&& appgzfiles=\"*-app.gz\" '\
-'&& staticgzfiles=$(echo *-static.gz) '\
-'&& zcat $appgzfiles $staticgzfiles | sort -u - '\
+'&& appgzfiles=*-app.gz '\
+'&& staticgzfiles=*-static.gz '\
+'&& zcat \$appgzfiles \$staticgzfiles | sort -u - '\
 '&& exit 1 '\
 '&& content="" '\
 '&& for file in $content; '\
