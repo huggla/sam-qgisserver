@@ -39,7 +39,7 @@ ARG BUILDCMDS=\
 '   cd / '\
 '&& appgzfiles=*-app.gz '\
 '&& staticgzfiles=*-static.gz '\
-'&& zcat \$appgzfiles \$staticgzfiles | sort -u - '\
+'&& zcat *-app.gz *-static.gz | sort -u - '\
 '&& exit 1 '\
 '&& content="" '\
 '&& for file in $content; '\
