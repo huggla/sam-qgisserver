@@ -38,7 +38,7 @@ ARG STARTUPEXECUTABLES="/usr/bin/spawn-fcgi /usr/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
 '&& gzfiles="$(ls | grep -e "-app[.]gz$" -e "-static[.]gz$" | xargs)" '\
-'&& content="$(zcat $gzfiles | sort -u -)" '\
+'&& content="$(zcat $gzfiles | sort -u - | xargs)" '\
 '&& for file in $content; '\
 '   do '\
 '      if [ ! -e "$file" ] || [ -f "$file" ] && [ ! -l "$file" ]; '\
