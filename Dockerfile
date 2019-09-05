@@ -2,7 +2,7 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190902"
+ARG TAG="20190905"
 ARG IMAGETYPE="application"
 ARG PROJ_VERSION="5.2.0"
 ARG NETCDF_VERSION="4.7.0"
