@@ -41,7 +41,7 @@ ARG BUILDCMDS=\
 '&& content="$(zcat $gzfiles | sort -u - | xargs)" '\
 '&& for file in $content; '\
 '   do '\
-'      if [ ! -e "$file" ] || [ -f "$file" ] && [ ! -l "$file" ]; '\
+'      if [ ! -e "/finalfs/$file" ] || [ -f "/finalfs/$file" ]; '\
 '      then '\
 '         cp -a "$file" /finalfs/; '\
 '      fi; '\
