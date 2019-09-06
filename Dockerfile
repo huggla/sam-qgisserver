@@ -4,6 +4,7 @@
 # ARGs (passed to Build) <BEGIN>
 ARG TAG="20190905"
 ARG IMAGETYPE="application"
+ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
@@ -33,7 +34,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
-               '-b release-3_4 --depth 1 https://github.com/qgis/QGIS.git'"
+               '-b release-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
 ARG STARTUPEXECUTABLES="/usr/bin/spawn-fcgi /usr/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
@@ -48,7 +49,7 @@ ARG BUILDCMDS=\
 '   done '\
 '&& cd $BUILDDIR/multiwatch '\
 '&& cmake . '\
-'&& $COMMON_MAKECMDS '\
+'&& eval "$COMMON_MAKECMDS" '\
 "&& cd ../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
