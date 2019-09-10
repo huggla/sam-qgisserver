@@ -44,7 +44,7 @@ ARG BUILDCMDS=\
 '   do '\
 '      if [ ! -e "/finalfs/$file" ] || [ -f "/finalfs/$file" ]; '\
 '      then '\
-'         cp -a "$file" /finalfs/; '\
+'         cp -a "$file" "/finalfs/$file"; '\
 '      fi; '\
 '   done '\
 '&& cd $BUILDDIR/multiwatch '\
