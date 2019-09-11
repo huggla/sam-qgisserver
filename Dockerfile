@@ -85,7 +85,7 @@ COPY --from=build /finalfs /
 
 ENV VAR_LINUX_USER="qgisserver" \
     VAR_FCGICHILDREN="1" \
-    VAR_FINAL_COMMAND="spawn-fcgi -f \$VAR_FCGICHILDREN /usr/bin/qgis_mapserv.fcgi -s /run/qgisserver/fastcgi.sock -M 770 -n -- multiwatch"
+    VAR_FINAL_COMMAND="spawn-fcgi -n -s /run/qgisserver/fastcgi.sock -M 770 -- multiwatch -f \$VAR_FCGICHILDREN -- /usr/bin/qgis_mapserv.fcgi"
 
 # Generic template (don't edit) <BEGIN>
 USER starter
