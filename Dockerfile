@@ -38,7 +38,7 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
 ARG STARTUPEXECUTABLES="/usr/bin/spawn-fcgi /usr/local/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
-'&& gzfiles="$(ls | grep -e "-app[.]gz$" -e "-static[.]gz$" -e "-datumgrid[.]gz$" -e "-util[.]gz$" | xargs)" '\
+'&& gzfiles="$(ls | grep -e "-app[.]gz$" -e "-static[.]gz$" -e "-datumgrid[.]gz$" -e "-util[.]gz$" -e "-dev[.]gz$" -e "-doc[.]gz$" | xargs)" '\
 '&& content="$(zcat $gzfiles | sort -u - | xargs)" '\
 '&& for file in $content; '\
 '   do '\
@@ -57,7 +57,6 @@ ARG BUILDCMDS=\
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF ./ "\
-"&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& ninja "\
 '&& ninja install'
 # ARGs (passed to Build) </END>
