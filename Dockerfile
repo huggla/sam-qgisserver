@@ -2,7 +2,7 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190905"
+ARG TAG="20190911"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
