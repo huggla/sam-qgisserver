@@ -3,11 +3,15 @@
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
 ARG TAG="20190911"
-ARG IMAGETYPE="application"
+ARG IMAGETYPE="content"
 ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
+ARG BASEIMAGE="huggla/alpine:$TAG"
+ARG HUBPROFILE="huggla"
+ARG HUBREPO="qgisserver-content"
+ARG HUBVERSION="$QGIS_VERSION"
 ARG CONTENTIMAGE1="huggla/proj5-content:$PROJ_VERSION"
 ARG CONTENTSOURCE1="/content*"
 ARG CONTENTDESTINATION1="/"
