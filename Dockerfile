@@ -8,7 +8,7 @@ ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
-ARG BASEIMAGE="huggla/alpine:$TAG"
+ARG BASEIMAGE="huggla/busybox:$TAG"
 ARG HUBPROFILE="huggla"
 ARG HUBREPO="qgisserver-content"
 ARG HUBVERSION="$QGIS_VERSION"
@@ -25,7 +25,7 @@ ARG CONTENTIMAGE4="huggla/qscintilla-content:$QSCINTILLA_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev"
+ARG RUNDEPS="apk-tools spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
