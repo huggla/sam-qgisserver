@@ -2,7 +2,7 @@
 # Init
 # =========================================================================
 # ARGs (passed to Build) <BEGIN>
-ARG TAG="20190919"
+ARG TAG="20190925"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
@@ -38,7 +38,7 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
 ARG STARTUPEXECUTABLES="/usr/bin/spawn-fcgi /usr/local/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
-'&& gzfiles="$(ls | grep -e "-app[.]gz$" -e "-static[.]gz$" -e "-datumgrid[.]gz$" -e "-util[.]gz$" -e "-dev[.]gz$" -e "-doc[.]gz$" | xargs)" '\
+'&& gzfiles="$(ls *.gz | grep -ve "-doc[.]gz$" | grep -ve "-dev[.]gz$" | xargs)" '\
 '&& content="$(zcat $gzfiles | sort -u - | xargs)" '\
 '&& for file in $content; '\
 '   do '\
