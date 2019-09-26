@@ -35,7 +35,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
-ARG STARTUPEXECUTABLES="/usr/bin/spawn-fcgi /usr/local/bin/multiwatch"
+ARG EXECUTABLES="/usr/bin/spawn-fcgi"
+ARG STARTUPEXECUTABLES="/usr/local/bin/multiwatch"
 ARG BUILDCMDS=\
 '   cd / '\
 '&& gzfiles="$(ls *.gz | grep -ve "-doc[.]gz$" | grep -ve "-dev[.]gz$" | xargs)" '\
