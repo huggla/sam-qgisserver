@@ -57,7 +57,7 @@ ARG BUILDCMDS=\
 '   done '\
 '&& rm -rf /content '\
 '&& cd $BUILDDIR/multiwatch '\
-'&& cmake . '\
+'&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 "&& cd ../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
