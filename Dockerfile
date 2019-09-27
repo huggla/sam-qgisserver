@@ -27,8 +27,6 @@ ARG CONTENTIMAGE5="huggla/hdf5-content:$HDF5_VERSION-$TAG"
 ARG CONTENTSOURCE5="/content*"
 ARG CONTENTDESTINATION5="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG EXCLUDEAPKS="proj proj-datumgrid"
-ARG INITCMDS='sed -i "/^\/usr\/lib\/libproj[.]so.*>libproj/d" /tmp/onbuild/exclude.filelist'
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
@@ -47,20 +45,11 @@ ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/local/bin/multiwatch"
 ARG CC="mpicc"
 ARG BUILDCMDS=\
-'   cd /content '\
-'&& gzfiles="$(ls *.gz | grep -ve "-doc[.]gz$" | grep -ve "-dev[.]gz$" | xargs)" '\
-'&& content="$(zcat $gzfiles | sort -u - | xargs)" '\
-'&& for file in $content; '\
-'   do '\
-'      if [ ! -e "/finalfs$file" ] || [ -f "/finalfs$file" ]; '\
-'      then '\
-'         cp -a "/content$file" "/finalfs$file"; '\
-'      fi; '\
-'   done '\
-'&& rm -rf /content '\
-'&& cd $BUILDDIR/multiwatch '\
+'   cd multiwatch '\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
+'&& cp -a /content/* / '\
+'&& rm -rf /content '\
 "&& cd ../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
