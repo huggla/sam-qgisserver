@@ -1,7 +1,7 @@
 # =========================================================================
 # Init
 # =========================================================================
-# ARGs (passed to Build) <BEGIN>
+# ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="1.0"
 ARG TAG="20190925"
 ARG IMAGETYPE="application"
@@ -65,7 +65,7 @@ ARG BUILDCMDS=\
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS="$CFLAGS" ./ "\
 "&& ninja "\
 '&& ninja install'
-# ARGs (passed to Build) </END>
+# ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
 FROM ${CONTENTIMAGE1:-scratch} as content1
