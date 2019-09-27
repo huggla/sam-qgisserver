@@ -67,7 +67,7 @@ FROM ${CONTENTIMAGE1:-scratch} as content1
 FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${CONTENTIMAGE4:-scratch} as content4
-FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
+FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:1.0}} as init
 # Generic template (don't edit) </END>
 
 # =========================================================================
@@ -75,7 +75,7 @@ FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 # =========================================================================
 # Generic template (don't edit) <BEGIN>
 FROM ${BUILDIMAGE:-huggla/build:$TAG} as build
-FROM ${BASEIMAGE:-huggla/base:$TAG} as final
+FROM ${BASEIMAGE:-huggla/base:1.0} as final
 COPY --from=build /finalfs /
 # Generic template (don't edit) </END>
 
@@ -84,6 +84,14 @@ COPY --from=build /finalfs /
 # =========================================================================
 
 ENV VAR_LINUX_USER="qgisserver" \
+    VAR_CONFIG_DIR="/etc/qgisserver" \
+    VAR_PLUGINS_DIR="/qgis_server_plugins" \
+    VAR_MAX_CACHE_LAYERS="100" \
+    VAR_LOG_LEVEL="2" \
+    VAR_PARALLEL_RENDERING="1" \
+    VAR_MAX_THREADS="-1" \
+    VAR_CACHE_DIR="/var/cache/qgisserver" \
+    VAR_CACHE_SIZE="50" \
     VAR_FCGICHILDREN="1" \
     VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -s /run/qgisserver/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/bin/qgis_mapserv.fcgi"
 
