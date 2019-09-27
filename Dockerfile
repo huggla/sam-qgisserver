@@ -8,6 +8,7 @@ ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
 ARG NETCDF_VERSION="4.7.0"
 ARG QSCINTILLA_VERSION="2.11.2"
+ARG HDF5_VERSION="1.10.5"
 ARG CONTENTIMAGE1="huggla/proj5-content:$PROJ_VERSION"
 ARG CONTENTSOURCE1="/content*"
 ARG CONTENTDESTINATION1="/"
@@ -20,6 +21,9 @@ ARG CONTENTDESTINATION3="/"
 ARG CONTENTIMAGE4="huggla/qscintilla-content:$QSCINTILLA_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/"
+ARG CONTENTIMAGE5="huggla/hdf5-content:$HDF5_VERSION"
+ARG CONTENTSOURCE5="/content*"
+ARG CONTENTDESTINATION5="/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
@@ -67,6 +71,7 @@ FROM ${CONTENTIMAGE1:-scratch} as content1
 FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${CONTENTIMAGE4:-scratch} as content4
+FROM ${CONTENTIMAGE5:-scratch} as content5
 FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:1.0}} as init
 # Generic template (don't edit) </END>
 
