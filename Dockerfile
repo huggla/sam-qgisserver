@@ -37,7 +37,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
                automake autoconf freexl-dev python3-dev \
-               libspatialite-dev libressl libressl-dev \
+               libspatialite-dev libressl libressl-dev py3-qt5 \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
