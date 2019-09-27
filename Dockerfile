@@ -12,20 +12,21 @@ ARG QSCINTILLA_VERSION="2.11.2"
 ARG HDF5_VERSION="1.10.5"
 ARG CONTENTIMAGE1="huggla/proj5-content:$PROJ_VERSION"
 ARG CONTENTSOURCE1="/content*"
-ARG CONTENTDESTINATION1="/"
+ARG CONTENTDESTINATION1="/content/"
 ARG CONTENTIMAGE2="huggla/netcdf-content:$NETCDF_VERSION"
 ARG CONTENTSOURCE2="/content*"
-ARG CONTENTDESTINATION2="/"
+ARG CONTENTDESTINATION2="/content/"
 ARG CONTENTIMAGE3="huggla/libspatialindex-content:$TAG"
 ARG CONTENTSOURCE3="/content*"
-ARG CONTENTDESTINATION3="/"
+ARG CONTENTDESTINATION3="/content/"
 ARG CONTENTIMAGE4="huggla/qscintilla-content:$QSCINTILLA_VERSION"
 ARG CONTENTSOURCE4="/content*"
-ARG CONTENTDESTINATION4="/"
+ARG CONTENTDESTINATION4="/content/"
 ARG CONTENTIMAGE5="huggla/hdf5-content:$HDF5_VERSION"
 ARG CONTENTSOURCE5="/content*"
-ARG CONTENTDESTINATION5="/"
+ARG CONTENTDESTINATION5="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+ARG EXCLUDEAPKS="proj proj-datumgrid"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
@@ -34,7 +35,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf freexl-dev python3-dev hdf5-dev \
+               automake autoconf freexl-dev python3-dev \
                libspatialite-dev libressl libressl-dev \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
@@ -42,17 +43,19 @@ ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/local/bin/multiwatch"
+ARG CC="mpicc"
 ARG BUILDCMDS=\
-'   cd / '\
+'   cd /content '\
 '&& gzfiles="$(ls *.gz | grep -ve "-doc[.]gz$" | grep -ve "-dev[.]gz$" | xargs)" '\
 '&& content="$(zcat $gzfiles | sort -u - | xargs)" '\
 '&& for file in $content; '\
 '   do '\
 '      if [ ! -e "/finalfs$file" ] || [ -f "/finalfs$file" ]; '\
 '      then '\
-'         cp -a "$file" "/finalfs$file"; '\
+'         cp -a "/content$file" "/finalfs$file"; '\
 '      fi; '\
 '   done '\
+'&& rm -rf /content '\
 '&& cd $BUILDDIR/multiwatch '\
 '&& cmake . '\
 '&& eval "$COMMON_MAKECMDS" '\
