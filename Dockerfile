@@ -27,7 +27,7 @@ ARG CONTENTIMAGE5="huggla/hdf5-content:$HDF5_VERSION-$TAG"
 ARG CONTENTSOURCE5="/content*"
 ARG CONTENTDESTINATION5="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
 ARG EXCLUDEAPKS="proj proj-datumgrid"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
