@@ -60,7 +60,7 @@ ARG BUILDCMDS=\
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS="$CFLAGS" ./ "\
 "&& ninja "\
 '&& ninja install'
-ARG REMOVEDIRS="/usr/share/qgis"
+ARG REMOVEDIRS="/usr/share/qgis/resources /usr/share/qgis/svg /usr/share/qgis/images"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
