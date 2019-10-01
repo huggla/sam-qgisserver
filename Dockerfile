@@ -60,6 +60,8 @@ ARG BUILDCMDS=\
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS="$CFLAGS" ./ "\
 "&& ninja "\
 '&& ninja install'
+ARG MAKEDIRS="/usr/qgis"
+ARG FINALCMDS="mv /usr/bin/qgis_mapserv.fcgi /usr/bin/wms_metadata.xml /usr/qgis/"
 ARG REMOVEDIRS="/usr/share"
 # ARGs (can be passed to Build/Final) </END>
 
@@ -95,7 +97,7 @@ ENV VAR_LINUX_USER="qgisserver" \
     VAR_CACHE_DIR="/var/cache/qgisserver" \
     VAR_CACHE_SIZE="50" \
     VAR_FCGICHILDREN="1" \
-    VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -s /run/qgisserver/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/bin/qgis_mapserv.fcgi"
+    VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -s /run/qgisserver/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
 
 # Generic template (don't edit) <BEGIN>
 USER starter
