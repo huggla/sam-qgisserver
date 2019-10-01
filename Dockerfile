@@ -61,7 +61,12 @@ ARG BUILDCMDS=\
 "&& ninja "\
 '&& ninja install'
 ARG MAKEDIRS="/usr/qgis"
-ARG FINALCMDS="mv /usr/bin/qgis_mapserv.fcgi /usr/bin/wms_metadata.xml /usr/qgis/"
+ARG FINALCMDS=\
+"   mv /usr/bin/qgis_mapserv.fcgi /usr/bin/wms_metadata.xml /usr/qgis/ "\
+"&& cp -a /usr/lib/qt5/plugins/platforms/libqoffscreen.so ./ "\
+"&& rm -rf /usr/lib/qt5/plugins "\
+"&& mkdir -p /usr/lib/qt5/plugins/platforms "\
+"&& mv libqoffscreen.so /usr/lib/qt5/plugins/platforms/"
 ARG REMOVEDIRS="/usr/share"
 # ARGs (can be passed to Build/Final) </END>
 
