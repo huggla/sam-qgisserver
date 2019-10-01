@@ -66,8 +66,10 @@ ARG FINALCMDS=\
 "&& cp -a /usr/lib/qt5/plugins/platforms/libqoffscreen.so ./ "\
 "&& rm -rf /usr/lib/qt5/plugins "\
 "&& mkdir -p /usr/lib/qt5/plugins/platforms "\
-"&& mv libqoffscreen.so /usr/lib/qt5/plugins/platforms/"
-ARG REMOVEDIRS="/usr/share"
+"&& mv libqoffscreen.so /usr/lib/qt5/plugins/platforms/ "\
+"&& find /usr/bin -type f -delete"
+ARG REMOVEDIRS="/usr/share /usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs /usr/include"
+ARG REMOVEFILES="/usr/bin/qml* /usr/bin/nc*"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
