@@ -105,7 +105,7 @@ ENV VAR_LINUX_USER="qgisserver" \
     VAR_CACHE_DIR="/var/cache/qgisserver" \
     VAR_CACHE_SIZE="50" \
     VAR_FCGICHILDREN="1" \
-    VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -s /run/qgisserver/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
+    VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
 
 # Generic template (don't edit) <BEGIN>
 USER starter
