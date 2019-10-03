@@ -50,7 +50,7 @@ ARG BUILDCMDS=\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
-'&& cp -a /content/usr/lib/libproj.* /content/usr/lib/libspatialindex.* $DESTDIR/ '\
+'&& cp -a /content/usr/lib/libproj.* /content/usr/lib/libspatialindex.* $DESTDIR/usr/lib/ '\
 '&& rm -rf /content '\
 "&& cd ../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
