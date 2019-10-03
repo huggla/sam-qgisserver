@@ -28,7 +28,7 @@ ARG CONTENTSOURCE5="/content*"
 ARG CONTENTDESTINATION5="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
-ARG EXCLUDEAPKS="proj proj-datumgrid"
+ARG EXCLUDEAPKS="proj-datumgrid"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
@@ -50,6 +50,7 @@ ARG BUILDCMDS=\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
+'&& cp -a /content/usr/lib/libproj.* /content/usr/lib/libspatialindex.* $DESTDIR/ '\
 '&& rm -rf /content '\
 "&& cd ../QGIS "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
@@ -96,6 +97,7 @@ COPY --from=build /finalfs /
 
 ENV VAR_LINUX_USER="qgisserver" \
     VAR_CONFIG_DIR="/etc/qgisserver" \
+    VAR_PROJECT_STORAGE_DIR="/projects" \
     VAR_PLUGINS_DIR="/qgis_server_plugins" \
     VAR_SOCKET_DIR="/run/qgisserver" \
     VAR_MAX_CACHE_LAYERS="100" \
@@ -105,7 +107,7 @@ ENV VAR_LINUX_USER="qgisserver" \
     VAR_CACHE_DIR="/var/cache/qgisserver" \
     VAR_CACHE_SIZE="50" \
     VAR_FCGICHILDREN="1" \
-    VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
+    VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -d \$VAR_PROJECT_STORAGE_DIR -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
 
 # Generic template (don't edit) <BEGIN>
 USER starter
