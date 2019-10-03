@@ -28,7 +28,6 @@ ARG CONTENTSOURCE5="/content*"
 ARG CONTENTDESTINATION5="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
-ARG EXCLUDEAPKS="proj-datumgrid"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
@@ -68,8 +67,9 @@ ARG FINALCMDS=\
 "&& rm -rf /usr/lib/qt5/plugins "\
 "&& mkdir -p /usr/lib/qt5/plugins/platforms "\
 "&& mv libqoffscreen.so /usr/lib/qt5/plugins/platforms/ "\
-"&& find /usr/bin -type f ! -name spawn-fcgi ! -name multiwatch -delete"
-ARG REMOVEDIRS="/usr/share /usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs /usr/include"
+"&& find /usr/bin -type f ! -name spawn-fcgi ! -name multiwatch -delete "\
+"&& find /usr/share -mindepth 1 -maxdepth 1 ! -name proj -delete"
+ARG REMOVEDIRS="/usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs /usr/include"
 ARG REMOVEFILES="/usr/bin/qml* /usr/bin/nc*"
 # ARGs (can be passed to Build/Final) </END>
 
