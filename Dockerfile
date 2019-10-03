@@ -97,6 +97,7 @@ COPY --from=build /finalfs /
 ENV VAR_LINUX_USER="qgisserver" \
     VAR_CONFIG_DIR="/etc/qgisserver" \
     VAR_PLUGINS_DIR="/qgis_server_plugins" \
+    VAR_SOCKET_DIR="/run/qgisserver" \
     VAR_MAX_CACHE_LAYERS="100" \
     VAR_LOG_LEVEL="2" \
     VAR_PARALLEL_RENDERING="1" \
