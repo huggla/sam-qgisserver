@@ -66,6 +66,7 @@ ARG BUILDCMDS=\
 '&& mv "/tmp/libqoffscreen.so" "$DESTDIR/usr/lib/qt5/plugins/platforms/" '\
 '&& find "$DESTDIR/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
 '&& find "$DESTDIR/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" -delete '\
+'&& rm -rf /content/usr/share/proj '\
 '&& cp -a /content/usr/* "$DESTDIR/usr/" '\
 '&& rm -rf /content'
 ARG MAKEDIRS="/usr/qgis"
