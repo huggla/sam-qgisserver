@@ -50,28 +50,26 @@ ARG BUILDCMDS=\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
-'&& cp -a /content/usr/lib/libproj.* /content/usr/lib/libspatialindex.* $DESTDIR/usr/lib/ '\
-'&& rm -rf /content '\
-"&& cd ../QGIS "\
+'&& cd ../QGIS '\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS="$CFLAGS" ./ "\
-"&& ninja "\
-'&& ninja install'
+'&& ninja '\
+'&& ninja install '\
+'&& mv "$DESTDIR/usr/bin/qgis_mapserv.fcgi" "$DESTDIR/usr/bin/wms_metadata.xml" "$DESTDIR/usr/qgis/" '\
+'&& cp -a "$DESTDIR/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/tmp/" '\
+'&& rm -rf "$DESTDIR/usr/lib/qt5/plugins" "$DESTDIR/usr/lib/qt5/qml" "$DESTDIR/usr/lib/qt5/libexec" "$DESTDIR/usr/lib/qt5/bin" "$DESTDIR/usr/lib/qt5/mkspecs" '\
+'&& mkdir -p "$DESTDIR/usr/lib/qt5/plugins/platforms" '\
+'&& mv "/tmp/libqoffscreen.so" "$DESTDIR/usr/lib/qt5/plugins/platforms/" '\
+'&& find "$DESTDIR/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
+'&& find "$DESTDIR/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" -delete '\
+'&& cp -a /content/usr/* "$DESTDIR/usr/" '\
+'&& rm -rf /content'
 ARG MAKEDIRS="/usr/qgis"
-ARG FINALCMDS=\
-"   mv /usr/bin/qgis_mapserv.fcgi /usr/bin/wms_metadata.xml /usr/qgis/ "\
-"&& cp -a /usr/lib/qt5/plugins/platforms/libqoffscreen.so ./ "\
-"&& rm -rf /usr/lib/qt5/plugins "\
-"&& mkdir -p /usr/lib/qt5/plugins/platforms "\
-"&& mv libqoffscreen.so /usr/lib/qt5/plugins/platforms/ "\
-"&& find /usr/bin -type f ! -name spawn-fcgi ! -name multiwatch -delete "\
-"&& find /usr/share -mindepth 1 -maxdepth 1 ! -name proj -delete"
-ARG REMOVEDIRS="/usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs /usr/include"
-ARG REMOVEFILES="/usr/bin/qml* /usr/bin/nc*"
+ARG REMOVEDIRS="/usr/include"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
