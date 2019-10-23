@@ -3,7 +3,7 @@
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="1.0"
-ARG TAG="20191007"
+ARG TAG="20191018"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
