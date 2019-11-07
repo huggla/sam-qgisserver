@@ -3,9 +3,9 @@ A small and secure Docker image with Qgis Server based on Alpine. Only fastcgi, 
 
 ## Environment variables
 ### Runtime variables with default value
-* VAR_CONFIG_DIR="/etc/qgisserver"
-* VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -d \$VAR_PROJECT_STORAGE_DIR -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
-* VAR_LINUX_USER="qgisserver"
+* VAR_LINUX_USER="qgisserver" (User running VAR_FINAL_COMMAND)
+* VAR_CONFIG_DIR="/etc/qgisserver" (Directory containing configuration files)
+* VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -d \$VAR_PROJECT_STORAGE_DIR -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi" (Command run by VAR_LINUX_USER)
 * VAR_PROJECT_STORAGE_DIR="/projects"
 * VAR_PLUGINS_DIR="/qgis_server_plugins"
 * VAR_SOCKET_DIR="/run/fastcgi"
