@@ -1,5 +1,5 @@
 # qgisserver-alpine
-A small and secure Docker image with Qgis Server based on Alpine. Only fastcgi, no web server. Share unix socket, /run/qgisserver/fastcgi.sock, with a fcgi-capable web server container (f ex. huggla/lighttpd2-alpine).
+A small and secure Docker image with Qgis Server, based on Alpine. Only fastcgi, no web server. Share unix socket, /run/qgisserver/fastcgi.sock, with a fcgi-capable web server container (f ex. huggla/lighttpd2-alpine).
 
 ## Environment variables
 ### Runtime variables with default value
