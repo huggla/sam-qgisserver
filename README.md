@@ -26,3 +26,5 @@ Can drop all but SETPCAP, SETGID and SETUID.
 * Make sure VAR_SOCKET_DIR in qgisserver-alpine (default: /run/fastcgi) is mounted as the parent directory to VAR_FASTCGI_SOCKET_FILE in lighttpd2-alpine (default: /run/fastcgi/fastcgi.sock).
 * Set VAR_OPERATION_MODE="fcgi" and VAR_setup1_module_load="[ 'mod_fastcgi' ]" in lighttpd2-alpine.
 * (Optional) Adjust VAR_setup3_workers, VAR_setup4_io__timeout and VAR_setup5_stat_cache__ttl in lighttpd2-alpine.
+* Put Qgis project files in VAR_PROJECT_STORAGE_DIR.
+* Try to load http://<hostaddress>/?map=myproject.qgs&service=WMS&request=GetCapabilities
