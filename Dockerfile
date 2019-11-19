@@ -2,28 +2,28 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="1.0"
-ARG TAG="20191018"
+ARG SaM_VERSION="1.1-edge"
+ARG TAG="20191112"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_4"
 ARG PROJ_VERSION="5.2.0"
-ARG NETCDF_VERSION="4.7.0"
-ARG QSCINTILLA_VERSION="2.11.2"
+ARG NETCDF_VERSION="4.7.2"
+ARG QSCINTILLA_VERSION="2.11.3"
 ARG LIBSPATIALINDEX_VERSION="master"
 ARG HDF5_VERSION="1.10.5"
-ARG CONTENTIMAGE1="huggla/proj5-content:$PROJ_VERSION-$TAG"
+ARG CONTENTIMAGE1="huggla/content-alpine:proj_$PROJ_VERSION-$TAG"
 ARG CONTENTSOURCE1="/content*"
 ARG CONTENTDESTINATION1="/content/"
-ARG CONTENTIMAGE2="huggla/netcdf-content:$NETCDF_VERSION-$TAG"
+ARG CONTENTIMAGE2="huggla/content-alpine:netcdf_$NETCDF_VERSION-$TAG"
 ARG CONTENTSOURCE2="/content*"
 ARG CONTENTDESTINATION2="/content/"
-ARG CONTENTIMAGE3="huggla/libspatialindex-content:$LIBSPATIALINDEX_VERSION-$TAG"
+ARG CONTENTIMAGE3="huggla/content-alpine:libspatialindex_$LIBSPATIALINDEX_VERSION-$TAG"
 ARG CONTENTSOURCE3="/content*"
 ARG CONTENTDESTINATION3="/content/"
-ARG CONTENTIMAGE4="huggla/qscintilla-content:$QSCINTILLA_VERSION-$TAG"
+ARG CONTENTIMAGE4="huggla/content-alpine:qscintilla_$QSCINTILLA_VERSION-$TAG"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
-ARG CONTENTIMAGE5="huggla/hdf5-content:$HDF5_VERSION-$TAG"
+ARG CONTENTIMAGE5="huggla/content-alpine:hdf5_$HDF5_VERSION-$TAG"
 ARG CONTENTSOURCE5="/content*"
 ARG CONTENTDESTINATION5="/content/"
 ARG EXCLUDEAPKS="proj-datumgrid"
@@ -80,22 +80,21 @@ FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${CONTENTIMAGE4:-scratch} as content4
 FROM ${CONTENTIMAGE5:-scratch} as content5
-FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$SaM_VERSION-$TAG}} as init
+FROM ${INITIMAGE:-${BASEIMAGE:-huggla/sam_$SaM_VERSION:base-$TAG}} as init
 # Generic template (don't edit) </END>
 
 # =========================================================================
 # Build
 # =========================================================================
 # Generic template (don't edit) <BEGIN>
-FROM ${BUILDIMAGE:-huggla/build:$SaM_VERSION-$TAG} as build
-FROM ${BASEIMAGE:-huggla/base:$SaM_VERSION-$TAG} as final
+FROM ${BUILDIMAGE:-huggla/sam_$SaM_VERSION:build-$TAG} as build
+FROM ${BASEIMAGE:-huggla/sam_$SaM_VERSION:base-$TAG} as final
 COPY --from=build /finalfs /
 # Generic template (don't edit) </END>
 
 # =========================================================================
 # Final
 # =========================================================================
-
 ENV VAR_LINUX_USER="qgisserver" \
     VAR_CONFIG_DIR="/etc/qgisserver" \
     VAR_PROJECT_STORAGE_DIR="/projects" \
