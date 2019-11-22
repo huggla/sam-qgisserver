@@ -1,0 +1,18 @@
+# Set in stage2:
+# ---------------------------------------------------------
+# set -ef +am
+# isFirstRun
+# VAR_*
+# All functions in /start/functions
+
+finalCmdString=\
+"QGIS_SERVER_LOG_STDERR=\"${VAR_QGIS_SERVER_LOG_STDERR:-1}\" "\
+"QGIS_OPTIONS_PATH=\"$VAR_CONFIG_DIR\" "\
+"MAX_CACHE_LAYERS=\"$VAR_MAX_CACHE_LAYERS\" "\
+"QGIS_PLUGINPATH=\"$VAR_PLUGINS_DIR\" "\
+"QGIS_SERVER_LOG_LEVEL=\"$VAR_LOG_LEVEL\" "\
+"QGIS_SERVER_PARALLEL_RENDERING=\"$VAR_PARALLEL_RENDERING\" "\
+"QGIS_SERVER_MAX_THREADS=\"$VAR_MAX_THREADS\" "\
+"QGIS_SERVER_CACHE_DIRECTORY=\"$VAR_CACHE_DIR\" "\
+"QGIS_SERVER_CACHE_SIZE=\"$VAR_CACHE_SIZE\" "\
+"$finalCmdString"
