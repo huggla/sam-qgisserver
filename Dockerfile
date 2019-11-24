@@ -56,7 +56,7 @@ ARG BUILDCMDS=\
 '&& ninja install '\
 '&& mv "$DESTDIR/usr/bin/qgis_mapserv.fcgi" "$DESTDIR/usr/bin/wms_metadata.xml" "$DESTDIR/usr/qgis/" '\
 '&& cp -a "$DESTDIR/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "$DESTDIR/usr/lib/qt5/plugins/imageformats" "/tmp/" '\
-'&& rm -rf "$DESTDIR/usr/lib/qt5/plugins" "$DESTDIR/usr/lib/qt5/qml" "$DESTDIR/usr/lib/qt5/libexec" "$DESTDIR/usr/lib/qt5/bin" "$DESTDIR/usr/lib/qt5/mkspecs" '\
+'&& rm -rf "$DESTDIR/usr/lib/qt5/plugins" "$DESTDIR/usr/lib/qt5/qml" "$DESTDIR/usr/lib/qt5/libexec" "$DESTDIR/usr/lib/qt5/bin" "$DESTDIR/usr/lib/qt5/mkspecs" $DESTDIR/usr/lib/*.a $DESTDIR/usr/lib/*.la '\
 '&& mkdir -p "$DESTDIR/usr/lib/qt5/plugins/platforms" '\
 '&& mv "/tmp/libqoffscreen.so" "$DESTDIR/usr/lib/qt5/plugins/platforms/" '\
 '&& mv "/tmp/imageformats" "$DESTDIR/usr/lib/qt5/plugins/" '\
