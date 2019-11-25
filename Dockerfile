@@ -56,17 +56,17 @@ ARG BUILDCMDS=\
 '&& ninja '\
 '&& ninja install '\
 '&& rm -rf /content/usr/share/proj /content/usr/lib/*.a /content/usr/lib/*.la '\
-'&& mv /content "/finalfs/"'
+'&& mv /content "/finalfs/tmp/content"'
 ARG FINALCMDS=\
 '   mv "/usr/bin/qgis_mapserv.fcgi" "/usr/bin/wms_metadata.xml" "/usr/qgis/" '\
 '&& cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/tmp/" '\
+'&& rm -rf "/usr/lib/qt5/plugins" "/usr/lib/qt5/qml" "/usr/lib/qt5/libexec" "/usr/lib/qt5/bin" "/usr/lib/qt5/mkspecs" '\
 '&& mkdir -p "/usr/lib/qt5/plugins/platforms" '\
 '&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
 '&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
 '&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
 '&& find "/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" -delete '\
-'&& cp -a /content/usr/* "/usr/" '\
-'&& rm -rf "/usr/lib/qt5/plugins" "/usr/lib/qt5/qml" "/usr/lib/qt5/libexec" "/usr/lib/qt5/bin" "/usr/lib/qt5/mkspecs" /content'
+'&& cp -a /tmp/content/usr/* "/usr/"'
 ARG REMOVEDIRS="/usr/include"
 # ARGs (can be passed to Build/Final) </END>
 
