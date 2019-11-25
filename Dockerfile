@@ -37,6 +37,7 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
                '-b release-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
+ARG MAKEDIRS="/usr/qgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
@@ -51,21 +52,21 @@ ARG BUILDCMDS=\
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
-          -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS="$CFLAGS" ./ "\
+          -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS=\"$CFLAGS\" ./ "\
 '&& ninja '\
 '&& ninja install '\
-'&& mv "$DESTDIR/usr/bin/qgis_mapserv.fcgi" "$DESTDIR/usr/bin/wms_metadata.xml" "$DESTDIR/usr/qgis/" '\
-'&& cp -a "$DESTDIR/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "$DESTDIR/usr/lib/qt5/plugins/imageformats" "/tmp/" '\
-'&& rm -rf "$DESTDIR/usr/lib/qt5/plugins" "$DESTDIR/usr/lib/qt5/qml" "$DESTDIR/usr/lib/qt5/libexec" "$DESTDIR/usr/lib/qt5/bin" "$DESTDIR/usr/lib/qt5/mkspecs" $DESTDIR/usr/lib/*.a $DESTDIR/usr/lib/*.la '\
-'&& mkdir -p "$DESTDIR/usr/lib/qt5/plugins/platforms" '\
-'&& mv "/tmp/libqoffscreen.so" "$DESTDIR/usr/lib/qt5/plugins/platforms/" '\
-'&& mv "/tmp/imageformats" "$DESTDIR/usr/lib/qt5/plugins/" '\
-'&& find "$DESTDIR/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
-'&& find "$DESTDIR/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" -delete '\
-'&& rm -rf /content/usr/share/proj '\
-'&& cp -a /content/usr/* "$DESTDIR/usr/" '\
-'&& rm -rf /content'
-ARG MAKEDIRS="/usr/qgis"
+'&& rm -rf /content/usr/share/proj /content/usr/lib/*.a /content/usr/lib/*.la '\
+'&& mv /content "/finalfs/"'
+ARG FINALCMDS=\
+'   mv "/usr/bin/qgis_mapserv.fcgi" "/usr/bin/wms_metadata.xml" "/usr/qgis/" '\
+'&& cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/tmp/" '\
+'&& mkdir -p "/usr/lib/qt5/plugins/platforms" '\
+'&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
+'&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
+'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
+'&& find "/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" -delete '\
+'&& cp -a /content/usr/* "/usr/" '\
+'&& rm -rf "/usr/lib/qt5/plugins" "/usr/lib/qt5/qml" "/usr/lib/qt5/libexec" "/usr/lib/qt5/bin" "/usr/lib/qt5/mkspecs" /content'
 ARG REMOVEDIRS="/usr/include"
 # ARGs (can be passed to Build/Final) </END>
 
