@@ -1,27 +1,29 @@
+# Secure and Minimal image of Qgis Server
+# https://hub.docker.com/repository/docker/huggla/sam-qgisserver
+
 # =========================================================================
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="1.1-edge"
-ARG TAG="20191112"
+ARG SaM_VERSION="2.0.0"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_10"
-ARG NETCDF_VERSION="4.7.2"
-ARG QSCINTILLA_VERSION="2.11.3"
-ARG LIBSPATIALINDEX_VERSION="master"
+ARG NETCDF_VERSION="4.7.3"
+ARG QSCINTILLA_VERSION="2.11.4"
+ARG LIBSPATIALINDEX_VERSION="20200218"
 ARG HDF5_VERSION="1.10.5"
-ARG CONTENTIMAGE2="huggla/content-alpine:netcdf_$NETCDF_VERSION-$TAG"
+ARG CONTENTIMAGE1="huggla/sam-content:netcdf-$NETCDF_VERSION"
+ARG CONTENTSOURCE1="/content*"
+ARG CONTENTDESTINATION1="/content/"
+ARG CONTENTIMAGE2="huggla/sam-content:libspatialindex-$LIBSPATIALINDEX_VERSION"
 ARG CONTENTSOURCE2="/content*"
 ARG CONTENTDESTINATION2="/content/"
-ARG CONTENTIMAGE3="huggla/content-alpine:libspatialindex_$LIBSPATIALINDEX_VERSION-$TAG"
+ARG CONTENTIMAGE3="huggla/sam-content:qscintilla-$QSCINTILLA_VERSION"
 ARG CONTENTSOURCE3="/content*"
 ARG CONTENTDESTINATION3="/content/"
-ARG CONTENTIMAGE4="huggla/content-alpine:qscintilla_$QSCINTILLA_VERSION-$TAG"
+ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
-ARG CONTENTIMAGE5="huggla/content-alpine:hdf5_$HDF5_VERSION-$TAG"
-ARG CONTENTSOURCE5="/content*"
-ARG CONTENTDESTINATION5="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ ttf-liberation"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
