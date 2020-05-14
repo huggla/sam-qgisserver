@@ -25,7 +25,7 @@ ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ ttf-liberation fontconfig"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
@@ -33,8 +33,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf freexl-dev python3-dev proj-dev \
-               libspatialite-dev libressl libressl-dev py3-qt5 \
+               automake autoconf freexl-dev python3-dev proj-dev fontconfig \
+               libspatialite-dev libressl libressl-dev py3-qt5 msttcorefonts-installer\
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
@@ -44,7 +44,11 @@ ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
 ARG BUILDCMDS=\
-'   cd multiwatch '\
+'   update-ms-fonts '\
+'&& fc-cache -f '\
+'&& cp -a /etc/fonts /finalfs/etc/ '\
+'&& cp -a /usr/share/xml /usr/share/font* /finalfs/usr/share/ '\
+'&& cd multiwatch '\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
