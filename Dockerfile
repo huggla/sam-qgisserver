@@ -5,13 +5,13 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="dev"
+ARG SaM_VERSION="2.0.3"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_10"
-ARG NETCDF_VERSION="4.7.3"
+ARG NETCDF_VERSION="4.7.4"
 ARG QSCINTILLA_VERSION="2.11.4"
-ARG LIBSPATIALINDEX_VERSION="20200218"
-ARG HDF5_VERSION="1.10.5"
+ARG LIBSPATIALINDEX_VERSION="1.9.3"
+ARG HDF5_VERSION="1.12.0"
 ARG CONTENTIMAGE1="huggla/sam-content:netcdf-$NETCDF_VERSION"
 ARG CONTENTSOURCE1="/content*"
 ARG CONTENTDESTINATION1="/content/"
