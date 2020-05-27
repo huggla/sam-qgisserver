@@ -7,7 +7,7 @@
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="2.0.3"
 ARG IMAGETYPE="application"
-ARG QGIS_VERSION="3_10"
+ARG QGIS_VERSION="3_10_6"
 ARG NETCDF_VERSION="4.7.4"
 ARG QSCINTILLA_VERSION="2.11.4"
 ARG LIBSPATIALINDEX_VERSION="1.9.3"
@@ -37,8 +37,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                libspatialite-dev libressl libressl-dev py3-qt5 msttcorefonts-installer\
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
-ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git \
-               '-b release-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
+ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git"
+ARG DOWNLOADS="https://github.com/qgis/QGIS/archive/final-$QGIS_VERSION.tar.gz"
 ARG MAKEDIRS="/usr/qgis /run/qgis"
 ARG LINUXUSEROWNED="/run/qgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
