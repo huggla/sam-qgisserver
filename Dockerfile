@@ -39,7 +39,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git \
                '-b release-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
-ARG MAKEDIRS="/usr/qgis"
+ARG MAKEDIRS="/usr/qgis /run/qgis"
+ARG LINUXUSEROWNED="/run/qgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
@@ -110,7 +111,7 @@ ENV VAR_LINUX_USER="qgisserver" \
     VAR_CACHE_DIR="/var/cache/qgisserver" \
     VAR_CACHE_SIZE="50" \
     VAR_FCGICHILDREN="1" \
-    VAR_FINAL_COMMAND="/usr/local/bin/spawn-fcgi -n -d \$VAR_PROJECT_STORAGE_DIR -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
+    VAR_FINAL_COMMAND="XDG_RUNTIME_DIR=/run/qgis /usr/local/bin/spawn-fcgi -n -d \$VAR_PROJECT_STORAGE_DIR -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
 
 # Generic template (don't edit) <BEGIN>
 USER starter
