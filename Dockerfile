@@ -53,7 +53,7 @@ ARG BUILDCMDS=\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
-'&& cd ../QGIS '\
+'&& cd ../QGIS-final-$QGIS_VERSION '\
 "&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
