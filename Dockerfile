@@ -39,8 +39,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
 ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git"
 ARG DOWNLOADS="https://github.com/qgis/QGIS/archive/final-$QGIS_VERSION.tar.gz"
-ARG MAKEDIRS="/usr/qgis /run/qgis"
-ARG LINUXUSEROWNED="/run/qgis"
+ARG MAKEDIRS="/usr/qgis /runtimeqgis"
+ARG LINUXUSEROWNED="/runtimeqgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
@@ -53,7 +53,7 @@ ARG BUILDCMDS=\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
-'&& cd ../QGIS-final-$QGIS_VERSION '\
+"&& cd ../QGIS-final-$QGIS_VERSION "\
 "&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
@@ -111,7 +111,7 @@ ENV VAR_LINUX_USER="qgisserver" \
     VAR_CACHE_DIR="/var/cache/qgisserver" \
     VAR_CACHE_SIZE="50" \
     VAR_FCGICHILDREN="1" \
-    VAR_FINAL_COMMAND="XDG_RUNTIME_DIR=/run/qgis /usr/local/bin/spawn-fcgi -n -d \$VAR_PROJECT_STORAGE_DIR -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
+    VAR_FINAL_COMMAND="XDG_RUNTIME_DIR=/runtimeqgis /usr/local/bin/spawn-fcgi -n -d \$VAR_PROJECT_STORAGE_DIR -s \$VAR_SOCKET_DIR/fastcgi.sock -M 777 -- /usr/local/bin/multiwatch -f \$VAR_FCGICHILDREN /usr/qgis/qgis_mapserv.fcgi"
 
 # Generic template (don't edit) <BEGIN>
 USER starter
