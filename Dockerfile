@@ -7,7 +7,7 @@
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="2.0.3"
 ARG IMAGETYPE="application"
-ARG QGIS_VERSION="3_10_0"
+ARG QGIS_VERSION="3_10_4"
 ARG NETCDF_VERSION="4.7.4"
 ARG QSCINTILLA_VERSION="2.11.4"
 ARG LIBSPATIALINDEX_VERSION="1.9.3"
@@ -74,7 +74,8 @@ ARG FINALCMDS=\
 '&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
 '&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
 '&& find "/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" ! -name "font*" ! -name "xml" -delete '\
-'&& cp -a /tmp/content/usr/* "/usr/"'
+'&& cp -a /tmp/content/usr/* "/usr/" '\
+'&& chmod 700 /runtimeqgis'
 ARG REMOVEDIRS="/usr/include"
 # ARGs (can be passed to Build/Final) </END>
 
@@ -101,6 +102,7 @@ COPY --from=build /finalfs /
 # =========================================================================
 ENV VAR_LINUX_USER="qgisserver" \
     VAR_CONFIG_DIR="/etc/qgisserver" \
+    VAR_INIT_CAPS="cap_chown" \
     VAR_PROJECT_STORAGE_DIR="/projects" \
     VAR_PLUGINS_DIR="/qgis_server_plugins" \
     VAR_SOCKET_DIR="/run/fastcgi" \
