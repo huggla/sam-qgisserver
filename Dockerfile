@@ -7,7 +7,7 @@
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="2.0.0"
 ARG IMAGETYPE="application"
-ARG QGIS_VERSION="3_10"
+ARG QGIS_VERSION="3_10_3"
 ARG NETCDF_VERSION="4.7.3"
 ARG QSCINTILLA_VERSION="2.11.4"
 ARG LIBSPATIALINDEX_VERSION="20200218"
@@ -37,8 +37,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                libspatialite-dev libressl libressl-dev py3-qt5 \
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
-ARG CLONEGITS="https://git.lighttpd.net/multiwatch.git \
-               '-b release-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
+ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git"
+ARG DOWNLOADS="https://github.com/qgis/QGIS/archive/final-$QGIS_VERSION.tar.gz"
 ARG MAKEDIRS="/usr/qgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
@@ -48,7 +48,7 @@ ARG BUILDCMDS=\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
-'&& cd ../QGIS '\
+"&& cd ../QGIS-final-$QGIS_VERSION "\
 "&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
