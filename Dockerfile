@@ -39,8 +39,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
 ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git \
                '-b final-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
 ARG MAKEDIRS="/usr/qgis"
-ARG EXECUTABLES="/usr/bin/spawn-fcgi"
-ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
+#ARG EXECUTABLES="/usr/bin/spawn-fcgi"
+#ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
 ARG BUILDCMDS=\
 '   cd multiwatch '\
