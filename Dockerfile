@@ -5,7 +5,7 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.3"
+ARG SaM_VERSION="alpine3.11"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_10_3"
 ARG NETCDF_VERSION="4.7.4"
@@ -24,7 +24,7 @@ ARG CONTENTDESTINATION3="/content/"
 ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
-ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+#ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
