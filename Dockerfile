@@ -25,7 +25,7 @@ ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
 #ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev libstdc++"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
@@ -43,7 +43,7 @@ ARG MAKEDIRS="/usr/qgis /runtimeqgis"
 ARG LINUXUSEROWNED="/runtimeqgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
-ARG CC="mpicc"
+#ARG CC="mpicc"
 ARG BUILDCMDS=\
 '   update-ms-fonts '\
 '&& fc-cache -f '\
