@@ -24,15 +24,15 @@ ARG CONTENTDESTINATION3="/content/"
 ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
-#ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev libstdc++"
+ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
+ARG RUNDEPS="openmpi spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev libstdc++"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
-               curl-dev fcgi-dev zlib-dev libxml2-dev \
+               curl-dev fcgi-dev zlib-dev libxml2-dev openmpi-dev \
                automake autoconf freexl-dev python3-dev fontconfig \
                libspatialite-dev libressl libressl-dev py3-qt5 msttcorefonts-installer\
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
@@ -43,7 +43,7 @@ ARG MAKEDIRS="/usr/qgis /runtimeqgis"
 ARG LINUXUSEROWNED="/runtimeqgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
-#ARG CC="mpicc"
+ARG CC="mpicc"
 ARG BUILDCMDS=\
 '   update-ms-fonts '\
 '&& fc-cache -f '\
