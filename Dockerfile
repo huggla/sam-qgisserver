@@ -32,8 +32,8 @@ ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
-               curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf freexl-dev python3-dev proj-dev fontconfig \
+               curl-dev fcgi-dev zlib-dev libxml2-dev \
+               automake autoconf freexl-dev python3-dev fontconfig \
                libspatialite-dev libressl libressl-dev py3-qt5 msttcorefonts-installer\
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
                qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
@@ -49,6 +49,8 @@ ARG BUILDCMDS=\
 '&& fc-cache -f '\
 '&& cp -a /etc/fonts /finalfs/etc/ '\
 '&& cp -a /usr/share/xml /usr/share/font* /finalfs/usr/share/ '\
+#'&& apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing add openmpi-dev '\
+'&& apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community add proj-dev '\
 '&& cd multiwatch '\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
