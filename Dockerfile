@@ -10,3 +10,5 @@ RUN apk --no-cache add fontconfig msttcorefonts-installer \
 FROM huggla/qgisserver-alpine:3.10-20191112
 
 COPY --from=alpine /finalfs /
+
+USER starter
