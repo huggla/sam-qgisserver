@@ -42,7 +42,7 @@ ARG DOWNLOADS="https://github.com/qgis/QGIS/archive/final-$QGIS_VERSION.tar.gz"
 ARG MAKEDIRS="/usr/qgis /runtimeqgis"
 ARG LINUXUSEROWNED="/runtimeqgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
-ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
+#ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
 ARG BUILDCMDS=\
 '   update-ms-fonts '\
@@ -50,9 +50,9 @@ ARG BUILDCMDS=\
 '&& cp -a /etc/fonts /finalfs/etc/ '\
 '&& cp -a /usr/share/xml /usr/share/font* /finalfs/usr/share/ '\
 '&& cd multiwatch '\
-'&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
-'&& eval "$COMMON_MAKECMDS" '\
-'&& cp -a /content/* / '\
+#'&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
+#'&& eval "$COMMON_MAKECMDS" '\
+#'&& cp -a /content/* / '\
 "&& cd ../QGIS-final-$QGIS_VERSION "\
 "&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
