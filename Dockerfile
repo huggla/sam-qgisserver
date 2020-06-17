@@ -5,7 +5,7 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.3"
+ARG SaM_VERSION="dev"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_10_3"
 ARG NETCDF_VERSION="4.7.4"
@@ -24,15 +24,15 @@ ARG CONTENTDESTINATION3="/content/"
 ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
-ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
+ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing,@ten http://dl-cdn.alpinelinux.org/alpine/v3.10/main"
+ARG RUNDEPS="spawn-fcgi fcgi@ten qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
-               curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
+               curl-dev fcgi-dev@ten zlib-dev openmpi-dev libxml2-dev \
                automake autoconf freexl-dev python3-dev proj-dev fontconfig \
                libspatialite-dev libressl libressl-dev py3-qt5 msttcorefonts-installer\
                py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
