@@ -24,10 +24,10 @@ ARG CONTENTDESTINATION3="/content/"
 ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
-ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing,@ten http://dl-cdn.alpinelinux.org/alpine/v3.10/main"
+ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing,@ten http://dl-cdn.alpinelinux.org/alpine/v3.10/main,@eleven http://dl-cdn.alpinelinux.org/alpine/v3.11/main"
 ARG RUNDEPS="spawn-fcgi fcgi@ten qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
-               sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
+               sqlite-dev sqlite ninja@eleven qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
