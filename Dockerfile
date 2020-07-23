@@ -5,7 +5,7 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="dev"
+ARG SaM_VERSION="2.0.3"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_10_8"
 ARG NETCDF_VERSION="4.7.4"
