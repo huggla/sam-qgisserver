@@ -10,7 +10,7 @@ ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3_10_8"
 ARG NETCDF_VERSION="4.7.3"
 ARG BASEIMAGE="huggla/sam-qgisserver:3.10.8"
-ARG RUNDEPS="exiv2 python3 py3-qt5 py3-qtpy"
+ARG RUNDEPS="exiv2 py3-qt5"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
