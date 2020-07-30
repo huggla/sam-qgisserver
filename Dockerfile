@@ -25,7 +25,7 @@ ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ exiv2"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ exiv2 py3-qt5"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite samurai qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
@@ -100,7 +100,6 @@ COPY --from=build /finalfs /
 # =========================================================================
 ENV VAR_LINUX_USER="qgisserver" \
     VAR_CONFIG_DIR="/etc/qgisserver" \
-    VAR_INIT_CAPS="cap_chown" \
     VAR_PROJECT_STORAGE_DIR="/projects" \
     VAR_PLUGINS_DIR="/qgis_server_plugins" \
     VAR_SOCKET_DIR="/run/fastcgi" \
