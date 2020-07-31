@@ -116,3 +116,4 @@ ENV VAR_LINUX_USER="qgisserver" \
 USER starter
 ONBUILD USER root
 # Generic template (don't edit) </END>
+
