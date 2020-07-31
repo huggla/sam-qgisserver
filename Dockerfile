@@ -16,8 +16,7 @@ ARG FINALCMDS=\
 '&& mkdir -p "/usr/lib/qt5/plugins/platforms" '\
 '&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
 '&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
-'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
-'&& cp -a /tmp/content/usr/* "/usr/"'
+'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
