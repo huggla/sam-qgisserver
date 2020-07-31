@@ -11,12 +11,7 @@ ARG QGIS_VERSION="3.10.8-rc"
 ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
 ARG RUNDEPS="py3-qt5"
 ARG FINALCMDS=\
-'   cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/tmp/" '\
-'&& rm -rf "/usr/lib/qt5/plugins" '\
-'&& mkdir -p "/usr/lib/qt5/plugins/platforms" '\
-'&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
-'&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
-'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '
+' find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
