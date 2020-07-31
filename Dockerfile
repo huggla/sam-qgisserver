@@ -11,14 +11,13 @@ ARG QGIS_VERSION="3.10.8-rc"
 ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
 ARG RUNDEPS="py3-qt5"
 ARG FINALCMDS=\
-'   cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/usr/lib/qt5/plugins/designer/libpyqt5.so" "/usr/lib/qt5/plugins/PyQt5" "/tmp/" '\
+'   cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/usr/lib/qt5/plugins/designer" "/usr/lib/qt5/plugins/PyQt5" "/usr/lib/qt5/plugins/generic" "/usr/lib/qt5/plugins/qmltooling" "/tmp/" '\
 '&& find "/usr/lib/qt5/plugins" '\
 '&& exit 1 '\
 '&& rm -rf "/usr/lib/qt5/plugins" "/usr/lib/qt5/qml" "/usr/lib/qt5/libexec" "/usr/lib/qt5/bin" "/usr/lib/qt5/mkspecs" '\
-'&& mkdir -p "/usr/lib/qt5/plugins/platforms" "/usr/lib/qt5/plugins/designer" '\
+'&& mkdir -p "/usr/lib/qt5/plugins/platforms" '\
 '&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
-'&& mv "/tmp/imageformats" "/tmp/PyQt5" "/usr/lib/qt5/plugins/" '\
-'&& mv "/tmp/libpyqt5.so" "/usr/lib/qt5/plugins/designer/" '\
+'&& mv "/tmp/imageformats" "/tmp/PyQt5" "/tmp/designer" "/tmp/generic" "/tmp/qmltooling" "/usr/lib/qt5/plugins/" '\
 '&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '
 # ARGs (can be passed to Build/Final) </END>
 
