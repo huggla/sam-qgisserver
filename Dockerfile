@@ -17,7 +17,6 @@ ARG FINALCMDS=\
 '&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
 '&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
 '&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
-'&& find "/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" ! -name "font*" ! -name "xml" -delete '\
 '&& cp -a /tmp/content/usr/* "/usr/"'
 # ARGs (can be passed to Build/Final) </END>
 
