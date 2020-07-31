@@ -9,7 +9,7 @@ ARG SaM_VERSION="2.0.4"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3.10.8-rc"
 ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
-ARG RUNDEPS="exiv2 py3-qt5"
+ARG RUNDEPS="py3-qt5"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
