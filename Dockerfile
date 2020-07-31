@@ -5,11 +5,10 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="dev"
+ARG SaM_VERSION="2.0.4"
 ARG IMAGETYPE="application"
-ARG QGIS_VERSION="3_10_8"
-ARG NETCDF_VERSION="4.7.3"
-ARG BASEIMAGE="huggla/sam-qgisserver:3.10.8"
+ARG QGIS_VERSION="3.10.8-rc"
+ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
 ARG RUNDEPS="exiv2 py3-qt5"
 # ARGs (can be passed to Build/Final) </END>
 
