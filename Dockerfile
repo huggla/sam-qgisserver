@@ -12,7 +12,7 @@ ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
 ARG RUNDEPS="py3-qt5"
 ARG FINALCMDS=\
 '   cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/tmp/" '\
-'&& rm -rf "/usr/lib/qt5/plugins" "/usr/lib/qt5/qml" "/usr/lib/qt5/libexec" "/usr/lib/qt5/bin" "/usr/lib/qt5/mkspecs" '\
+'&& rm -rf "/usr/lib/qt5/plugins" '\
 '&& mkdir -p "/usr/lib/qt5/plugins/platforms" '\
 '&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
 '&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
