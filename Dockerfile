@@ -25,7 +25,7 @@ ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ exiv2 py3-qt5"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ exiv2"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
                sqlite-dev sqlite samurai qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
@@ -66,11 +66,11 @@ ARG BUILDCMDS=\
 '&& mv /content "/finalfs/tmp/content"'
 ARG FINALCMDS=\
 '   mv "/usr/bin/qgis_mapserv.fcgi" "/usr/bin/wms_metadata.xml" "/usr/qgis/" '\
-'&& cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/tmp/" '\
-'&& rm -rf "/usr/lib/qt5/plugins" "/usr/lib/qt5/qml" "/usr/lib/qt5/libexec" "/usr/lib/qt5/bin" "/usr/lib/qt5/mkspecs" '\
-'&& mkdir -p "/usr/lib/qt5/plugins/platforms" '\
-'&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
-'&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
+'&& mkdir -p /tmp/qt5plugins/platforms '\
+'&& cp -a /usr/lib/qt5/plugins/platforms/libqoffscreen.so /tmp/qt5plugins/platforms/ '\
+'&& cp -a /usr/lib/qt5/plugins/imageformats /usr/lib/qt5/plugins/iconengines /tmp/qt5plugins/ '\
+'&& rm -rf /usr/lib/qt5/plugins/* /usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs '\
+'&& mv /tmp/qt5plugins/* /usr/lib/qt5/plugins/ '\
 '&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
 '&& find "/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" ! -name "font*" ! -name "xml" -delete '\
 '&& cp -a /tmp/content/usr/* "/usr/"'
