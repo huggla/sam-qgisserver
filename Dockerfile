@@ -9,14 +9,9 @@ ARG SaM_VERSION="2.0.4"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3.10.8-rc"
 ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
-ARG RUNDEPS="py3-qt5"
-ARG FINALCMDS=\
-'   mkdir -p /tmp/qt5plugins/platforms '\
-'&& cp -a /usr/lib/qt5/plugins/platforms/libqoffscreen.so /tmp/qt5plugins/platforms/ '\
-'&& cp -a /usr/lib/qt5/plugins/imageformats /usr/lib/qt5/plugins/iconengines /tmp/qt5plugins/ '\
-'&& rm -rf /usr/lib/qt5/plugins/* /usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs '\
-'&& mv /tmp/qt5plugins/* /usr/lib/qt5/plugins/ '\
-'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete'
+ARG BUILDDEPS="qt5-qtsvg"
+ARG BUILDCMDS=\
+'   cp -a /usr/lib/qt5/plugins/iconengines /finalfs/usr/lib/qt5/plugins/ '
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
