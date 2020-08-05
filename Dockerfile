@@ -43,6 +43,7 @@ ARG MAKEDIRS="/usr/qgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
+ARG LIBRARY_PATH="/usr/lib"
 ARG BUILDCMDS=\
 '   update-ms-fonts '\
 '&& fc-cache -f '\
@@ -59,7 +60,7 @@ ARG BUILDCMDS=\
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
-          -DEXPAT_LIBRARY=/usr/lib/libexpat.so -DGEOS_LIBRARY=/usr/lib/libgeos_c.so -DGDAL_LIBRARY=/usr/lib/libgdal.so \
+          -DEXPAT_LIBRARY=/usr/lib/libexpat.so -DGEOS_LIBRARY=/usr/lib/libgeos_c.so -DGDAL_LIBRARY=/usr/lib/libgdal.so -DOpenCL_LIBRARY=/usr/lib/libOpenCL.so \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS=\"$CFLAGS\" ./ "\
 '&& ninja '\
 '&& ninja install '\
