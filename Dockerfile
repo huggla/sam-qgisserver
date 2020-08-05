@@ -11,7 +11,7 @@ ARG QGIS_VERSION="3.10.8-rc"
 ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
 ARG RUNDEPS="py3-qt5"
 ARG FINALCMDS=\
-'   mkdir /tmp/qt5plugins/platforms '\
+'   mkdir -p /tmp/qt5plugins/platforms '\
 '&& cp -a /usr/lib/qt5/plugins/platforms/libqoffscreen.so /tmp/qt5plugins/platforms/ '\
 '&& cp -a /usr/lib/qt5/plugins/imageformats /usr/lib/qt5/plugins/PyQt5 /usr/lib/qt5/plugins/designer /usr/lib/qt5/plugins/egldeviceintegrations /usr/lib/qt5/plugins/iconengines /usr/lib/qt5/plugins/platformthemes /tmp/qt5plugins/ '\
 '&& rm -rf /usr/lib/qt5/plugins/* /usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs '\
