@@ -1,52 +1,59 @@
+# Secure and Minimal image of Qgis Server
+# https://hub.docker.com/repository/docker/huggla/sam-qgisserver
+
 # =========================================================================
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="1.1-edge"
-ARG TAG="20191112"
+ARG SaM_VERSION="2.0.4"
 ARG IMAGETYPE="application"
-ARG QGIS_VERSION="3_10_3"
-ARG NETCDF_VERSION="4.7.2"
-ARG QSCINTILLA_VERSION="2.11.3"
-ARG LIBSPATIALINDEX_VERSION="master"
-ARG HDF5_VERSION="1.10.5"
-ARG CONTENTIMAGE2="huggla/content-alpine:netcdf_$NETCDF_VERSION-$TAG"
+ARG QGIS_VERSION="3_10_8"
+ARG NETCDF_VERSION="4.7.4"
+ARG QSCINTILLA_VERSION="2.11.5"
+ARG LIBSPATIALINDEX_VERSION="1.9.3"
+ARG HDF5_VERSION="1.12.0"
+ARG CONTENTIMAGE1="huggla/sam-content:netcdf-$NETCDF_VERSION"
+ARG CONTENTSOURCE1="/content*"
+ARG CONTENTDESTINATION1="/content/"
+ARG CONTENTIMAGE2="huggla/sam-content:libspatialindex-$LIBSPATIALINDEX_VERSION"
 ARG CONTENTSOURCE2="/content*"
 ARG CONTENTDESTINATION2="/content/"
-ARG CONTENTIMAGE3="huggla/content-alpine:libspatialindex_$LIBSPATIALINDEX_VERSION-$TAG"
+ARG CONTENTIMAGE3="huggla/sam-content:qscintilla-$QSCINTILLA_VERSION"
 ARG CONTENTSOURCE3="/content*"
 ARG CONTENTDESTINATION3="/content/"
-ARG CONTENTIMAGE4="huggla/content-alpine:qscintilla_$QSCINTILLA_VERSION-$TAG"
+ARG CONTENTIMAGE4="huggla/sam-content:hdf5-$HDF5_VERSION"
 ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
-ARG CONTENTIMAGE5="huggla/content-alpine:hdf5_$HDF5_VERSION-$TAG"
-ARG CONTENTSOURCE5="/content*"
-ARG CONTENTDESTINATION5="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-ARG RUNDEPS="py3-qt5 spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++"
+ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ exiv2 py3-qt5"
 ARG BUILDDEPS="build-base cmake gdal-dev geos-dev libzip-dev \
-               sqlite-dev sqlite ninja qca qca-dev qt5-qtbase-dev \
+               sqlite-dev sqlite samurai qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
                qt5-qtsvg-dev qt5-qtwebkit-dev qt5-qtlocation-dev \
                qt5-qttools-dev exiv2-dev qt5-qtkeychain-dev mt-st \
                curl-dev fcgi-dev zlib-dev openmpi-dev libxml2-dev \
-               automake autoconf freexl-dev python3-dev proj-dev \
-               libspatialite-dev libressl libressl-dev py3-qt5 \
-               py3-sip-pyqt5 py3-sip py-sip-dev py3-qtpy qt5-qttools-static \
-               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev"
-ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git \
-               '-b final-$QGIS_VERSION --depth 1 https://github.com/qgis/QGIS.git'"
+               automake autoconf freexl-dev python3-dev proj-dev fontconfig \
+               libspatialite-dev libressl libressl-dev py3-qt5 msttcorefonts-installer ttf-liberation \
+               py3-sip-pyqt5 py3-sip py-sip-dev qt5-qttools-static \
+               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev qt5-qtwebengine-dev qt5-qtwebview-dev"
+ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git"
+ARG DOWNLOADS="https://github.com/qgis/QGIS/archive/final-$QGIS_VERSION.tar.gz"
 ARG MAKEDIRS="/usr/qgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
 ARG BUILDCMDS=\
-'   cd multiwatch '\
+'   update-ms-fonts '\
+'&& fc-cache -f '\
+'&& cp -a /etc/fonts /finalfs/etc/ '\
+'&& cp -a /usr/share/xml /usr/share/font* /finalfs/usr/share/ '\
+'&& cd multiwatch '\
 '&& cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS="$CFLAGS" ./ '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& cp -a /content/* / '\
-'&& cd ../QGIS '\
+"&& cd ../QGIS-final-$QGIS_VERSION "\
+"&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
@@ -65,7 +72,7 @@ ARG FINALCMDS=\
 '&& mv "/tmp/libqoffscreen.so" "/usr/lib/qt5/plugins/platforms/" '\
 '&& mv "/tmp/imageformats" "/usr/lib/qt5/plugins/" '\
 '&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '\
-'&& find "/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" -delete '\
+'&& find "/usr/share" -mindepth 1 -maxdepth 1 ! -name "proj" ! -name "font*" ! -name "xml" -delete '\
 '&& cp -a /tmp/content/usr/* "/usr/"'
 ARG REMOVEDIRS="/usr/include"
 # ARGs (can be passed to Build/Final) </END>
@@ -76,15 +83,15 @@ FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${CONTENTIMAGE4:-scratch} as content4
 FROM ${CONTENTIMAGE5:-scratch} as content5
-FROM ${INITIMAGE:-${BASEIMAGE:-huggla/sam_$SaM_VERSION:base-$TAG}} as init
+FROM ${INITIMAGE:-${BASEIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-base}} as init
 # Generic template (don't edit) </END>
 
 # =========================================================================
 # Build
 # =========================================================================
 # Generic template (don't edit) <BEGIN>
-FROM ${BUILDIMAGE:-huggla/sam_$SaM_VERSION:build-$TAG} as build
-FROM ${BASEIMAGE:-huggla/sam_$SaM_VERSION:base-$TAG} as final
+FROM ${BUILDIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-build} as build
+FROM ${BASEIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-base} as final
 COPY --from=build /finalfs /
 # Generic template (don't edit) </END>
 
