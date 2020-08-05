@@ -16,13 +16,7 @@ ARG FINALCMDS=\
 '&& cp -a /usr/lib/qt5/plugins/imageformats /usr/lib/qt5/plugins/PyQt5 /usr/lib/qt5/plugins/designer /usr/lib/qt5/plugins/egldeviceintegrations /usr/lib/qt5/plugins/iconengines /usr/lib/qt5/plugins/platformthemes /tmp/qt5plugins/ '\
 '&& rm -rf /usr/lib/qt5/plugins/* /usr/lib/qt5/qml /usr/lib/qt5/libexec /usr/lib/qt5/bin /usr/lib/qt5/mkspecs '\
 '&& mv /tmp/qt5plugins/* /usr/lib/qt5/plugins/ '\
-'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '
-
-'   cp -a "/usr/lib/qt5/plugins/platforms/libqoffscreen.so" "/usr/lib/qt5/plugins/imageformats" "/usr/lib/qt5/plugins/designer" "/usr/lib/qt5/plugins/PyQt5" "/usr/lib/qt5/plugins/generic" "/usr/lib/qt5/plugins/qmltooling" "/usr/lib/qt5/plugins/bearer" "/usr/lib/qt5/plugins/platforms" "/usr/lib/qt5/plugins/sqldrivers" "/usr/lib/qt5/plugins/platforminputcontexts" "/usr/lib/qt5/plugins/mediaservice" "/usr/lib/qt5/plugins/xcbglintegrations" "/usr/lib/qt5/plugins/egldeviceintegrations" "/usr/lib/qt5/plugins/iconengines" "/usr/lib/qt5/plugins/platformthemes" "/tmp/" '\
-'&& rm -rf "/usr/lib/qt5/plugins" "/usr/lib/qt5/qml" "/usr/lib/qt5/libexec" "/usr/lib/qt5/bin" "/usr/lib/qt5/mkspecs" '\
-'&& mkdir -p "/usr/lib/qt5/plugins" '\
-'&& mv "/tmp/imageformats" "/tmp/PyQt5" "/tmp/designer" "/tmp/generic" "/tmp/qmltooling" "/tmp/bearer" "/tmp/platforms" "/tmp/sqldrivers" "/tmp/platforminputcontexts" "/tmp/mediaservice" "/tmp/xcbglintegrations" "/tmp/egldeviceintegrations" "/tmp/iconengines" "/tmp/platformthemes" "/usr/lib/qt5/plugins/" '\
-'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete '
+'&& find "/usr/bin" -type f ! -name "spawn-fcgi" ! -name "multiwatch" -delete'
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
