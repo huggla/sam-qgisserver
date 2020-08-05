@@ -43,7 +43,6 @@ ARG MAKEDIRS="/usr/qgis"
 ARG EXECUTABLES="/usr/bin/spawn-fcgi"
 ARG STARTUPEXECUTABLES="/usr/bin/multiwatch"
 ARG CC="mpicc"
-ARG LD_LIBRARY_PATH="/usr/lib"
 ARG BUILDCMDS=\
 '   update-ms-fonts '\
 '&& fc-cache -f '\
