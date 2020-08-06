@@ -9,6 +9,7 @@ ARG SaM_VERSION="2.0.4"
 ARG IMAGETYPE="application"
 ARG QGIS_VERSION="3.10.8"
 ARG BASEIMAGE="huggla/sam-qgisserver:$QGIS_VERSION"
+ARG RUNDEPS="exiv2"
 ARG BUILDDEPS="qt5-qtsvg"
 ARG BUILDCMDS=\
 '   cp -a /usr/lib/qt5/plugins/iconengines /finalfs/usr/lib/qt5/plugins/ '
