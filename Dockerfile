@@ -55,7 +55,7 @@ ARG BUILDCMDS=\
 "&& cd ../QGIS-final-$QGIS_VERSION "\
 "&& sed -i '/SET(TS_FILES/d' i18n/CMakeLists.txt "\
 "&& sed -i '153 a MESSAGE(\"DBG  GEOS_LIB_NAME=\$\{GEOS_LIB_NAME\}\")' cmake/FindGEOS.cmake "\
-"&& cmake -GNinja -DCMAKE_LIBRARY_PATH=/usr;/usr/lib;/usr/local;/usr/local/lib;/usr/include -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
+"&& cmake -GNinja -DGEOS_LIB_NAME=libgeos_c -DCMAKE_LIBRARY_PATH=/usr;/usr/lib;/usr/local;/usr/local/lib;/usr/include -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GRASS=OFF -DWITH_GRASS7=OFF \
           -DSUPPRESS_QT_WARNINGS=ON -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF \
           -DWITH_APIDOC=OFF -DWITH_ASTYLE=OFF -DWITH_DESKTOP=OFF -DWITH_SERVER=ON \
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
