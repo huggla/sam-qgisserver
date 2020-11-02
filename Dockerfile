@@ -26,7 +26,7 @@ ARG CONTENTSOURCE4="/content*"
 ARG CONTENTDESTINATION4="/content/"
 ARG ADDREPOS="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 ARG RUNDEPS="spawn-fcgi fcgi qt5-qtbase qt5-qtbase-x11 opencl-icd-loader qt5-qtsvg qt5-qtwebkit libqca qt5-qtkeychain geos gdal libspatialite libzip qt5-qtserialport qt5-qtlocation libev openmpi libstdc++ exiv2"
-ARG BUILDDEPS="build-base cmake cmake-extras extra-cmake-modules cmake-bash-completion scanelf gdal-dev geos geos-dev libzip-dev \
+ARG BUILDDEPS="build-base cmake binutils binutils-gold cmake-extras extra-cmake-modules cmake-bash-completion scanelf gdal-dev geos geos-dev libzip-dev \
                sqlite-dev sqlite samurai qca qca-dev qt5-qtbase-dev \
                flex-dev opencl-icd-loader-dev opencl-headers \
                bison postgresql-dev qt5-qtserialport-dev libtool \
