@@ -60,7 +60,7 @@ ARG BUILDCMDS=\
           -DWITH_SERVER_PLUGINS=ON -DWITH_BINDINGS=ON -DWITH_QTMOBILITY=OFF \
           -DWITH_QUICK=OFF -DWITH_3D=OFF -DWITH_GUI=OFF -DDISABLE_DEPRECATED=ON \
           -DSERVER_SKIP_ECW=ON -DWITH_GEOREFERENCER=OFF -DCMAKE_C_FLAGS=\"$CFLAGS\" \
-          -DProtobuf_LIBRARIES=/usr/lib/libprotobuf.so.24 -DEXIV2_LIBRARY=/usr/lib/libexiv2.so -DEXPAT_LIBRARY=/usr/lib/libexpat.so -DGEOS_LIBRARY=/usr/lib/libgeos_c.so -DGDAL_LIBRARY=/usr/lib/libgdal.so -DOpenCL_LIBRARY=/usr/lib/libOpenCL.so -DLIBZIP_LIBRARY=/usr/lib/libzip.so ./ "\
+          -DPROJ_LIBRARY=/usr/lib/libproj.so.20 -DPOSTGRES_LIBRARY=/usr/lib/libpq.so.5 -DProtobuf_LIBRARIES=/usr/lib/libprotobuf.so.24 -DEXIV2_LIBRARY=/usr/lib/libexiv2.so -DEXPAT_LIBRARY=/usr/lib/libexpat.so -DGEOS_LIBRARY=/usr/lib/libgeos_c.so -DGDAL_LIBRARY=/usr/lib/libgdal.so -DOpenCL_LIBRARY=/usr/lib/libOpenCL.so -DLIBZIP_LIBRARY=/usr/lib/libzip.so ./ "\
 '&& ninja '\
 '&& ninja install '\
 '&& rm -rf /content/usr/share/proj /content/usr/lib/*.a /content/usr/lib/*.la '\
