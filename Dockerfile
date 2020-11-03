@@ -36,7 +36,7 @@ ARG BUILDDEPS="build-base cmake binutils protobuf-c py3-protobuf protobuf-c-dev 
                automake autoconf freexl-dev python3-dev proj-dev fontconfig \
                libspatialite-dev libressl libressl-dev py3-qt5 msttcorefonts-installer \
                py3-sip-pyqt5 py3-sip py-sip-dev qt5-qttools-static \
-               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev qt5-qtwebengine-dev qt5-qtwebview-dev"
+               qt5-qtxmlpatterns-dev py3-opencl fortify-headers boost-dev boost-build libev-dev qt5-qtwebengine-dev qt5-qtwebview-dev musl-dev"
 ARG CLONEGITS="https://git.lighttpd.net/lighttpd/multiwatch.git"
 ARG DOWNLOADS="https://github.com/qgis/QGIS/archive/final-$QGIS_VERSION.tar.gz"
 ARG MAKEDIRS="/usr/qgis"
