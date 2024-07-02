@@ -1,4 +1,4 @@
-*Note! Due to lack of time and upstream changes contantly breaking the build, this image won't get any updates.
+*Note! Due to lack of time and upstream changes constantly breaking the build, this image won't get any updates.
 
 # sam-qgisserver
 Secure and Minimal Qgis Server Docker-image. Only fastcgi, no web server. Share unix socket, /run/qgisserver/fastcgi.sock, with a fcgi-capable web server container (f ex. huggla/sam-lighttpd2).
